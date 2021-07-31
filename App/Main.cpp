@@ -69,7 +69,7 @@
 #define DEBUG false
 
 //Panel to edit
-int panel = 0x014D2; //Swamp Red 2
+int panel = 0x09E69;
 
 HWND hwndSeed, hwndRandomize, hwndCol, hwndRow, hwndElem, hwndColor, hwndLoadingText, hwndNormal, hwndExpert, hwndMessage;
 std::shared_ptr<Panel> _panel;
@@ -437,10 +437,10 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
 	CreateWindow(L"STATIC", L"Choose Difficuty:",
 		WS_TABSTOP | WS_VISIBLE | WS_CHILD | SS_LEFT,
 		10, 15, 120, 16, hwnd, NULL, hInstance, NULL);
-	hwndNormal = CreateWindow(L"BUTTON", L"NORMAL - Puzzles that should be reasonably challenging for most players. Puzzle mechanics are mostly identical to those in the original game.",
+	hwndNormal = CreateWindow(L"BUTTON", L"Base Game Randomizer - NOT DONE YET",
 		WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_AUTORADIOBUTTON | BS_MULTILINE,
 		10, 35, 570, 35, hwnd, (HMENU)IDC_DIFFICULTY_NORMAL, hInstance, NULL);
-	hwndExpert = CreateWindow(L"BUTTON", L"EXPERT - Very difficult puzzles with complex mechanics and mind-boggling new tricks. For brave players seeking the ultimate challenge.",
+	hwndExpert = CreateWindow(L"BUTTON", L"Emptiness - Empties out all of the puzzles as much as possible",
 		WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_AUTORADIOBUTTON | BS_MULTILINE,
 		10, 75, 570, 35, hwnd, (HMENU)IDC_DIFFICULTY_EXPERT, hInstance, NULL);
 	if (hard) SendMessage(hwndExpert, BM_SETCHECK, BST_CHECKED, 1);

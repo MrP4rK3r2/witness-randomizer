@@ -32,7 +32,8 @@ public:
 		else generator->seed(Random::rand());
 	}
 
-	void CopyTargets();
+	void CopyTargetsN();
+	void CopyTargetsH();
 
 	//--------------------------Normal difficulty---------------------------
 
