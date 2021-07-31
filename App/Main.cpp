@@ -432,7 +432,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
 
 	CreateWindow(L"STATIC", L"Version: " VERSION_STR,
 		WS_TABSTOP | WS_VISIBLE | WS_CHILD | SS_LEFT,
-		490, 15, 90, 16, hwnd, NULL, hInstance, NULL);
+		430, 15, 150, 16, hwnd, NULL, hInstance, NULL);
 
 	CreateWindow(L"STATIC", L"Choose Difficuty:",
 		WS_TABSTOP | WS_VISIBLE | WS_CHILD | SS_LEFT,

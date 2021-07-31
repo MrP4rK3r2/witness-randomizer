@@ -128,7 +128,7 @@ void PuzzleList::GenerateTutorialN()
 	generator->resetConfig();
 	//0x018AF
 
-	generator->setSymbol();
+	//generator->setSymbol();
 	generator->setGridSize(2, 3);
 	generator->generate(0x012C9, Decoration::Start, 1, Decoration::Exit, 1, Decoration::Stone | Decoration::Color::Black, 2, Decoration::Stone | Decoration::Color::White, 1);
 

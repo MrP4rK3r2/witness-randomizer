@@ -1576,6 +1576,15 @@ int Special::findGlobals() {
 	return 0;
 }
 
+
+void Special::makeFullStonesPuzzle(int id, int width, int height, int black_stones, int white_stones) {
+	for (int i = 0; i < black_stones; i++) {
+		/* generator->WriteColors
+		generator->setSymbol(Decoration::Stone, Random::rand()% width, Random::rand() % height); */
+	}
+	generator->write(id);
+}
+
 //For testing/debugging purposes only
 void Special::test() {
 

@@ -61,6 +61,8 @@ public:
 	static void drawSeedAndDifficulty(int id, int seed, bool hard);
 	static void drawGoodLuckPanel(int id);
 
+	void makeFullStonesPuzzle(int id, int width, int height, int black_stones, int white_stones);
+
 	void test(); //For testing/debugging purposes only
 
 	static void setTarget(int puzzle, int target)
