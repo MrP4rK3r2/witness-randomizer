@@ -641,8 +641,13 @@ bool Generate::generate_path(PuzzleSymbols & symbols)
 	}
 
 	//For stone puzzles, the path must have a certain number of regions
-	if (symbols.style == Panel::Style::HAS_STONES && _splitPoints.size() == 0)
+	if (symbols.style == Panel::Style::HAS_STONES && _splitPoints.size() == 0) {
+		//This line could be a fix, but it doesn't seem to work.
+		/*if (_panel->_width == 1 || _panel->_height == 1) {
+			return generate_path_regions(symbols.getNum(Decoration::Stone));
+		}*/
 		return generate_path_regions(min(symbols.getNum(Decoration::Stone), (_panel->_width / 2 + _panel->_height / 2) / 2 + 1));
+	}
 
 	if (symbols.style == Panel::Style::HAS_SHAPERS) {
 		if (hasFlag(Config::SplitShapes)) {
