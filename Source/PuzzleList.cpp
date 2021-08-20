@@ -185,65 +185,80 @@ void PuzzleList::GenerateTutorialN()
 
 void PuzzleList::GenerateSymmetryN()
 {
-	generator->setLoadingData(L"Symmetry", 19);
-	//generator->resetConfig();
-	////Back Wall
+	generator->setLoadingData(L"Symmetry", 30);
+	generator->resetConfig();
+	//Back Wall
 	//generator->setFlag(Generate::Config::StartEdgeOnly);
-	//generator->setSymmetry(Panel::Symmetry::Vertical);
-	//generator->generateMaze(0x00086, 1, 1);
-	//generator->generateMaze(0x00087, 1, 1);
-	//generator->generateMaze(0x00059, 1, 1);
-	//generator->generateMaze(0x00062, 1, 1);
-	//generator->generateMaze(0x0005C, 2, 2);
+	generator->setSymmetry(Panel::Symmetry::Vertical);
+	generator->generate(0x00086, Decoration::Gap, 4);
+	generator->generate(0x00087, Decoration::Gap, 4);
+	generator->generate(0x00059, Decoration::Gap, 10);
+	generator->generate(0x00062, Decoration::Gap, 15);
+	generator->generate(0x0005C, Decoration::Gap, 45);
 
-	////Kiln Rotational Set
+	//Kiln Rotational Set
+	generator->setSymmetry(Panel::Symmetry::Rotational);
+	generator->generate(0x0008D, Decoration::Gap, 4);
+	generator->generate(0x00081, Decoration::Gap, 4);
+	generator->generate(0x00083, Decoration::Gap, 7);
+
+	//Melting Set
+	//TODO: Make these 3 the same puzzle
+	generator->generate(0x00084, Decoration::Gap, 15);
+	generator->generate(0x00082, Decoration::Gap, 15);
+	generator->generate(0x0343A, Decoration::Gap, 15);
+
+	//Black Dots
+	generator->setSymmetry(Panel::Symmetry::Horizontal);
+	generator->generate(0x00022, Decoration::Dot, 6);
+	generator->generate(0x00023, Decoration::Dot, 3);
+	generator->generate(0x00024, Decoration::Dot, 7);
+	generator->setSymmetry(Panel::Symmetry::Rotational);
+	generator->generate(0x00025, Decoration::Dot, 7);
+	generator->generate(0x00026, Decoration::Dot, 6);
+
+	//Colored Dots
+	generator->setSymmetry(Panel::Symmetry::Vertical);
+	generator->generate(0x0007C, Decoration::Dot | Decoration::Color::Blue, 3, Decoration::Dot | Decoration::Color::Yellow, 3);
+	generator->setSymmetry(Panel::Symmetry::Rotational);
+	generator->generate(0x0007E, Decoration::Dot | Decoration::Color::Blue, 1, Decoration::Dot | Decoration::Color::Yellow, 1);
+	generator->generate(0x00075, Decoration::Dot | Decoration::Color::Blue, 2, Decoration::Dot | Decoration::Color::Yellow, 2);
+
+	//This one doesn't work.
+	//generator->resetConfig();
 	//generator->setSymmetry(Panel::Symmetry::Rotational);
-	//generator->generateMaze(0x0008D, 1, 1);
-	//generator->generateMaze(0x00081, 1, 1);
-	//generator->generateMaze(0x00083, 1, 1);
+	//generator->generate(0x00073, Decoration::Dot | Decoration::Color::Blue, 1, Decoration::Dot | Decoration::Color::Yellow, 1, Decoration::Dot, 1);
 
-	////Melting Set
-	//generator->generateMaze(0x00084, 1, 1);
-	//generator->generateMaze(0x00082, 1, 1);
-	//generator->generateMaze(0x0343A, 1, 1);
+	generator->generate(0x00077, Decoration::Dot | Decoration::Color::Blue, 1, Decoration::Dot | Decoration::Color::Yellow, 1, Decoration::Dot, 1);
+	generator->generate(0x00079, Decoration::Dot | Decoration::Color::Blue, 1, Decoration::Dot | Decoration::Color::Yellow, 2, Decoration::Dot, 4);
 
-	////Black Dots
-	//generator->setSymmetry(Panel::Symmetry::Horizontal);
-	//generator->generate(0x00022, Decoration::Dot, 6);
-	//generator->generate(0x00023, Decoration::Dot, 3);
-	//generator->generate(0x00024, Decoration::Dot, 7);
-	//generator->setSymmetry(Panel::Symmetry::Rotational);
-	//generator->generate(0x00025, Decoration::Dot, 7);
-	//generator->generate(0x00026, Decoration::Dot, 6);
-
-	////Colored Dots
-	//generator->setSymmetry(Panel::Symmetry::Vertical);
-	//generator->generate(0x0007C, Decoration::Dot | Decoration::Color::Blue, 3, Decoration::Dot | Decoration::Color::Yellow, 3);
-	//generator->setSymmetry(Panel::Symmetry::Rotational);
-	//generator->generate(0x0007E, Decoration::Dot | Decoration::Color::Blue, 1, Decoration::Dot | Decoration::Color::Yellow, 1);
-	//generator->generate(0x00075, Decoration::Dot | Decoration::Color::Blue, 2, Decoration::Dot | Decoration::Color::Yellow, 2);
-	//generator->generate(0x00073, Decoration::Dot | Decoration::Color::Blue, 3, Decoration::Dot | Decoration::Color::Yellow, 3, Decoration::Dot, 2);
-	//generator->generate(0x00077, Decoration::Dot | Decoration::Color::Blue, 1, Decoration::Dot | Decoration::Color::Yellow, 1, Decoration::Dot, 1);
-	//generator->generate(0x00079, Decoration::Dot | Decoration::Color::Blue, 1, Decoration::Dot | Decoration::Color::Yellow, 2, Decoration::Dot, 4);
-
-	////Fading Lines
-	//generator->generate(0x00065, Decoration::Dot | Decoration::Color::Blue, 4, Decoration::Dot | Decoration::Color::Yellow, 2);
-	//generator->generate(0x0006D, Decoration::Dot | Decoration::Color::Blue, 2, Decoration::Dot | Decoration::Color::Yellow, 4);
-	//generator->generate(0x00072, Decoration::Dot | Decoration::Color::Blue, 3, Decoration::Dot | Decoration::Color::Yellow, 1);
+	//Fading Lines
+	generator->generate(0x00065, Decoration::Dot | Decoration::Color::Blue, 4, Decoration::Dot | Decoration::Color::Yellow, 2);
+	generator->generate(0x0006D, Decoration::Dot | Decoration::Color::Blue, 2, Decoration::Dot | Decoration::Color::Yellow, 4);
+	generator->generate(0x00072, Decoration::Dot | Decoration::Color::Blue, 3, Decoration::Dot | Decoration::Color::Yellow, 1);
 	//generator->setSymmetry(Panel::Symmetry::Vertical);
 	//generator->generate(0x0006F, Decoration::Dot | Decoration::Color::Blue, 1, Decoration::Dot | Decoration::Color::Yellow, 1);
 	//generator->setSymmetry(Panel::Symmetry::Rotational);
-	//generator->generate(0x00070, Decoration::Dot | Decoration::Color::Blue, 1, Decoration::Dot | Decoration::Color::Yellow, 1);
-	//generator->generate(0x00071, Decoration::Dot | Decoration::Color::Blue, 2, Decoration::Dot | Decoration::Color::Yellow, 1);
-	//generator->generate(0x00076, Decoration::Dot | Decoration::Color::Yellow, 3);
+	generator->generate(0x00070, Decoration::Dot | Decoration::Color::Blue, 1, Decoration::Dot | Decoration::Color::Yellow, 1);
+	generator->generate(0x00071, Decoration::Dot | Decoration::Color::Blue, 2, Decoration::Dot | Decoration::Color::Yellow, 1);
+	generator->generate(0x00076, Decoration::Dot | Decoration::Color::Yellow, 3);
 
-	////Doors
-	//generator->setFlagOnce(Generate::Config::FullGaps);
-	//generator->generate(0x000B0, Decoration::Gap, 1, Decoration::Dot, 4);
-	//generator->generate(0x1C349, Decoration::Dot, 2);
+	//Doors
+	generator->resetConfig();
+	generator->setFlagOnce(Generate::Config::FullGaps);
+	generator->generate(0x000B0, Decoration::Gap, 1, Decoration::Dot, 4);
+	generator->generate(0x1C349, Decoration::Dot, 2);
 
-	////Laser Blue and Yellow
-	////specialCase->generateReflectionDotPuzzle(generator, 0x00A52, 0x00A61, {});
+	//Laser Blue and Yellow
+	//These puzzles are kind of weird in that looks like a fullGap/regular break hybrid, and so I decided to keep the structure.
+	generator->resetConfig();
+	generator->setFlag(Generate::Config::PreserveStructure);
+	specialCase->generateReflectionDotPuzzle(generator, 0x00A52, 0x00A61, { {Decoration::Dot, 5 },
+		  {Decoration::Gap, 4} }, Panel::Symmetry::Vertical, false);
+	//specialCase->generateReflectionDotPuzzle(generator, 0x00A57, 0x00A64, { {Decoration::Dot, 6 },
+		  //{Decoration::Gap, 1} }, Panel::Symmetry::Vertical, false);
+	specialCase->generateReflectionDotPuzzle(generator, 0x00A5B, 0x00A68, { {Decoration::Dot, 8 },
+		  }, Panel::Symmetry::Rotational, false);
 }
 
 void PuzzleList::GenerateQuarryN()
@@ -257,6 +272,8 @@ void PuzzleList::GenerateBunkerN()
 {
 	generator->resetConfig();
 	generator->generate(0x17C2E, Decoration::Stone | Decoration::Color::White, 2, Decoration::Stone | Decoration::Color::Black, 2);
+
+	//TODO: Attempt to randomize the rest of bunker by changing the color of the alreadly-placed stones.
 }
 
 void PuzzleList::GenerateSwampN()
@@ -292,7 +309,9 @@ void PuzzleList::GenerateTrianglePanelsN()
 	generator->setLoadingData(L"Triangles", 12);
 	generator->resetConfig();
 	//Tutorial Discard
-	generator->generate(0x17CFB, Decoration::Start, 1, Decoration::Exit, 1, Decoration::Triangle | Decoration::Color::Orange, 1, Decoration::Gap, 5);
+	generator->generate(0x17CFB, Decoration::Triangle | Decoration::Color::Orange, 1, Decoration::Gap, 5);
+	//Sym Discard
+	generator->generate(0x3C12B, Decoration::Triangle | Decoration::Color::Orange, 1, Decoration::Gap, 4);
 }
 
 void PuzzleList::GenerateMountainN()
