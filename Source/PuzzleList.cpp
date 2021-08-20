@@ -107,7 +107,7 @@ void PuzzleList::CopyTargetsN()
 	Special::copyTarget(0x17D27, 0x03713); // Keep Discard Panel -> Monastary Shortcut
 	Special::copyTarget(0x17C71, 0x17CA4); // Town Rooftop Discard -> Monastary Laser
 	Special::copyTarget(0x17F9B, 0x17CAB); // Jungle Discard -> Jungle Pop-up wall
-	Special::copyTarget(0x00061, 0x17C2E); // Dots tutorial -> Bunker Entry Door
+	Special::copyTarget(0x00061, 0x17C2E); // Dots Tutorial -> Bunker Entry Door
 	Special::copyTarget(0x17C2E, 0x09DE0); // Bunker Entry Door -> Bunker Laser
  
 	Special::setPower(0x28B39, true); // Town Red Hex Panel
@@ -145,19 +145,24 @@ void PuzzleList::GenerateTutorialN()
 	generator->resetConfig();
 	Special::drawSeedAndDifficulty(0x00064, seedIsRNG ? -1 : seed, false);
 	Special::drawGoodLuckPanel(0x00182);
+
 	//Mazes
 	generator->setFlag(Generate::Config::FullGaps);
 	generator->generateMaze(0x00293);
 	generator->generateMaze(0x00295, 1, 1);
 	generator->generateMaze(0x002C2);
+
 	//2 starts maze
 	generator->resetConfig();
 	generator->generateMaze(0x0A3B2);
+
 	//2 exits maze
 	generator->generateMaze(0x0A3B5);
+
 	//Secret back area
 	generator->generate(0x0A171, Decoration::Dot_Intersection, 25, Decoration::Gap, 1);
 	generator->generate(0x04CA4, Decoration::Dot_Intersection, 25, Decoration::Gap, 2);
+
 	//Dots Tutorial
 	generator->setFlag(Generate::Config::FullGaps);
 	generator->generate(0x0005D, Decoration::Dot, 2);
@@ -165,6 +170,7 @@ void PuzzleList::GenerateTutorialN()
 	generator->generate(0x0005F, Decoration::Dot, 5, Decoration::Gap, 4);
 	generator->generate(0x00060, Decoration::Start, 2, Decoration::Dot_Intersection, 6, Decoration::Gap, 4);
 	generator->generate(0x00061, Decoration::Start, 3, Decoration::Dot_Intersection, 6, Decoration::Gap, 4);
+
 	//Stones Tutorial
 	generator->resetConfig();
 
@@ -265,7 +271,10 @@ void PuzzleList::GenerateQuarryN()
 {
 	generator->setLoadingData(L"Quarry", 39);
 	generator->resetConfig();
-	
+
+	//Entry Gates
+	//generator->generate(0x09E57, Decoration::Stone | Decoration::Color::Black, 12, Decoration::Stone | Decoration::Color::White, 4);
+	//generator->generate(0x17C09, Decoration::Poly, 2);
 }
 
 void PuzzleList::GenerateBunkerN()
@@ -344,7 +353,7 @@ void PuzzleList::GenerateOrchardN()
 void PuzzleList::GenerateDesertN()
 {
 	generator->resetConfig();
-
+	Randomizer().RandomizeDesert();
 }
 
 void PuzzleList::GenerateKeepN()
