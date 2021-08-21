@@ -515,8 +515,8 @@ void PuzzleList::GenerateTrianglePanelsN()
 	//Theater Discard
 	generator->generate(0x17CF7, Decoration::Triangle | Decoration::Color::Orange, 1, Decoration::Gap, 5);
 
-	//Jungle Discard
-	
+	//Jungle Discard //TODO: Custom generation function to make other triangles more likely.
+	generator->generate(0x17F9B, Decoration::Triangle | Decoration::Color::Orange, 1);
 }
 
 void PuzzleList::GenerateMountainN()
@@ -589,9 +589,16 @@ void PuzzleList::GenerateKeepN()
 
 void PuzzleList::GenerateJungleN()
 {
+	generator->setLoadingData(L"Jungle", 6);
 	generator->resetConfig();
 
-
+	//Jungle Wall //TODO: Make a custom gen function to work with gaps for first dot puzzle
+	specialCase->generateSoundDotPuzzle(0x0026E, { 2, 2 }, { DOT_SMALL, DOT_LARGE }, true);
+	specialCase->generateSoundDotPuzzle(0x0026F, { 4, 4 }, { DOT_MEDIUM, DOT_MEDIUM, DOT_SMALL, DOT_MEDIUM, DOT_LARGE }, false);
+	specialCase->generateSoundDotPuzzle(0x00C3F, { 4, 4 }, { DOT_SMALL, DOT_MEDIUM, DOT_SMALL, DOT_LARGE }, true);
+	specialCase->generateSoundDotPuzzle(0x00C41, { 4, 4 }, { DOT_SMALL, DOT_SMALL, DOT_LARGE, DOT_MEDIUM, DOT_LARGE }, true);
+	if (Random::rand() % 2) specialCase->generateSoundDotPuzzle(0x014B2, { 4, 4 }, { DOT_SMALL, DOT_LARGE, DOT_SMALL, DOT_LARGE, DOT_MEDIUM }, true);
+	else specialCase->generateSoundDotPuzzle(0x014B2, { 4, 4 }, { DOT_LARGE, DOT_MEDIUM, DOT_SMALL, DOT_LARGE, DOT_SMALL }, true);
 }
 
 //--------------------------HARD MODE-----------------------------
