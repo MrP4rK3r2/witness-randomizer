@@ -475,6 +475,8 @@ void PuzzleList::GenerateVaultsN()
 		Decoration::Stone | Decoration::Color::White, 7);
 
 	//Desert Vault
+	generator->generate(0x0CC7B, Decoration::Dot_Intersection, 49, Decoration::Poly, 1, Decoration::Poly | Decoration::Can_Rotate, 1, 
+		Decoration::Poly | Decoration::Negative, 3);
 
 	//Shipwreck Vault
 	specialCase->generateSoundDotReflectionPuzzle(0x00AFB, { 6, 6 }, { DOT_MEDIUM, DOT_LARGE, DOT_MEDIUM, DOT_SMALL }, { DOT_LARGE, DOT_SMALL, DOT_MEDIUM }, 5, false);
@@ -490,6 +492,9 @@ void PuzzleList::GenerateTrianglePanelsN()
 
 	//Sym Discard
 	generator->generate(0x3C12B, Decoration::Triangle | Decoration::Color::Orange, 1, Decoration::Gap, 4);
+
+	//Desert Discard
+	generator->generate(0x17CE7, Decoration::Triangle | Decoration::Color::Orange, 1, Decoration::Gap, 2);
 
 	//Quarry Discard
 	generator->generate(0x17CF0, Decoration::Triangle | Decoration::Color::Orange, 1, Decoration::Gap, 4);
@@ -508,6 +513,9 @@ void PuzzleList::GenerateTrianglePanelsN()
 
 	//Theater Discard
 	generator->generate(0x17CF7, Decoration::Triangle | Decoration::Color::Orange, 1, Decoration::Gap, 5);
+
+	//Jungle Discard
+	
 }
 
 void PuzzleList::GenerateMountainN()
