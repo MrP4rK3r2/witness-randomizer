@@ -426,6 +426,8 @@ void PuzzleList::GenerateTrianglePanelsN()
 	generator->generate(0x17CFB, Decoration::Triangle | Decoration::Color::Orange, 1, Decoration::Gap, 5);
 	//Sym Discard
 	generator->generate(0x3C12B, Decoration::Triangle | Decoration::Color::Orange, 1, Decoration::Gap, 4);
+	//Quarry Discard
+	generator->generate(0x17CF0, Decoration::Triangle | Decoration::Color::Orange, 1, Decoration::Gap, 4);
 }
 
 void PuzzleList::GenerateMountainN()
