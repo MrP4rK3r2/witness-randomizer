@@ -499,6 +499,15 @@ void PuzzleList::GenerateTrianglePanelsN()
 
 	//Shipwreck Discard
 	generator->generate(0x17D28, Decoration::Triangle | Decoration::Color::Orange, 1, Decoration::Gap, 4);
+
+	//Rooftop Discard
+	generator->generate(0x17C71, Decoration::Triangle | Decoration::Color::Orange, 1, Decoration::Gap, 7);
+
+	//Orange Crate Discard
+	generator->generate(0x17D01, Decoration::Triangle | Decoration::Color::Orange, 1, Decoration::Gap, 4);
+
+	//Theater Discard
+	generator->generate(0x17CF7, Decoration::Triangle | Decoration::Color::Orange, 1, Decoration::Gap, 5);
 }
 
 void PuzzleList::GenerateMountainN()
