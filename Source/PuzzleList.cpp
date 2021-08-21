@@ -166,10 +166,11 @@ void PuzzleList::GenerateTutorialN()
 	//Dots Tutorial
 	generator->setFlag(Generate::Config::FullGaps);
 	generator->generate(0x0005D, Decoration::Dot, 2);
-	generator->generate(0x0005E, Decoration::Dot, 5, Decoration::Gap, 4);
-	generator->generate(0x0005F, Decoration::Dot, 5, Decoration::Gap, 4);
-	generator->generate(0x00060, Decoration::Start, 2, Decoration::Dot_Intersection, 6, Decoration::Gap, 4);
-	generator->generate(0x00061, Decoration::Start, 3, Decoration::Dot_Intersection, 6, Decoration::Gap, 4);
+	generator->setFlag(Generate::Config::PreserveStructure);
+	generator->generate(0x0005E, Decoration::Dot, 5);
+	generator->generate(0x0005F, Decoration::Dot, 5);
+	generator->generate(0x00060, Decoration::Dot, 6);
+	generator->generate(0x00061, Decoration::Dot, 6);
 
 	//Stones Tutorial
 	generator->resetConfig();
