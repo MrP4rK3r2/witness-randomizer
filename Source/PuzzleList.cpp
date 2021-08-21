@@ -415,19 +415,34 @@ void PuzzleList::GenerateVaultsN()
 	generator->setLoadingData(L"Vaults", 5);
 	generator->resetConfig();
 	//Tutorial Vault
-	generator->generate(0x033D4, Decoration::Start, 4, Decoration::Dot, 8, Decoration::Stone | Decoration::Color::Black, 7, Decoration::Stone | Decoration::Color::White, 7);
+	generator->generate(0x033D4, Decoration::Start, 4, Decoration::Dot, 8, Decoration::Stone | Decoration::Color::Black, 7, 
+		Decoration::Stone | Decoration::Color::White, 7);
+
+	//Desert Vault
+
+	//Shipwreck Vault
+	specialCase->generateSoundDotReflectionPuzzle(0x00AFB, { 6, 6 }, { DOT_MEDIUM, DOT_LARGE, DOT_MEDIUM, DOT_SMALL }, { DOT_LARGE, DOT_SMALL, DOT_MEDIUM }, 5, false);
 }
 
 void PuzzleList::GenerateTrianglePanelsN()
 {
 	generator->setLoadingData(L"Triangles", 12);
 	generator->resetConfig();
+
 	//Tutorial Discard
 	generator->generate(0x17CFB, Decoration::Triangle | Decoration::Color::Orange, 1, Decoration::Gap, 5);
+
 	//Sym Discard
 	generator->generate(0x3C12B, Decoration::Triangle | Decoration::Color::Orange, 1, Decoration::Gap, 4);
+
 	//Quarry Discard
 	generator->generate(0x17CF0, Decoration::Triangle | Decoration::Color::Orange, 1, Decoration::Gap, 4);
+
+	//Keep Discard
+	generator->generate(0x17D27, Decoration::Triangle | Decoration::Color::Orange, 1, Decoration::Gap, 5);
+
+	//Shipwreck Discard
+	generator->generate(0x17D28, Decoration::Triangle | Decoration::Color::Orange, 1, Decoration::Gap, 4);
 }
 
 void PuzzleList::GenerateMountainN()
@@ -466,8 +481,36 @@ void PuzzleList::GenerateDesertN()
 void PuzzleList::GenerateKeepN()
 {
 	generator->setLoadingData(L"Keep", 5);
-	generator->resetConfig();
 
+	//Yellow
+	generator->resetConfig();
+	generator->setSymbol(Decoration::Gap_Column, 8, 3);
+	generator->setSymbol(Decoration::Gap_Column, 4, 5);
+	generator->setSymbol(Decoration::Gap_Row, 3, 0);
+	generator->setSymbol(Decoration::Gap_Row, 3, 2);
+	generator->setSymbol(Decoration::Gap_Row, 5, 6);
+	//generator->setFlagOnce(Generate::Config::DisableWrite);
+	generator->generate(0x033EA, Decoration::Dot, 2);
+
+	//Purple
+	generator->resetConfig();
+	generator->setObstructions({ { 3, 2 } , { 8, 5 } });
+	generator->generate(0x01BE9, Decoration::Stone | Decoration::Black, 4, Decoration::Stone | Decoration::White, 4);
+
+	//Green
+	generator->resetConfig();
+	generator->setObstructions({ { 5, 8 } });
+	generator->generate(0x01CD3, Decoration::Poly, 2);
+
+	//Blue
+	generator->resetConfig();
+	generator->setSymmetry(Panel::Symmetry::Rotational);
+	generator->generate(0x01D3F, Decoration::Poly | Decoration::Can_Rotate, 2);
+
+	//Keep Back Laser
+	generator->resetConfig();
+	generator->generate(0x03317, Decoration::Dot, 2, Decoration::Gap, 5, Decoration::Stone | Decoration::Color::Black, 4, 
+		Decoration::Stone | Decoration::Color::White, 4, Decoration::Poly | Decoration::Can_Rotate, 2, Decoration::Poly, 2);
 }
 
 void PuzzleList::GenerateJungleN()
