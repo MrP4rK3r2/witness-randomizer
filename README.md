@@ -12,7 +12,7 @@ The second is Base Game Randomizer. This mode, when completed, will randomize th
 Currently, Base Game Randomizer only has Tutorial done (except for some of the tutorial stones panels). The rest is sigma's randomizer.
 
 **How to use the Witness Random Puzzle Generator:**
-
+asdfasdfasdf
 1. Launch The Witness
 2. Start a New Game
 3. Launch WitnessRPG.exe (from any location)
