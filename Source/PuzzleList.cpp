@@ -401,13 +401,69 @@ void PuzzleList::GenerateTreehouseN()
 {
 	generator->setLoadingData(L"Treehouse", 57);
 	generator->resetConfig();
-
+	
 }
 
 void PuzzleList::GenerateTownN()
 {
 	generator->setLoadingData(L"Town", 20);
 	generator->resetConfig();
+
+	//Windmill Control Panel
+	generator->generate(0x17D02, Decoration::Dot, 4);
+
+	//Full Dots + Poly
+	generator->generate(0x2899C, Decoration::Dot_Intersection, 25, Decoration::Poly | Decoration::Can_Rotate, 1);
+	generator->generate(0x28A33, Decoration::Dot_Intersection, 25, Decoration::Poly | Decoration::Can_Rotate, 1, Decoration::Poly, 1);
+	generator->generate(0x28ABF, Decoration::Dot_Intersection, 25, Decoration::Poly | Decoration::Can_Rotate, 1, Decoration::Poly, 2);
+	generator->generate(0x28AC0, Decoration::Dot_Intersection, 25, Decoration::Poly | Decoration::Can_Rotate, 2);
+	generator->generate(0x28AC1, Decoration::Dot_Intersection, 25, Decoration::Poly | Decoration::Can_Rotate, 2);
+
+	//Full Dots Eraser Panel
+	generator->generate(0x28AD9, Decoration::Dot_Intersection, 25, Decoration::Eraser | Decoration::White, 1, Decoration::Poly, 1);
+
+	//Cinema Puzzles
+	generator->setFlag(Generate::Config::PreserveStructure);
+	generator->generate(0x17F89, Decoration::Gap, 2, Decoration::Stone | Decoration::Black, 11, Decoration::Stone | Decoration::White, 4);
+	//generator->generate(0x0A168, Decoration::Gap, 2, Decoration::Stone | Decoration::Black, 12, Decoration::Stone | Decoration::White, 4, Decoration::Eraser, 2);
+	generator->generate(0x33AB2, Decoration::Gap, 2, Decoration::Stone | Decoration::Black, 4, Decoration::Poly, 4);
+
+	//Orange Crate
+	generator->resetConfig();
+	generator->generate(0x0A0C8, Decoration::Stone | Decoration::Black, 1, Decoration::Stone | Decoration::White, 3, Decoration::Poly, 4);
+
+	//Blue Sym
+	generator->setSymmetry(Panel::Symmetry::Rotational);
+	generator->generate(0x28AC7, Decoration::Stone | Decoration::Black, 2, Decoration::Stone | Decoration::White, 3);
+	generator->generate(0x28AC8, Decoration::Stone | Decoration::Black, 2, Decoration::Stone | Decoration::White, 3);
+	generator->generate(0x28ACA, Decoration::Stone | Decoration::Black, 3, Decoration::Stone | Decoration::White, 3);
+	generator->generate(0x28ACB, Decoration::Stone | Decoration::Black, 4, Decoration::Stone | Decoration::White, 4, Decoration::Dot, 1);
+	generator->generate(0x28ACC, Decoration::Stone | Decoration::Black, 4, Decoration::Stone | Decoration::White, 4, Decoration::Dot, 1);
+
+	//Yellow Door
+	generator->resetConfig();
+	generator->generate(0x28998, Decoration::Poly | Decoration::Can_Rotate, 4, Decoration::Star | Decoration::Color::White, 6);
+
+	//Soundproof Room
+	specialCase->generateSoundDotPuzzle(0x034E3, { 4, 4 }, {DOT_SMALL, DOT_MEDIUM, DOT_LARGE, DOT_LARGE}, false);
+
+	//RGB area puzzles
+	generator->resetConfig();
+	generator->generate(0x03C0C, Decoration::Stone | Decoration::Black, 3, Decoration::Stone | Decoration::White, 4, Decoration::Stone | Decoration::Red, 1, 
+		Decoration::Stone | Decoration::Green, 3, Decoration::Stone | Decoration::Cyan, 1, Decoration::Stone | Decoration::Magenta, 1, 
+		Decoration::Stone | Decoration::Yellow, 3);
+	generator->generate(0x03C08, Decoration::Star | Decoration::Color::Black, 4, Decoration::Star | Decoration::Color::White, 4, 
+		Decoration::Star | Decoration::Color::Red, 4, Decoration::Star | Decoration::Color::Magenta, 4);
+
+	//RGB control
+	//TODO: Make a custom gen function to make random rgb always possible to solve all directions.
+	//generator->setFlagOnce(Generate::Config::SmallShapes);
+	//generator->generate(0x334D8, Decoration::Poly | Decoration::Can_Rotate, 1, Decoration::Stone | Decoration::Color::Blue, 1, 
+		//Decoration::Stone | Decoration::Color::Green, 1, Decoration::Stone | Decoration::Color::Red, 1);
+
+	//Church Stars //TODO: Figure out what on earth is going on here
+	specialCase->generateColorFilterPuzzle(0x28A0D, { 4, 4 }, { std::make_pair<int, int>(Decoration::Star | 1, 6),
+		std::make_pair<int,int>(Decoration::Star | 2, 6), std::make_pair<int,int>(Decoration::Star | 3, 4) }, { 1, 1, 0, 0 });
 }
 
 void PuzzleList::GenerateVaultsN()
