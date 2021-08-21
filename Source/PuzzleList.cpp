@@ -481,6 +481,12 @@ void PuzzleList::GenerateVaultsN()
 
 	//Shipwreck Vault
 	specialCase->generateSoundDotReflectionPuzzle(0x00AFB, { 6, 6 }, { DOT_MEDIUM, DOT_LARGE, DOT_MEDIUM, DOT_SMALL }, { DOT_LARGE, DOT_SMALL, DOT_MEDIUM }, 5, false);
+
+	//Mountain Vault
+	generator->resetConfig();
+	generator->setSymmetry(Panel::Symmetry::Rotational);
+	generator->generate(0x002A6, Decoration::Stone | Decoration::Color::White, 1, Decoration::Stone | Decoration::Color::Black, 2,
+		Decoration::Dot | Decoration::Color::Blue, 2, Decoration::Dot | Decoration::Color::Yellow, 2);
 }
 
 void PuzzleList::GenerateTrianglePanelsN()
@@ -517,19 +523,65 @@ void PuzzleList::GenerateTrianglePanelsN()
 
 	//Jungle Discard //TODO: Custom generation function to make other triangles more likely.
 	generator->generate(0x17F9B, Decoration::Triangle | Decoration::Color::Orange, 1);
+
+	//Mountainside Discard
+	generator->generate(0x17C42, Decoration::Triangle | Decoration::Color::Orange, 1, Decoration::Gap, 7);
 }
 
 void PuzzleList::GenerateMountainN()
 {
 	std::wstring text = L"Mountain Perspective";
 	SetWindowText(_handle, text.c_str());
-	generator->setFlagOnce(Generate::SplitStones);
-
+	specialCase->generateMountaintop(0x17C34, { { Decoration::Stone | Decoration::Color::Black, 2 },{ Decoration::Stone | Decoration::Color::White, 2, }, });
 
 	generator->setLoadingData(L"Mountain", 39);
 	generator->resetConfig();
-	
 
+	//Purple Bridge //TODO: Figure out why this seems to break tetris pieces.
+	/*generator->setFlagOnce(Generate::Config::PreserveStructure);
+	generator->setFlagOnce(Generate::Config::DecorationsOnly);
+	std::set<Point> bpoints1 = { { 6, 3 },{ 5, 4 },{ 7, 4 } };
+	std::set<Point> bpoints2 = { { 6, 5 },{ 5, 6 },{ 6, 7 },{ 7, 6 } };
+	std::set<Point> bpoints3 = { { 3, 6 },{ 4, 7 } };
+	if (Random::rand() % 2 == 0) generator->hitPoints = { generator->pick_random(bpoints1), generator->pick_random(bpoints2), generator->pick_random(bpoints3) };
+	else generator->hitPoints = { generator->pick_random(bpoints3), generator->pick_random(bpoints2), generator->pick_random(bpoints1) };
+	generator->setObstructions({ { 4, 1 },{ 6, 1 },{ 8, 1 } });
+	generator->blockPos = { { 1, 1 },{ 11, 1 },{ 1, 11 },{ 11, 11 } };
+	generator->setSymbol(Decoration::Gap_Row, 3, 4);
+	generator->generate(0x09E39, Decoration::Stone | Decoration::Color::Black, 1, Decoration::Stone | Decoration::Color::White, 1,
+		Decoration::Poly, 1);*/
+
+	//Orange
+	generator->resetConfig();
+	generator->generate(0x09E73, Decoration::Dot, 2, Decoration::Stone | Decoration::Color::Black, 3, Decoration::Stone | Decoration::Color::White, 3);
+	generator->generate(0x09E75, Decoration::Dot, 5, Decoration::Stone | Decoration::Color::Black, 1, Decoration::Stone | Decoration::Color::White, 1);
+	generator->generate(0x09E78, Decoration::Poly, 1, Decoration::Dot, 1);
+	generator->generate(0x09E79, Decoration::Poly | Decoration::Can_Rotate, 2, Decoration::Poly, 1, Decoration::Gap, 2);
+	generator->generate(0x09E6C, Decoration::Stone | Decoration::Color::Black, 3, Decoration::Stone | Decoration::Color::White, 3,
+		Decoration::Star | Decoration::Color::Purple, 2, Decoration::Gap, 4);
+	generator->generate(0x09E6F, Decoration::Poly, 2, Decoration::Dot, 1);
+	generator->generate(0x09E6B, Decoration::Dot, 4);
+
+	//Green
+	generator->generate(0x09E7A, Decoration::Dot, 1, Decoration::Stone | Decoration::Color::Black, 4, Decoration::Stone | Decoration::Color::White, 3);
+	generator->generate(0x09E71, Decoration::Dot, 2, Decoration::Stone | Decoration::Color::Black, 4, Decoration::Stone | Decoration::Color::White, 2);
+	generator->generate(0x09E72, Decoration::Stone | Decoration::Color::Black, 2, Decoration::Stone | Decoration::Color::White, 2, Decoration::Poly, 1);
+	generator->generate(0x09E69, Decoration::Dot, 2, Decoration::Stone | Decoration::Color::Black, 2, Decoration::Stone | Decoration::Color::White, 3);
+	generator->generate(0x09E7B, Decoration::Dot, 2, Decoration::Stone | Decoration::Color::Black, 3, Decoration::Stone | Decoration::Color::White, 3);
+
+	//Purple
+	generator->generate(0x09EAD, Decoration::Poly, 2, Decoration::Stone | Decoration::Color::Black, 3, Decoration::Stone | Decoration::Color::White, 2);
+	generator->generate(0x09EAF, Decoration::Poly, 2, Decoration::Stone | Decoration::Color::Black, 2, Decoration::Stone | Decoration::Color::White, 2);
+
+	//Blue
+	generator->setObstructions({ { 4, 3 },{ 5, 4 },{ 5, 6 },{ 5, 8 },{ 5, 10 },{ 6, 9 },{ 7, 10 } });
+	generator->generate(0x33AF5, Decoration::Stone | Decoration::Color::Black, 5, Decoration::Stone | Decoration::Color::White, 3);
+	if (Random::rand() % 2 == 0) generator->setObstructions({ { 5, 4 },{ 5, 6 },{ 5, 8 },{ 5, 10 },{ 9, 4 },{ 9, 6 },{ 9, 8 },{ 9, 10 },{ 7, 0 },{ 7, 2 } });
+	else generator->setObstructions({ { 3, 4 },{ 3, 6 },{ 3, 8 },{ 3, 10 },{ 7, 4 },{ 7, 6 },{ 7, 8 },{ 7, 10 },{ 5, 0 },{ 5, 2 },{ 9, 0 },{ 9, 2 } });
+	generator->generate(0x33AF7, Decoration::Stone | Decoration::Color::Black, 6, Decoration::Stone | Decoration::Color::White, 6);
+	generator->setObstructions({ { 0, 1 },{ 0, 3 },{ 0, 5 },{ 0, 7 },{ 9, 4 },{ 1, 4 },{ 1, 6 },{ 1, 8 },{ 2, 7 },{ 2, 9 },{ 3, 8 },{ 3, 10 },{ 4, 9 },{ 5, 8 },{ 5, 10 },
+		{ 6, 7 },{ 6, 9 },{ 7, 6 },{ 7, 8 },{ 7, 10 },{ 8, 5 },{ 8, 7 },{ 8, 9 },{ 9, 2 },{ 9, 4 },{ 9, 6 },{ 9, 8 },{ 10, 1 },{ 10, 3 },{ 10, 5 } });
+	generator->generate(0x09F6E, Decoration::Dot, 5);
 }
 
 void PuzzleList::GenerateCavesN()
