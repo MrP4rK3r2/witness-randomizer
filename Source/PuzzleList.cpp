@@ -551,6 +551,8 @@ void PuzzleList::GenerateMountainN()
 	generator->generate(0x09E39, Decoration::Stone | Decoration::Color::Black, 1, Decoration::Stone | Decoration::Color::White, 1,
 		Decoration::Poly, 1);*/
 
+
+
 	//Orange
 	generator->resetConfig();
 	generator->generate(0x09E73, Decoration::Dot, 2, Decoration::Stone | Decoration::Color::Black, 3, Decoration::Stone | Decoration::Color::White, 3);
@@ -582,6 +584,33 @@ void PuzzleList::GenerateMountainN()
 	generator->setObstructions({ { 0, 1 },{ 0, 3 },{ 0, 5 },{ 0, 7 },{ 9, 4 },{ 1, 4 },{ 1, 6 },{ 1, 8 },{ 2, 7 },{ 2, 9 },{ 3, 8 },{ 3, 10 },{ 4, 9 },{ 5, 8 },{ 5, 10 },
 		{ 6, 7 },{ 6, 9 },{ 7, 6 },{ 7, 8 },{ 7, 10 },{ 8, 5 },{ 8, 7 },{ 8, 9 },{ 9, 2 },{ 9, 4 },{ 9, 6 },{ 9, 8 },{ 10, 1 },{ 10, 3 },{ 10, 5 } });
 	generator->generate(0x09F6E, Decoration::Dot, 5);
+
+	//Dual Bridge Panels
+	//TODO: Hijack sigma's generation function to put other things on it.
+	//specialCase->generate2Bridge(0x09E86, 0x09ED8);
+
+	//Rainbow //TODO:Finish changing this one
+	/*generator->resetConfig();
+	generator->setFlag(Generate::Config::WriteColors);
+	generator->generate(0x09FD3, Decoration::Stone | Decoration::Color::Magenta, 3, Decoration::Stone | Decoration::Color::Green, 3);
+	generator->generate(0x09FD4, Decoration::Stone | Decoration::Color::Magenta, 2, Decoration::Stone | Decoration::Color::Green, 2,
+		Decoration::Star | Decoration::Color::Magenta, 2, Decoration::Star | Decoration::Color::Green, 3);
+	generator->generate(0x09FD6, Decoration::Stone | Decoration::Color::Cyan, 3, Decoration::Stone | Decoration::Color::Yellow, 2,
+		Decoration::Star | Decoration::Color::Cyan, 3, Decoration::Star | Decoration::Color::Yellow, 4);
+	generator->generate(0x09FD7, { { Decoration::Stone | Decoration::Color::Cyan, 2 },{ Decoration::Stone | Decoration::Color::Magenta, 2 },
+		{ Decoration::Star | Decoration::Color::Cyan, 3 },{ Decoration::Star | Decoration::Color::Magenta, 3 },
+		{ Decoration::Poly | Decoration::Color::Cyan, 1 },{ Decoration::Poly | Decoration::Color::Magenta, 1 } });
+	generator->setFlagOnce(Generate::Config::Write2Color);
+	generator->setSymbol(Decoration::Start, 10, 0);
+	generator->setSymbol(Decoration::Start, 0, 10);
+	generator->setSymbol(Decoration::Exit, 0, 0);
+	generator->setSymbol(Decoration::Exit, 10, 10);
+	generator->setSymmetry(Panel::Symmetry::Rotational);
+	generator->generate(0x09FD8, Decoration::Dot_Intersection | Decoration::Color::Blue, 4, Decoration::Dot_Intersection | Decoration::Color::Orange, 4);
+	generator->resetConfig();*/
+
+	//Metapuzzle
+	specialCase->generateMountainFloor({ 0x09EFF, 0x09F01, 0x09FC1, 0x09F8E }, 0x09FDA);
 }
 
 void PuzzleList::GenerateCavesN()
