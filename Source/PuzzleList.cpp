@@ -253,7 +253,9 @@ void PuzzleList::GenerateSymmetryN()
 	generator->resetConfig();
 	generator->setFlagOnce(Generate::Config::FullGaps);
 	generator->generate(0x000B0, Decoration::Gap, 1, Decoration::Dot, 4);
-	generator->generate(0x1C349, Decoration::Dot, 2);
+	
+	//TODO: Make a custom gen function that makes this not skip all of sym occasinally
+	//generator->generate(0x1C349, Decoration::Dot, 2);
 
 	//Laser Blue and Yellow
 	//These puzzles are kind of weird in that looks like a fullGap/regular break hybrid, and so I decided to keep the structure.
@@ -273,8 +275,111 @@ void PuzzleList::GenerateQuarryN()
 	generator->resetConfig();
 
 	//Entry Gates
-	//generator->generate(0x09E57, Decoration::Stone | Decoration::Color::Black, 12, Decoration::Stone | Decoration::Color::White, 4);
-	//generator->generate(0x17C09, Decoration::Poly, 2);
+	generator->generate(0x09E57, Decoration::Stone | Decoration::Color::Black, 11, Decoration::Stone | Decoration::Color::White, 4);
+	generator->generate(0x17C09, Decoration::Poly, 2);
+
+	//Mill Entry Doors
+	//This one doesn't work, so I removed a stone
+	generator->generate(0x01E5A, Decoration::Stone | Decoration::Color::Black, 11, Decoration::Stone | Decoration::Color::White, 3);\
+
+	generator->setFlagOnce(Generate::Config::PreserveStructure);
+	generator->generate(0x01E59, Decoration::Dot, 10);
+
+	//Mill Lower Row
+	generator->generate(0x00E0C, Decoration::Eraser | Decoration::Color::Green, 1, Decoration::Dot, 1);
+	generator->generate(0x01489, Decoration::Eraser | Decoration::Color::Green, 1, Decoration::Dot, 4);
+	generator->generate(0x0148A, Decoration::Eraser | Decoration::Color::Green, 1, Decoration::Dot, 8);
+	
+	//TODO: Make a custom generation function to move the start point.
+	//generator->generate(0x014D9, Decoration::Eraser | Decoration::Color::Green, 1, Decoration::Dot_Intersection, 16);
+
+	generator->generate(0x014E7, Decoration::Dot, 7);
+	generator->generate(0x014E8, Decoration::Eraser | Decoration::Color::Green, 1, Decoration::Dot, 7);
+
+	//Mill Upper Row
+
+	//This didn't work so I removed a stone
+	generator->generate(0x00557, Decoration::Stone | Decoration::Color::White, 1, Decoration::Stone | Decoration::Color::Black, 1,
+		Decoration::Eraser | Decoration::Color::Green, 1);
+
+	generator->generate(0x005F1, Decoration::Stone | Decoration::Color::White, 2, Decoration::Stone | Decoration::Color::Black, 2,
+		Decoration::Eraser | Decoration::Color::Green, 1);
+
+	//This didn't work so I removed a stone 
+	generator->generate(0x00620, Decoration::Stone | Decoration::Color::White, 6, Decoration::Stone | Decoration::Color::Black, 1,
+		Decoration::Eraser | Decoration::Color::Green, 1);
+
+
+	generator->generate(0x009F5, Decoration::Stone | Decoration::Color::White, 6, Decoration::Stone | Decoration::Color::Black, 2,
+		Decoration::Eraser | Decoration::Color::Green, 1);
+	generator->generate(0x0146C, Decoration::Stone | Decoration::Color::White, 8, Decoration::Stone | Decoration::Color::Black, 4,
+		Decoration::Eraser | Decoration::Color::Green, 1);
+	generator->generate(0x3C12D, Decoration::Stone | Decoration::Color::White, 7, Decoration::Stone | Decoration::Color::Black, 5,
+		Decoration::Eraser | Decoration::Color::Green, 1);
+	generator->generate(0x03686, Decoration::Stone | Decoration::Color::White, 11, Decoration::Stone | Decoration::Color::Black, 1,
+		Decoration::Stone | Decoration::Color::Red, 1, Decoration::Stone | Decoration::Color::Cyan, 1, Decoration::Eraser | Decoration::Color::Green, 1);
+	generator->generate(0x014E9, Decoration::Stone | Decoration::Color::White, 2, Decoration::Stone | Decoration::Color::Black, 3,
+		Decoration::Stone | Decoration::Color::Red, 3, Decoration::Eraser | Decoration::Color::Green, 1);
+
+	//Control Room Panels
+	generator->generate(0x0367C, Decoration::Stone | Decoration::Color::White, 4, Decoration::Stone | Decoration::Color::Black, 7, Decoration::Dot, 4,
+		Decoration::Eraser | Decoration::Color::Green, 1);
+	generator->generate(0x3C125, Decoration::Stone | Decoration::Color::White, 7, Decoration::Stone | Decoration::Color::Black, 7, Decoration::Dot, 8,
+		Decoration::Eraser | Decoration::Color::Purple, 1);
+
+	//Stairs
+	generator->generate(0x03677, Decoration::Stone | Decoration::Color::White, 4, Decoration::Stone | Decoration::Color::Black, 4,
+		Decoration::Eraser | Decoration::Color::Purple, 1);
+
+	//Activate the Boathouse Ramp Panels
+	generator->generate(0x034D4, Decoration::Star | Decoration::White, 10, Decoration::Star | Decoration::Black, 6);
+	generator->generate(0x021D5, Decoration::Poly, 1, Decoration::Poly | Decoration::Can_Rotate, 1, Decoration::Gap, 3);
+
+	//Boathouse Ramp Panels
+	generator->generate(0x03852, Decoration::Poly | Decoration::Can_Rotate, 1);
+	generator->generate(0x03858, Decoration::Poly, 6, Decoration::Eraser | Decoration::Color::Purple, 1);
+	
+	//Boathouse Lower Row
+	generator->generate(0x021B3, Decoration::Poly, 3, Decoration::Eraser | Decoration::Color::Purple, 1);
+	generator->generate(0x021B4, Decoration::Poly, 3, Decoration::Eraser | Decoration::Color::Purple, 1);
+	generator->generate(0x021B0, Decoration::Poly, 2, Decoration::Eraser | Decoration::Color::Purple, 1);
+
+	//This didn't work so I removed a poly
+	generator->generate(0x021AF, Decoration::Poly, 3, Decoration::Eraser | Decoration::Color::Purple, 1);
+
+	generator->setFlagOnce(Generate::Config::DisconnectShapes);
+	generator->generate(0x021AE, Decoration::Poly, 3, Decoration::Eraser | Decoration::Color::Purple, 1);
+
+	//Boathouse Upper Row
+	//Stars
+	generator->generate(0x021B5, Decoration::Star | Decoration::Color::Green, 3, Decoration::Eraser | Decoration::Color::Magenta, 1, 
+		Decoration::Gap, 2);
+	generator->generate(0x021B6, Decoration::Star | Decoration::Color::Magenta, 3, Decoration::Eraser | Decoration::Color::Magenta, 1, 
+		Decoration::Gap, 2);
+	generator->generate(0x021B7, Decoration::Star | Decoration::Color::Green, 4, Decoration::Star | Decoration::Color::Orange, 5, 
+		Decoration::Eraser | Decoration::Color::Magenta, 1);
+	generator->generate(0x021BB, Decoration::Star | Decoration::Color::Magenta, 4, Decoration::Star | Decoration::Color::Orange, 5,
+		Decoration::Eraser | Decoration::Color::Magenta, 1);
+	generator->generate(0x09DB5, Decoration::Star | Decoration::Color::Magenta, 1, Decoration::Star | Decoration::Color::Green, 1, 
+		Decoration::Eraser | Decoration::Color::Magenta, 1, Decoration::Eraser | Decoration::Color::Green, 1);
+	generator->generate(0x09DB1, Decoration::Star | Decoration::Color::Orange, 9, Decoration::Eraser | Decoration::Color::Orange, 1);
+	generator->generate(0x3C124, Decoration::Star | Decoration::Color::Orange, 9, Decoration::Eraser | Decoration::Color::Orange, 1);
+
+	//Stars + Shapes
+	generator->setFlagOnce(Generate::Config::PreserveStructure);
+	generator->generate(0x09DB3, Decoration::Star | Decoration::Color::White, 5, Decoration::Poly | Decoration::Color::Green, 2, 
+		Decoration::Eraser | Decoration::Color::Black, 1);
+	generator->generate(0x09DB4, Decoration::Star | Decoration::Color::White, 4, Decoration::Poly | Decoration::Color::Green, 2, 
+		Decoration::Eraser | Decoration::Color::Black, 1);
+	generator->generate(0x0A3CB, Decoration::Star | Decoration::Color::Black, 1, Decoration::Poly | Decoration::Color::Green, 3, 
+		Decoration::Eraser | Decoration::Color::Cyan, 1);
+	generator->generate(0x0A3CC, Decoration::Star | Decoration::Color::Black, 3, Decoration::Poly | Decoration::Color::Green, 3, 
+		Decoration::Eraser | Decoration::Color::Cyan, 1);
+	generator->generate(0x0A3D0, Decoration::Star | Decoration::Color::Black, 4, Decoration::Poly | Decoration::Color::Green, 3, 
+		Decoration::Eraser | Decoration::Color::Cyan, 1);
+
+	//Hook Control
+	generator->generate(0x275FA, Decoration::Poly, 6, Decoration::Eraser | Decoration::Color::Purple, 1);
 }
 
 void PuzzleList::GenerateBunkerN()
