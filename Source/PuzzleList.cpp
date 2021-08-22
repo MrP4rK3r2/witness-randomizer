@@ -337,11 +337,14 @@ void PuzzleList::GenerateQuarryN()
 	generator->generate(0x021D5, Decoration::Poly, 1, Decoration::Poly | Decoration::Can_Rotate, 1, Decoration::Gap, 3);
 
 	//Boathouse Ramp Panels
+	generator->setFlag(Generate::Config::SmallShapes);
 	generator->generate(0x03852, Decoration::Poly | Decoration::Can_Rotate, 1);
 	generator->generate(0x03858, Decoration::Poly, 6, Decoration::Eraser | Decoration::Color::Purple, 1);
 	
 	//Boathouse Lower Row
+	generator->resetConfig();
 	generator->generate(0x021B3, Decoration::Poly, 3, Decoration::Eraser | Decoration::Color::Purple, 1);
+	generator->setFlagOnce(Generate::Config::SmallShapes);
 	generator->generate(0x021B4, Decoration::Poly, 3, Decoration::Eraser | Decoration::Color::Purple, 1);
 	generator->generate(0x021B0, Decoration::Poly, 2, Decoration::Eraser | Decoration::Color::Purple, 1);
 
@@ -349,6 +352,7 @@ void PuzzleList::GenerateQuarryN()
 	generator->generate(0x021AF, Decoration::Poly, 3, Decoration::Eraser | Decoration::Color::Purple, 1);
 
 	generator->setFlagOnce(Generate::Config::DisconnectShapes);
+	generator->setFlagOnce(Generate::Config::SmallShapes);
 	generator->generate(0x021AE, Decoration::Poly, 3, Decoration::Eraser | Decoration::Color::Purple, 1);
 
 	//Boathouse Upper Row
@@ -380,6 +384,7 @@ void PuzzleList::GenerateQuarryN()
 		Decoration::Eraser | Decoration::Color::Cyan, 1);
 
 	//Hook Control
+	generator->setFlagOnce(Generate::Config::SmallShapes);
 	generator->generate(0x275FA, Decoration::Poly, 6, Decoration::Eraser | Decoration::Color::Purple, 1);
 }
 
@@ -443,7 +448,8 @@ void PuzzleList::GenerateTownN()
 
 	//Yellow Door
 	generator->resetConfig();
-	generator->generate(0x28998, Decoration::Poly | Decoration::Can_Rotate, 4, Decoration::Star | Decoration::Color::White, 6);
+	generator->setFlagOnce(Generate::Config::SmallShapes);
+	generator->generate(0x28998, Decoration::Poly | Decoration::Can_Rotate, 5, Decoration::Star | Decoration::Color::White, 6);
 
 	//Soundproof Room
 	specialCase->generateSoundDotPuzzle(0x034E3, { 4, 4 }, {DOT_SMALL, DOT_MEDIUM, DOT_LARGE, DOT_LARGE}, false);
@@ -638,14 +644,13 @@ void PuzzleList::GenerateKeepN()
 	generator->setLoadingData(L"Keep", 5);
 
 	//Yellow
-	generator->resetConfig();
+	/*generator->resetConfig();
 	generator->setSymbol(Decoration::Gap_Column, 8, 3);
 	generator->setSymbol(Decoration::Gap_Column, 4, 5);
 	generator->setSymbol(Decoration::Gap_Row, 3, 0);
 	generator->setSymbol(Decoration::Gap_Row, 3, 2);
 	generator->setSymbol(Decoration::Gap_Row, 5, 6);
-	//generator->setFlagOnce(Generate::Config::DisableWrite);
-	generator->generate(0x033EA, Decoration::Dot, 2);
+	generator->generate(0x033EA, Decoration::Dot, 2);*/
 
 	//Purple
 	generator->resetConfig();
