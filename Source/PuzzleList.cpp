@@ -400,7 +400,133 @@ void PuzzleList::GenerateSwampN()
 {
 	generator->setLoadingData(L"Swamp", 49);
 	generator->resetConfig();
+
+	//Tutorial
+	generator->setFlag(Generate::Config::SmallShapes);
+	generator->generate(0x00469, Decoration::Poly, 1);
+	generator->generate(0x00472, Decoration::Poly, 1);
+	generator->generate(0x00262, Decoration::Poly, 1);
+	generator->generate(0x00474, Decoration::Poly, 1);
+	generator->resetConfig();
+
+	generator->generate(0x00553, Decoration::Poly, 1, Decoration::Gap, 3);
+	generator->generate(0x0056F, Decoration::Poly, 1, Decoration::Gap, 6);
+
+	generator->setFlag(Generate::Config::SmallShapes);
+	//These two didn't work so I made it bigger
+	generator->setGridSize(2,3);
+	generator->generate(0x00390, Decoration::Poly, 2, Decoration::Gap, 2);
+	generator->generate(0x010CA, Decoration::Poly, 2, Decoration::Gap, 1);
+
+	generator->resetConfig();
+	generator->setFlag(Generate::Config::SmallShapes);
+	generator->generate(0x00983, Decoration::Poly, 2);
+
+	generator->resetConfig();
+	generator->generate(0x00984, Decoration::Poly, 2);
+	generator->generate(0x00986, Decoration::Poly, 2);
+	generator->generate(0x00985, Decoration::Poly, 2);
+	generator->generate(0x00987, Decoration::Poly, 2);
+	generator->generate(0x181A9, Decoration::Poly, 2);
+
+	//Swamp Surface Sliding Bridge Control
+	generator->setFlagOnce(Generate::Config::SmallShapes);
+	generator->generate(0x00609, Decoration::Poly, 3);
+
+	//Red Panels
+	generator->resetConfig();
+	generator->generate(0x00982, Decoration::Poly, 3, Decoration::Gap, 1);
+	generator->generate(0x0097F, Decoration::Poly, 3, Decoration::Gap, 1);
+	generator->generate(0x0098F, Decoration::Poly, 3);
+	generator->generate(0x00990, Decoration::Poly, 4);
+	generator->generate(0x17C0D, Decoration::Poly, 3);
+	generator->generate(0x17C0E, Decoration::Poly, 3);
+
+	//Disconnected Shapes
+	generator->resetConfig();
+	generator->setFlag(Generate::Config::DisconnectShapes);
+	generator->generate(0x00999, Decoration::Poly, 2);
+	generator->setFlagOnce(Generate::Config::SmallShapes);
+	generator->generate(0x0099D, Decoration::Poly, 2);
+	generator->generate(0x009A0, Decoration::Poly, 3);
+	generator->generate(0x009A1, Decoration::Poly, 3);
+
+
+	//Rotating Shapes
+	generator->resetConfig();
+	generator->generate(0x00007, Decoration::Poly | Decoration::Can_Rotate, 1);
+	generator->generate(0x00008, Decoration::Poly | Decoration::Can_Rotate, 1);
+	generator->generate(0x00009, Decoration::Poly | Decoration::Can_Rotate, 2, Decoration::Gap, 2);
+	generator->generate(0x0000A, Decoration::Poly | Decoration::Can_Rotate, 1, Decoration::Gap, 6);
 	
+	//Rotating Bridge
+	generator->resetConfig();
+	generator->setFlagOnce(Generate::Config::WriteColors);
+	generator->setFlagOnce(Generate::Config::SmallShapes);
+	generator->generate(0x181F5, Decoration::Poly | Decoration::Can_Rotate | Decoration::Color::Yellow, 1, Decoration::Poly | Decoration::Color::Black, 1,
+		Decoration::Poly | Decoration::Color::Red, 1, Decoration::Poly | Decoration::Color::Purple, 1, Decoration::Poly | Decoration::Color::Blue, 1);
+
+	//5x5 Rotating Shapes
+	generator->resetConfig();
+	generator->generate(0x003B2, Decoration::Poly | Decoration::Can_Rotate, 3, Decoration::Gap, 4);
+
+	generator->setFlagOnce(Generate::Config::DisconnectShapes);
+	generator->generate(0x00A1E, Decoration::Poly | Decoration::Can_Rotate, 3);
+
+	generator->setFlagOnce(Generate::Config::BigShapes);
+	generator->generate(0x00C2E, Decoration::Poly | Decoration::Can_Rotate, 2, Decoration::Poly, 1, Decoration::Gap, 4);
+
+	generator->setFlagOnce(Generate::Config::DisconnectShapes);
+	generator->generate(0x00E3A, Decoration::Poly | Decoration::Can_Rotate, 3, Decoration::Poly, 1);
+	 
+	
+	//Optional Tetris
+	generator->resetConfig();
+	generator->generate(0x009A6, Decoration::Poly, 7);
+	
+	//Negative Shapes 1
+	generator->resetConfig();
+	generator->generate(0x009AB, Decoration::Poly, 1, Decoration::Poly | Decoration::Negative, 1);
+	generator->generate(0x009AD, Decoration::Poly, 1, Decoration::Poly | Decoration::Negative, 1);
+	generator->generate(0x009AE, Decoration::Poly, 1, Decoration::Poly | Decoration::Negative, 1);
+	generator->generate(0x009AF, Decoration::Poly, 4, Decoration::Poly | Decoration::Negative, 1);
+	generator->setFlagOnce(Generate::Config::BigShapes);
+	generator->generate(0x00006, Decoration::Poly, 1, Decoration::Poly | Decoration::Negative, 1);
+
+	//Negative Shapes 2
+	generator->resetConfig();
+	generator->generate(0x00002, Decoration::Poly, 2, Decoration::Poly | Decoration::Negative, 1);
+	generator->generate(0x00004, Decoration::Poly, 2, Decoration::Poly | Decoration::Negative, 2);
+	generator->generate(0x00005, Decoration::Poly, 2, Decoration::Poly | Decoration::Negative, 1);
+	generator->generate(0x013E6, Decoration::Poly, 3, Decoration::Poly | Decoration::Negative, 1);
+	generator->setFlagOnce(Generate::Config::DisconnectShapes);
+	generator->setFlagOnce(Generate::Config::BigShapes);
+	generator->generate(0x00596, Decoration::Poly, 2, Decoration::Poly | Decoration::Negative, 2);
+
+	//Underwater Sliding Bridge
+	generator->resetConfig();
+	generator->setFlagOnce(Generate::Config::SmallShapes);
+	generator->generate(0x18488, Decoration::Poly, 3);
+
+	//Negative Shapes 3
+	generator->resetConfig();
+	generator->generate(0x00001, Decoration::Poly, 1, Decoration::Poly | Decoration::Negative, 1);
+	generator->generate(0x014D2, Decoration::Poly, 1, Decoration::Poly | Decoration::Negative, 2);
+	generator->generate(0x014D4, Decoration::Poly, 2, Decoration::Poly | Decoration::Negative, 3);
+	generator->generate(0x014D1, Decoration::Poly, 2, Decoration::Poly | Decoration::Negative, 4, Decoration::Gap, 2);
+
+	//Shifting Puzzle
+	/*generator->resetConfig();
+	generator->setFlag(Generate::Config::BigShapes);
+	generator->generate(0x17C0A, Decoration::Poly, 1, Decoration::Poly | Decoration::Can_Rotate | Decoration::Negative, 1);
+	generator->generate(0x17E07, Decoration::Poly, 1, Decoration::Poly | Decoration::Can_Rotate | Decoration::Negative, 1);*/
+
+	//Exit Shortcut
+	generator->resetConfig();
+	generator->generate(0x17C05, Decoration::Poly | Decoration::Can_Rotate, 1);
+
+	generator->setFlagOnce(Generate::Config::BigShapes);
+	generator->generate(0x17C02, Decoration::Poly, 1, Decoration::Poly | Decoration::Can_Rotate | Decoration::Negative, 1);
 }
 
 void PuzzleList::GenerateTreehouseN()
@@ -768,9 +894,12 @@ void PuzzleList::GenerateCavesN()
 
 void PuzzleList::GenerateOrchardN()
 {
-
 	generator->resetConfig();
-
+	specialCase->generateApplePuzzle(0x00143, false, Random::rand() % 2 == 0);
+	specialCase->generateApplePuzzle(0x0003B, false, Random::rand() % 2 == 0);
+	specialCase->generateApplePuzzle(0x00055, false, Random::rand() % 2 == 0);
+	specialCase->generateApplePuzzle(0x032F7, false, Random::rand() % 2 == 0);
+	specialCase->generateApplePuzzle(0x032FF, true, Random::rand() % 2 == 0);
 }
 
 void PuzzleList::GenerateDesertN()
