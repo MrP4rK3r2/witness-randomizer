@@ -628,6 +628,27 @@ void PuzzleList::GenerateMountainN()
 
 	//Metapuzzle
 	specialCase->generateMountainFloor({ 0x09EFF, 0x09F01, 0x09FC1, 0x09F8E }, 0x09FDA);
+
+	//Pillar Room
+	generator->resetConfig();
+	generator->generate(0x0383D, Decoration::Dot_Intersection, 18, Decoration::Gap, 2);
+	generator->setFlag(Generate::Config::WriteColors);
+	generator->setFlag(Generate::Config::DecorationsOnly);
+	generator->generate(0x0383A, Decoration::Star | Decoration::Color::Orange, 6);
+	generator->generate(0x0383F, Decoration::Stone | Decoration::Color::Black, 6, Decoration::Stone | Decoration::Color::White, 4);
+	generator->removeFlag(Generate::Config::DecorationsOnly);
+	generator->generate(0x09E56, Decoration::Star | Decoration::Color::Orange, 2, Decoration::Dot, 3, Decoration::Gap, 2);
+	generator->removeFlag(Generate::Config::WriteColors);
+	generator->setFlagOnce(Generate::Config::DecorationsOnly);
+	generator->generate(0x03859, Decoration::Poly, 2);
+	generator->generate(0x09E5A, Decoration::Dot_Intersection, 30, Decoration::Gap, 7);
+	generator->setFlagOnce(Generate::Config::WriteColors);
+	generator->setSymmetry(Panel::Symmetry::PillarRotational);
+	generator->setFlagOnce(Generate::Config::DecorationsOnly);
+	generator->generate(0x339BB, Decoration::Star | Decoration::Color::Orange, 2, Decoration::Stone | Decoration::Color::Black, 3,
+		Decoration::Stone | Decoration::Color::White, 3);
+	generator->setSymmetry(Panel::Symmetry::PillarParallel);
+	generator->generate(0x33961, Decoration::Dot, 6);
 }
 
 void PuzzleList::GenerateCavesN()
