@@ -595,25 +595,36 @@ void PuzzleList::GenerateMountainN()
 	//TODO: Hijack sigma's generation function to put other things on it.
 	//specialCase->generate2Bridge(0x09E86, 0x09ED8);
 
-	//Rainbow //TODO:Finish changing this one
-	/*generator->resetConfig();
+	//Rainbow
+	generator->resetConfig();
 	generator->setFlag(Generate::Config::WriteColors);
 	generator->generate(0x09FD3, Decoration::Stone | Decoration::Color::Magenta, 3, Decoration::Stone | Decoration::Color::Green, 3);
-	generator->generate(0x09FD4, Decoration::Stone | Decoration::Color::Magenta, 2, Decoration::Stone | Decoration::Color::Green, 2,
-		Decoration::Star | Decoration::Color::Magenta, 2, Decoration::Star | Decoration::Color::Green, 3);
-	generator->generate(0x09FD6, Decoration::Stone | Decoration::Color::Cyan, 3, Decoration::Stone | Decoration::Color::Yellow, 2,
-		Decoration::Star | Decoration::Color::Cyan, 3, Decoration::Star | Decoration::Color::Yellow, 4);
-	generator->generate(0x09FD7, { { Decoration::Stone | Decoration::Color::Cyan, 2 },{ Decoration::Stone | Decoration::Color::Magenta, 2 },
-		{ Decoration::Star | Decoration::Color::Cyan, 3 },{ Decoration::Star | Decoration::Color::Magenta, 3 },
-		{ Decoration::Poly | Decoration::Color::Cyan, 1 },{ Decoration::Poly | Decoration::Color::Magenta, 1 } });
-	generator->setFlagOnce(Generate::Config::Write2Color);
+	generator->generate(0x09FD4, Decoration::Stone | Decoration::Color::Magenta, 4, Decoration::Stone | Decoration::Color::Green, 3);
+	generator->generate(0x09FD6, Decoration::Stone | Decoration::Color::Cyan, 2, Decoration::Stone | Decoration::Color::Yellow, 3,
+		Decoration::Star | Decoration::Color::Cyan, 1, Decoration::Star | Decoration::Color::Yellow, 1);
+	generator->generate(0x09FD7, { { Decoration::Stone | Decoration::Color::Cyan, 2 },{ Decoration::Stone | Decoration::Color::Magenta, 3 },
+		{ Decoration::Star | Decoration::Color::Cyan, 1 },{ Decoration::Star | Decoration::Color::Magenta, 1 },
+		{ Decoration::Poly | Decoration::Color::Cyan, 1 } });
+
+	//Not generating this yet
+	/*generator->setFlagOnce(Generate::Config::Write2Color);
 	generator->setSymbol(Decoration::Start, 10, 0);
 	generator->setSymbol(Decoration::Start, 0, 10);
 	generator->setSymbol(Decoration::Exit, 0, 0);
 	generator->setSymbol(Decoration::Exit, 10, 10);
 	generator->setSymmetry(Panel::Symmetry::Rotational);
-	generator->generate(0x09FD8, Decoration::Dot_Intersection | Decoration::Color::Blue, 4, Decoration::Dot_Intersection | Decoration::Color::Orange, 4);
-	generator->resetConfig();*/
+	generator->generate(0x09FD8, Decoration::Dot_Intersection | Decoration::Color::Blue, 4, Decoration::Dot_Intersection | Decoration::Color::Orange, 4);*/
+	generator->resetConfig();
+
+	//Multipanel
+	specialCase->generateMultiPuzzle({ 0x09FCC, 0x09FCE, 0x09FCF, 0x09FD0, 0x09FD1, 0x09FD2 }, {
+		{ { Decoration::Dot, 1 } },
+		{ { Decoration::Stone | Decoration::Color::Black, 1 },{ Decoration::Stone | Decoration::Color::White, 1 } },
+		{ { Decoration::Poly, 2 } },
+		{ { Decoration::Star | Decoration::Color::Magenta, 2 },{ Decoration::Star | Decoration::Color::Green, 2 } },
+		{ { Decoration::Stone | Decoration::Color::White, 3 },{ Decoration::Stone | Decoration::Color::Black, 1 } },
+		{ { Decoration::Poly, 1 } } }, false);
+
 
 	//Metapuzzle
 	specialCase->generateMountainFloor({ 0x09EFF, 0x09F01, 0x09FC1, 0x09F8E }, 0x09FDA);
