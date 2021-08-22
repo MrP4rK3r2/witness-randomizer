@@ -655,12 +655,120 @@ void PuzzleList::GenerateCavesN()
 {
 	generator->setLoadingData(L"Caves", 51);
 	generator->resetConfig();
+
+	//Entrances
+	generator->generate(0x17FA2, Decoration::Triangle | Decoration::Color::Orange, 5);
+	generator->generate(0x00FF8, Decoration::Stone | Decoration::Color::Black, 4, Decoration::Stone | Decoration::Color::White, 4,
+		Decoration::Gap, 1);
+
+	//Blue Symmetry/Tetris
+	generator->generate(0x01A0D, Decoration::Poly, 4);
+	generator->setFlagOnce(Generate::Config::SmallShapes);
+	generator->generate(0x018A0, Decoration::Poly, 4);
+	generator->setFlag(Generate::Config::DisconnectShapes);
+	generator->generate(0x009A4, Decoration::Poly, 3);
+	generator->generate(0x00A72, Decoration::Poly, 2, Decoration::Poly | Decoration::Negative, 1);
 	
 
+	//Right Near
+	generator->resetConfig();
+	generator->setFlag(Generate::Config::SmallShapes);
+	generator->generate(0x00190, Decoration::Poly, 2, Decoration::Gap, 1);
+	generator->generate(0x00558, Decoration::Poly, 2, Decoration::Gap, 1);
+	generator->generate(0x00567, Decoration::Poly, 2, Decoration::Gap, 1);
+	generator->generate(0x006FE, Decoration::Poly, 2, Decoration::Gap, 1);
+
+	//Left
+	generator->generate(0x008B8, Decoration::Poly, 2, Decoration::Gap, 2);
+	generator->generate(0x00973, Decoration::Poly, 2, Decoration::Gap, 2);
+	generator->generate(0x0097B, Decoration::Poly, 2, Decoration::Gap, 1);
+	generator->generate(0x0097D, Decoration::Poly, 2, Decoration::Gap, 2);
+	generator->generate(0x0097E, Decoration::Poly, 2, Decoration::Gap, 2);
+
+	generator->resetConfig();
+	generator->generate(0x00994, Decoration::Poly, 4, Decoration::Gap, 1);
+	generator->generate(0x334D5, Decoration::Poly, 4, Decoration::Gap, 1);
+	generator->generate(0x00995, Decoration::Poly, 4, Decoration::Gap, 4);
+	generator->generate(0x00996, Decoration::Poly, 3, Decoration::Gap, 4);
+	generator->generate(0x00998, Decoration::Poly, 3, Decoration::Gap, 4);
+	
+	//First alcove
+	generator->resetConfig();
+	generator->setFlagOnce(Generate::Config::DisconnectShapes);
+	generator->generate(0x32962, Decoration::Poly | Decoration::Can_Rotate, 3, Decoration::Poly, 1, Decoration::Gap, 1);
+	generator->setFlagOnce(Generate::Config::WriteColors);
+	generator->setFlagOnce(Generate::Config::TreehouseLayout);
+	generator->generate(0x32966, Decoration::Star | Decoration::Color::Orange, 2, Decoration::Stone | Decoration::Color::Black, 4, 
+		Decoration::Stone | Decoration::Color::White, 6);
+	generator->setFlagOnce(Generate::Config::WriteColors);
+	generator->generate(0x01A31, Decoration::Stone | Decoration::Color::Cyan, 14, Decoration::Stone | Decoration::Color::Yellow, 17);
+	generator->setFlagOnce(Generate::Config::AlternateColors);
+	generator->generate(0x00B71, Decoration::Stone | Decoration::Color::Black, 3, Decoration::Stone | Decoration::Color::White, 3,
+		Decoration::Star | Decoration::Color::Black, 2, Decoration::Eraser | Decoration::Color::White, 1);
+	generator->resetConfig();
+
+	//Perspective
+	generator->setFlag(Generate::Config::DecorationsOnly);
+	std::vector<std::vector<Point>> obstructions = { { { 5, 0 },{ 5, 2 },{ 5, 4 } },{ { 5, 6 },{ 5, 8 },{ 5, 10 } },{ { 0, 5 },{ 2, 5 },{ 4, 5 } },{ { 6, 5 },{ 8, 5 },{ 10, 5 } } };
+	generator->setObstructions(obstructions);
+	generator->blockPos = { { 5, 5 } };
+	generator->setFlag(Generate::Config::SmallShapes);
+	generator->generate(0x288EA, Decoration::Poly | Decoration::Can_Rotate, 4);
+	generator->setObstructions(obstructions);
+	generator->blockPos = { { 5, 5 } };
+	generator->generate(0x288FC, Decoration::Poly, 1, Decoration::Poly | Decoration::Can_Rotate, 1,
+		Decoration::Stone | Decoration::Color::Black, 1, Decoration::Stone | Decoration::Color::White, 1);
+	generator->setObstructions(obstructions);
+	generator->blockPos = { { 5, 5 } };
+	generator->generate(0x289E7, Decoration::Stone | Decoration::Color::Black, 4, Decoration::Stone | Decoration::Color::White, 4);
+	generator->setObstructions(obstructions);
+	generator->blockPos = { { 5, 5 } };
+	generator->generate(0x288AA, Decoration::Poly, 1, Decoration::Stone | Decoration::Color::Black, 2, Decoration::Stone | Decoration::Color::White, 2);
+
+	//Full Dots
+	// TODO: Custom gen function to not break things.
+	generator->resetConfig();
+	/*generator->generate(0x0A16B, Decoration::Dot_Intersection, 25, Decoration::Stone | Decoration::Color::Black, 1, Decoration::Stone | Decoration::Color::White, 1,
+		Decoration::Stone | Decoration::Color::Cyan, 1, Decoration::Stone | Decoration::Color::Magenta, 1);*/
+	/*generator->generate(0x0A2CE, Decoration::Dot_Intersection, 25, Decoration::Dot_Column, 1, Decoration::Dot_Row, 1);
+	generator->generate(0x0A2D7, Decoration::Dot_Intersection, 25, Decoration::Dot_Column, 1, Decoration::Dot_Row, 1);
+	generator->generate(0x0A2DD, Decoration::Dot_Intersection, 25, Decoration::Dot_Column, 1, Decoration::Dot_Row, 2);
+	generator->generate(0x0A2EA, Decoration::Dot_Intersection, 25, Decoration::Dot_Column, 1);*/
+	generator->generate(0x17FB9, Decoration::Dot, 6);
+	
+
+	//Invisible Dots
+	generator->resetConfig();
+	generator->generate(0x0008F, Decoration::Dot, 1);
+	generator->generate(0x0006B, Decoration::Dot, 2);
+	generator->generate(0x0008B, Decoration::Dot, 4);
+	generator->generate(0x0008C, Decoration::Dot, 4);
+	generator->generate(0x0008A, Decoration::Dot, 6);
+	generator->generate(0x00089, Decoration::Dot, 4);
+	generator->generate(0x0006A, Decoration::Dot, 7);
+	generator->generate(0x0006C, Decoration::Dot, 7, Decoration::Gap, 2);
+	generator->generate(0x00027, Decoration::Dot, 6);
+	generator->generate(0x00028, Decoration::Dot, 5);
+	generator->generate(0x00029, Decoration::Dot, 6);
+
+	//Triangle Exit
+	generator->generate(0x17CF2, Decoration::Triangle | Decoration::Color::Orange, 4, Decoration::Gap, 2);
+	//Stars Exit
+	generator->generate(0x021D7, Decoration::Star | Decoration::Color::Cyan, 4, Decoration::Star | Decoration::Color::Yellow, 4, Decoration::Gap, 7);
+
+	//Challenge Pillar
+	generator->generate(0x09DD5, Decoration::Triangle | Decoration::Color::Orange, 18);
+	//Challenge Entrance
+	generator->generate(0x0A16E, Decoration::Poly | Decoration::Color::Green, 4, Decoration::Star | Decoration::Color::Green, 3);
+	//Theater Exit
+	generator->generate(0x039B4, Decoration::Triangle | Decoration::Color::Orange, 7);
+	//Town Exit
+	generator->generate(0x09E85, Decoration::Triangle | Decoration::Color::Orange, 15);
 }
 
 void PuzzleList::GenerateOrchardN()
 {
+
 	generator->resetConfig();
 
 }
@@ -676,6 +784,7 @@ void PuzzleList::GenerateKeepN()
 	generator->setLoadingData(L"Keep", 5);
 
 	//Yellow
+	//Dots Break
 	/*generator->resetConfig();
 	generator->setSymbol(Decoration::Gap_Column, 8, 3);
 	generator->setSymbol(Decoration::Gap_Column, 4, 5);
