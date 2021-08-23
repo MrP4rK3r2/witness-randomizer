@@ -357,9 +357,9 @@ void PuzzleList::GenerateQuarryN()
 	generator->generate(0x021D5, Decoration::Poly, 1, Decoration::Poly | Decoration::Can_Rotate, 1, Decoration::Gap, 3);
 
 	//Boathouse Ramp Panels
-	generator->setFlag(Generate::Config::SmallShapes);
+	//generator->setFlag(Generate::Config::SmallShapes);
 	//generator->generate(0x03852, Decoration::Poly | Decoration::Can_Rotate, 1);
-	generator->generate(0x03858, Decoration::Poly, 6, Decoration::Eraser | Decoration::Color::Purple, 1);
+	//generator->generate(0x03858, Decoration::Poly, 6, Decoration::Eraser | Decoration::Color::Purple, 1);
 	
 	//Boathouse Lower Row
 	generator->resetConfig();
@@ -404,8 +404,8 @@ void PuzzleList::GenerateQuarryN()
 		Decoration::Eraser | Decoration::Color::Cyan, 1);
 
 	//Hook Control
-	generator->setFlagOnce(Generate::Config::SmallShapes);
-	generator->generate(0x275FA, Decoration::Poly, 6, Decoration::Eraser | Decoration::Color::Purple, 1);
+	/*generator->setFlagOnce(Generate::Config::SmallShapes);
+	generator->generate(0x275FA, Decoration::Poly, 6, Decoration::Eraser | Decoration::Color::Purple, 1);*/
 }
 
 void PuzzleList::GenerateTreehouseN()
@@ -540,7 +540,7 @@ void PuzzleList::GenerateTownN()
 	generator->resetConfig();
 
 	//Windmill Control Panel
-	generator->generate(0x17D02, Decoration::Dot, 4);
+	//generator->generate(0x17D02, Decoration::Dot, 4);
 
 	//Full Dots + Poly
 	generator->generate(0x2899C, Decoration::Dot_Intersection, 25, Decoration::Poly | Decoration::Can_Rotate, 1);
@@ -653,8 +653,8 @@ void PuzzleList::GenerateSwampN()
 	generator->generate(0x181A9, Decoration::Poly, 2);
 
 	//Swamp Surface Sliding Bridge Control
-	generator->setFlagOnce(Generate::Config::SmallShapes);
-	generator->generate(0x00609, Decoration::Poly, 3);
+	/*generator->setFlagOnce(Generate::Config::SmallShapes);
+	generator->generate(0x00609, Decoration::Poly, 3);*/
 
 	//Red Panels
 	generator->resetConfig();
@@ -726,9 +726,9 @@ void PuzzleList::GenerateSwampN()
 	generator->generate(0x00596, Decoration::Poly, 2, Decoration::Poly | Decoration::Negative, 2);
 
 	//Underwater Sliding Bridge
-	generator->resetConfig();
+	/*generator->resetConfig();
 	generator->setFlagOnce(Generate::Config::SmallShapes);
-	generator->generate(0x18488, Decoration::Poly, 3);
+	generator->generate(0x18488, Decoration::Poly, 3);*/
 
 	//Negative Shapes 3
 	generator->resetConfig();
