@@ -211,11 +211,15 @@ void PuzzleList::GenerateSymmetryN()
 
 	//Melting Set
 	//TODO: Make these 3 the same puzzle
+	generator->setFlag(Generate::Config::DisableReset);
 	generator->generate(0x00084, Decoration::Gap, 15);
-	generator->generate(0x00082, Decoration::Gap, 15);
-	generator->generate(0x0343A, Decoration::Gap, 15);
+	generator->write(0x00082);
+	generator->write(0x0343A);
+	/*generator->generate(0x00082, Decoration::Gap, 15);
+	generator->generate(0x0343A, Decoration::Gap, 15);*/
 
 	//Black Dots
+	generator->resetConfig();
 	generator->setSymmetry(Panel::Symmetry::Horizontal);
 	generator->generate(0x00022, Decoration::Dot, 6);
 	generator->generate(0x00023, Decoration::Dot, 3);
