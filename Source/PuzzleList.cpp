@@ -1003,28 +1003,34 @@ void PuzzleList::GenerateSymmetryH()
 {
 	generator->setLoadingData(L"Symmetry", 34);
 	generator->resetConfig();
+
 	//Back Wall
 	generator->generate(0x00086);
 	generator->generate(0x00087);
 	generator->generate(0x00059);
 	generator->generate(0x00062);
 	generator->generate(0x0005C);
+
 	//Kiln 1-3
 	generator->generate(0x0008D);
 	generator->generate(0x00081);
 	generator->generate(0x00083);
+
 	//Melting 1-3
 	generator->generate(0x00084);
 	generator->generate(0x00082);
 	generator->generate(0x0343A);
+
 	//Symmetry Island Door
 	generator->generate(0x000B0);
+
 	//Black Dots
 	generator->generate(0x00022);
 	generator->generate(0x00023);
 	generator->generate(0x00024);
 	generator->generate(0x00025);
 	generator->generate(0x00026);
+
 	//B/Y Dots
 	generator->generate(0x0007C);
 	generator->generate(0x0007E);
@@ -1032,18 +1038,23 @@ void PuzzleList::GenerateSymmetryH()
 	generator->generate(0x00073);
 	generator->generate(0x00077);
 	generator->generate(0x00079);
+
 	//Fading Lines Set
 	generator->generate(0x00065);
 	generator->generate(0x0006D);
 	generator->generate(0x00072);
-	/*generator->setFlagOnce(Generate::Config::PreserveStructure);
-	generator->setFlagOnce(Generate::Config::DecorationsOnly);
-	generator->generate(0x0006F);*/
+
+	//This one doesn't work, so shortPath is used.
+	generator->setFlagOnce(Generate::Config::ShortPath);
+	generator->generate(0x0006F);
+
 	generator->generate(0x00070);
 	generator->generate(0x00071);
 	generator->generate(0x00076);
+
 	//Symmetry Island Door 2
 	generator->generate(0x1C349);
+
 	//Dot Reflection Dual Panels (before laser)
 	//generator->setFlag(Generate::Config::PreserveStructure);
 	generator->setFlag(Generate::Config::DecorationsOnly);
