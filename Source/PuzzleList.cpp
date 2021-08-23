@@ -486,16 +486,17 @@ void PuzzleList::GenerateTreehouseN()
 	generator->generate(0x17D6C, Decoration::Star | Decoration::Color::Orange, 4, Decoration::Dot, 8);
 	//PURPLE BRIDGE
 	generator->setFlag(Generate::Config::WriteColors);
+	generator->setFlagOnce(Generate::Config::SmallShapes);
 	generator->generate(0x17E3C, Decoration::Star | Decoration::Color::Magenta, 2, Decoration::Poly | Decoration::Color::Orange, 2);
 	generator->setFlagOnce(Generate::Config::BigShapes);
 	generator->generate(0x17E52, Decoration::Star | Decoration::Color::Magenta, 6, Decoration::Poly | Decoration::Can_Rotate | Decoration::Color::Orange, 1);
 	generator->generate(0x17E5B, Decoration::Star | Decoration::Color::Magenta, 3, Decoration::Poly | Decoration::Color::Orange, 2, Decoration::Poly | Decoration::Color::Magenta, 1);
-	generator->generate(0x17E5F, Decoration::Star | Decoration::Color::Magenta, 2, Decoration::Poly | Decoration::Color::Orange, 2, Decoration::Poly | Decoration::Negative, 1);
+	generator->generate(0x17E5F, Decoration::Star | Decoration::Color::Magenta, 2, Decoration::Poly | Decoration::Color::Orange | Decoration::Can_Rotate, 2, Decoration::Poly | Decoration::Negative | Decoration::Color::Blue, 1);
 	generator->generate(0x17E61, Decoration::Star | Decoration::Color::Magenta, 2, Decoration::Poly | Decoration::Color::Orange, 3, Decoration::Star | Decoration::Color::Green, 2);
 	generator->setFlag(Generate::Config::WriteColors);
 	generator->generate(0x17E4D, Decoration::Star | Decoration::Magenta, 2, Decoration::Poly | Decoration::Color::Orange, 2, Decoration::Gap, 1);
 	generator->generate(0x17E4F, Decoration::Star | Decoration::Magenta, 2, Decoration::Poly | Decoration::Color::Orange, 2);
-}
+	//GREEN BRIDGE
 }
 
 void PuzzleList::GenerateKeepN()
@@ -1020,6 +1021,12 @@ void PuzzleList::GenerateTrianglePanelsN()
 
 	//Quarry Discard
 	generator->generate(0x17CF0, Decoration::Triangle | Decoration::Color::Orange, 1, Decoration::Gap, 4);
+
+	//Treehouse Laser Discard
+	generator->generate(0x17FA0, Decoration::Triangle | Decoration::Color::Orange, 1, Decoration::Gap, 6);
+
+	//Treehouse Green Bridge Discard
+	generator->generate(0x17FA9, Decoration::Triangle | Decoration::Color::Orange, 1, Decoration::Gap, 6);
 
 	//Keep Discard
 	generator->generate(0x17D27, Decoration::Triangle | Decoration::Color::Orange, 1, Decoration::Gap, 5);
