@@ -1,6 +1,6 @@
 # Witness Random Puzzle Generator (Dawgup's Version)
 
-### [Click Here to Download Dawgup's Randomizer (ver 1.0.1)](https://github.com/KemSpeedruns/Dawgup-s-Randomizer/releases/tag/1.0.1)
+### [Click Here to Download Dawgup's Randomizer (ver 1.1.7.4)](https://github.com/KemSpeedruns/witness-randomizer/releases)
 
 The Witness Random Puzzle Generator takes most of the puzzles in Jonathan Blow's "The Witness" and makes them into new, randomly generated puzzles. The mod requires the game in order to function. No game files will be altered, as the randomizer works enterly in RAM. This mod uses WinAPI, so it is only compatible with Microsoft Windows.
 
@@ -8,8 +8,7 @@ This project uses the code from sigma's puzzle randomizer at https://github.com/
 
 This mod has two different versions currently. 
 The first is Emptiness. In this mode, every panel (except for the ones I can't touch yet) either have no symbols, or have symbols that mean nothing (for an example of this, look at tutorial pillar and try some incorrect solutions). 
-The second is Base Game Randomizer. This mode, when completed, will randomize the panels with the same panel size, number of symblos, and type of symbols as what is in the base game.
-Currently, Base Game Randomizer only has Tutorial done (except for some of the tutorial stones panels). The rest is sigma's randomizer.
+The second is Base Game Randomizer. In this mode, every panel (except for the ones I can't touch yet) have a symbol count that matches the count in the base game. The size of the panel is also the same.
 
 **How to use the Witness Random Puzzle Generator:**
 
@@ -29,3 +28,9 @@ Currently, Base Game Randomizer only has Tutorial done (except for some of the t
 Please report any issues (such as unsolvable/broken puzzles) on the issues page. However, please read the **"Known Issues"** section in the wiki first, as your issue may be addressed there.
 
 Thanks for playing this mod, and good luck!
+
+**Credits:**
+Sigma for the base of the randomizer
+Dawgup for most of the panels
+Mr_ParK3r2 for most of treehouse
+IHNN for being good at solving and making testing easier.
