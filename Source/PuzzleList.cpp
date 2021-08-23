@@ -210,7 +210,6 @@ void PuzzleList::GenerateSymmetryN()
 	generator->generate(0x00083, Decoration::Gap, 7);
 
 	//Melting Set
-	//TODO: Make these 3 the same puzzle
 	generator->setFlag(Generate::Config::DisableReset);
 	generator->generate(0x00084, Decoration::Gap, 15);
 	generator->write(0x00082);
@@ -236,9 +235,12 @@ void PuzzleList::GenerateSymmetryN()
 	generator->generate(0x00075, Decoration::Dot | Decoration::Color::Blue, 2, Decoration::Dot | Decoration::Color::Yellow, 2);
 
 	//This one doesn't work.
-	//generator->resetConfig();
-	//generator->setSymmetry(Panel::Symmetry::Rotational);
-	//generator->generate(0x00073, Decoration::Dot | Decoration::Color::Blue, 1, Decoration::Dot | Decoration::Color::Yellow, 1, Decoration::Dot, 1);
+	generator->resetConfig();
+	generator->setSymmetry(Panel::Symmetry::Rotational);
+
+	//TODO: Find out why dots overlap here
+	generator->setFlagOnce(Generate::Config::ShortPath);
+	generator->generate(0x00073, Decoration::Dot | Decoration::Color::Blue, 3, Decoration::Dot | Decoration::Color::Yellow, 3, Decoration::Dot, 2);
 
 	generator->generate(0x00077, Decoration::Dot | Decoration::Color::Blue, 1, Decoration::Dot | Decoration::Color::Yellow, 1, Decoration::Dot, 1);
 	generator->generate(0x00079, Decoration::Dot | Decoration::Color::Blue, 1, Decoration::Dot | Decoration::Color::Yellow, 2, Decoration::Dot, 4);
