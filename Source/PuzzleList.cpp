@@ -214,8 +214,6 @@ void PuzzleList::GenerateSymmetryN()
 	generator->generate(0x00084, Decoration::Gap, 15);
 	generator->write(0x00082);
 	generator->write(0x0343A);
-	/*generator->generate(0x00082, Decoration::Gap, 15);
-	generator->generate(0x0343A, Decoration::Gap, 15);*/
 
 	//Black Dots
 	generator->resetConfig();
@@ -234,10 +232,8 @@ void PuzzleList::GenerateSymmetryN()
 	generator->generate(0x0007E, Decoration::Dot | Decoration::Color::Blue, 1, Decoration::Dot | Decoration::Color::Yellow, 1);
 	generator->generate(0x00075, Decoration::Dot | Decoration::Color::Blue, 2, Decoration::Dot | Decoration::Color::Yellow, 2);
 
-	//This one doesn't work.
 	generator->resetConfig();
 	generator->setSymmetry(Panel::Symmetry::Rotational);
-
 	//TODO: Find out why dots overlap here
 	generator->setFlagOnce(Generate::Config::ShortPath);
 	generator->generate(0x00073, Decoration::Dot | Decoration::Color::Blue, 3, Decoration::Dot | Decoration::Color::Yellow, 3, Decoration::Dot, 2);
@@ -362,7 +358,7 @@ void PuzzleList::GenerateQuarryN()
 
 	//Boathouse Ramp Panels
 	generator->setFlag(Generate::Config::SmallShapes);
-	generator->generate(0x03852, Decoration::Poly | Decoration::Can_Rotate, 1);
+	//generator->generate(0x03852, Decoration::Poly | Decoration::Can_Rotate, 1);
 	generator->generate(0x03858, Decoration::Poly, 6, Decoration::Eraser | Decoration::Color::Purple, 1);
 	
 	//Boathouse Lower Row
@@ -416,7 +412,9 @@ void PuzzleList::GenerateTreehouseN()
 {
 	generator->setLoadingData(L"Treehouse", 57);
 	generator->resetConfig();
-	
+	generator->setFlag(Generate::Config::WriteColors);
+	generator->generate(0x17E4D, Decoration::Star | Decoration::Magenta, 2, Decoration::Poly | Decoration::Color::Orange, 2, Decoration::Gap, 1);
+	generator->generate(0x17E4F, Decoration::Star | Decoration::Magenta, 2, Decoration::Poly | Decoration::Color::Orange, 2);
 }
 
 void PuzzleList::GenerateKeepN()
@@ -593,7 +591,6 @@ void PuzzleList::GenerateSwampN()
 	generator->generate(0x0099D, Decoration::Poly, 2);
 	generator->generate(0x009A0, Decoration::Poly, 3);
 	generator->generate(0x009A1, Decoration::Poly, 3);
-
 
 	//Rotating Shapes
 	generator->resetConfig();
