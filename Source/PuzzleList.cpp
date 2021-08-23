@@ -556,6 +556,7 @@ void PuzzleList::GenerateTownN()
 	generator->setFlag(Generate::Config::PreserveStructure);
 	generator->generate(0x17F89, Decoration::Gap, 2, Decoration::Stone | Decoration::Black, 11, Decoration::Stone | Decoration::White, 4);
 	//generator->generate(0x0A168, Decoration::Gap, 2, Decoration::Stone | Decoration::Black, 12, Decoration::Stone | Decoration::White, 4, Decoration::Eraser, 2);
+	generator->resetConfig();
 	generator->generate(0x33AB2, Decoration::Gap, 2, Decoration::Stone | Decoration::Black, 4, Decoration::Poly, 4);
 
 	//Orange Crate
@@ -974,7 +975,11 @@ void PuzzleList::GenerateCavesN()
 	generator->generate(0x021D7, Decoration::Star | Decoration::Color::Cyan, 4, Decoration::Star | Decoration::Color::Yellow, 4, Decoration::Gap, 7);
 
 	//Challenge Pillar
-	generator->generate(0x09DD5, Decoration::Triangle | Decoration::Color::Orange, 18);
+	//generator->generate(0x09DD5, Decoration::Triangle | Decoration::Color::Orange, 18);
+	generator->initPanel(0x09DD5);
+	generator->clear();
+	generator->setSymbol(Decoration::Triangle, 1, 1);
+	generator->write(0x09DD5);
 	//Challenge Entrance
 	generator->generate(0x0A16E, Decoration::Poly | Decoration::Color::Green, 4, Decoration::Star | Decoration::Color::Green, 3);
 	//Theater Exit
