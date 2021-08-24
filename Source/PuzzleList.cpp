@@ -374,6 +374,7 @@ void PuzzleList::GenerateQuarryN()
 	generator->generate(0x021B0, Decoration::Poly, 2, Decoration::Eraser | Decoration::Color::Purple, 1);
 
 	//This didn't work so I removed a poly
+	/*generator->setFlagOnce(Generate::Config::ShortPath);*/
 	generator->generate(0x021AF, Decoration::Poly, 3, Decoration::Eraser | Decoration::Color::Purple, 1);
 
 	generator->setFlagOnce(Generate::Config::DisconnectShapes);
@@ -594,12 +595,6 @@ void PuzzleList::GenerateTownN()
 	generator->generate(0x03C08, Decoration::Star | Decoration::Color::Black, 4, Decoration::Star | Decoration::Color::White, 4, 
 		Decoration::Star | Decoration::Color::Red, 4, Decoration::Star | Decoration::Color::Magenta, 4);
 
-	//RGB control
-	//TODO: Make a custom gen function to make random rgb always possible to solve all directions.
-	//generator->setFlagOnce(Generate::Config::SmallShapes);
-	//generator->generate(0x334D8, Decoration::Poly | Decoration::Can_Rotate, 1, Decoration::Stone | Decoration::Color::Blue, 1, 
-		//Decoration::Stone | Decoration::Color::Green, 1, Decoration::Stone | Decoration::Color::Red, 1);
-
 	//Church Stars //TODO: Figure out what on earth is going on here
 	specialCase->generateColorFilterPuzzle(0x28A0D, { 4, 4 }, { std::make_pair<int, int>(Decoration::Star | 1, 6),
 		std::make_pair<int,int>(Decoration::Star | 2, 6), std::make_pair<int,int>(Decoration::Star | 3, 4) }, { 1, 1, 0, 0 });
@@ -659,10 +654,6 @@ void PuzzleList::GenerateSwampN()
 	generator->generate(0x00985, Decoration::Poly, 2);
 	generator->generate(0x00987, Decoration::Poly, 2);
 	generator->generate(0x181A9, Decoration::Poly, 2);
-
-	//Swamp Surface Sliding Bridge Control
-	/*generator->setFlagOnce(Generate::Config::SmallShapes);
-	generator->generate(0x00609, Decoration::Poly, 3);*/
 
 	//Red Panels
 	generator->resetConfig();
@@ -733,11 +724,6 @@ void PuzzleList::GenerateSwampN()
 	generator->setFlagOnce(Generate::Config::BigShapes);
 	generator->generate(0x00596, Decoration::Poly, 2, Decoration::Poly | Decoration::Negative, 2);
 
-	//Underwater Sliding Bridge
-	/*generator->resetConfig();
-	generator->setFlagOnce(Generate::Config::SmallShapes);
-	generator->generate(0x18488, Decoration::Poly, 3);*/
-
 	//Negative Shapes 3
 	generator->resetConfig();
 	generator->generate(0x00001, Decoration::Poly, 1, Decoration::Poly | Decoration::Negative, 1);
@@ -745,13 +731,7 @@ void PuzzleList::GenerateSwampN()
 	generator->generate(0x014D4, Decoration::Poly, 2, Decoration::Poly | Decoration::Negative, 3);
 	generator->generate(0x014D1, Decoration::Poly, 2, Decoration::Poly | Decoration::Negative, 4, Decoration::Gap, 2);
 
-	//Shifting Puzzle
-	/*generator->resetConfig();
-	generator->setFlag(Generate::Config::BigShapes);
-	generator->generate(0x17C0A, Decoration::Poly, 1, Decoration::Poly | Decoration::Can_Rotate | Decoration::Negative, 1);
-	generator->generate(0x17E07, Decoration::Poly, 1, Decoration::Poly | Decoration::Can_Rotate | Decoration::Negative, 1);*/
-
-	//Exit Shortcut
+	//Exit Shortcuts
 	generator->resetConfig();
 	generator->generate(0x17C05, Decoration::Poly | Decoration::Can_Rotate, 1);
 
@@ -831,7 +811,7 @@ void PuzzleList::GenerateMountainN()
 		{ Decoration::Star | Decoration::Color::Cyan, 1 },{ Decoration::Star | Decoration::Color::Magenta, 1 },
 		{ Decoration::Poly | Decoration::Color::Cyan, 1 } });
 
-	//Not generating this yet
+	//Not generating this yet. Will work by changing the color of the stones
 	/*generator->setFlagOnce(Generate::Config::Write2Color);
 	generator->setSymbol(Decoration::Start, 10, 0);
 	generator->setSymbol(Decoration::Start, 0, 10);
@@ -842,6 +822,7 @@ void PuzzleList::GenerateMountainN()
 	generator->resetConfig();
 
 	//Multipanel
+	//TODO: Find out how to fix this breaking in strange ways.
 	/*specialCase->generateMultiPuzzle({ 0x09FCC, 0x09FCE, 0x09FCF, 0x09FD0, 0x09FD1, 0x09FD2 }, {
 		{ { Decoration::Dot, 1 } },
 		{ { Decoration::Stone | Decoration::Color::Black, 1 },{ Decoration::Stone | Decoration::Color::White, 1 } },
@@ -982,11 +963,11 @@ void PuzzleList::GenerateCavesN()
 	generator->generate(0x021D7, Decoration::Star | Decoration::Color::Cyan, 4, Decoration::Star | Decoration::Color::Yellow, 4, Decoration::Gap, 7);
 
 	//Challenge Pillar
-	//generator->generate(0x09DD5, Decoration::Triangle | Decoration::Color::Orange, 18);
-	generator->initPanel(0x09DD5);
+	generator->generate(0x09DD5, Decoration::Triangle | Decoration::Color::Orange, 18);
+	/*generator->initPanel(0x09DD5);
 	generator->clear();
 	generator->setSymbol(Decoration::Triangle, 1, 1);
-	generator->write(0x09DD5);
+	generator->write(0x09DD5);*/
 	//Challenge Entrance
 	generator->generate(0x0A16E, Decoration::Poly | Decoration::Color::Green, 4, Decoration::Star | Decoration::Color::Green, 3);
 	//Theater Exit
