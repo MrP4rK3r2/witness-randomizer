@@ -1385,6 +1385,7 @@ void PuzzleList::GenerateTreehouseH()
 	generator->generate(0x17E5F);
 	generator->generate(0x17E61);
 	//Drawbridge
+	generator->resetConfig();
 	generator->generate(0x037FF);
 }
 
