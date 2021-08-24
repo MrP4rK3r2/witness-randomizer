@@ -144,7 +144,7 @@ void PuzzleList::GenerateTutorialN()
 	generator->setLoadingData(L"Tutorial", 23);
 	generator->resetConfig();
 	Special::drawSeedAndDifficulty(0x00064, seedIsRNG ? -1 : seed, false);
-	Special::drawGoodLuckPanel(0x00182);
+	//Special::drawGoodLuckPanel(0x00182);
 
 	//Mazes
 	generator->setFlag(Generate::Config::FullGaps);
@@ -158,6 +158,11 @@ void PuzzleList::GenerateTutorialN()
 
 	//2 exits maze
 	generator->generateMaze(0x0A3B5);
+
+	//Tutorial Floor
+	/*generator->setFlagOnce(Generate::Config::PreserveStructure);
+	generator->setSymbol(Decoration::Gap, 0, 10);
+	generator->generate(0x0C373, Decoration::Dot, 2);*/
 
 	//Secret back area
 	generator->generate(0x0A171, Decoration::Dot_Intersection, 25, Decoration::Gap, 1);
