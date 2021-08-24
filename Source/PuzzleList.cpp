@@ -305,8 +305,8 @@ void PuzzleList::GenerateQuarryN()
 	generator->generate(0x17C09, Decoration::Poly, 2);
 
 	//Mill Entry Doors
-	//This one doesn't work, so I removed a stone
-	generator->generate(0x01E5A, Decoration::Stone | Decoration::Color::Black, 11, Decoration::Stone | Decoration::Color::White, 3);
+	generator->setFlagOnce(Generate::Config::ShortPath);
+	generator->generate(0x01E5A, Decoration::Stone | Decoration::Color::Black, 12, Decoration::Stone | Decoration::Color::White, 3);
 
 	generator->setFlagOnce(Generate::Config::PreserveStructure);
 	generator->generate(0x01E59, Decoration::Dot, 10);
