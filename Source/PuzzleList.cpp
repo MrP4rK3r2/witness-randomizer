@@ -145,6 +145,7 @@ void PuzzleList::GenerateTutorialN()
 	generator->resetConfig();
 	Special::drawSeedAndDifficulty(0x00064, seedIsRNG ? -1 : seed, false);
 	//Special::drawGoodLuckPanel(0x00182);
+	//generator->generate(0x00182, Decoration::Gap, 1);
 
 	//Mazes
 	generator->setFlag(Generate::Config::FullGaps);
