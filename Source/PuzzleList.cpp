@@ -681,11 +681,11 @@ void PuzzleList::GenerateSwampN()
 	generator->generate(0x0000A, Decoration::Poly | Decoration::Can_Rotate, 1, Decoration::Gap, 6);
 	
 	//Rotating Bridge
-	generator->resetConfig();
+	/*generator->resetConfig();
 	generator->setFlagOnce(Generate::Config::WriteColors);
 	generator->setFlagOnce(Generate::Config::SmallShapes);
 	generator->generate(0x181F5, Decoration::Poly | Decoration::Can_Rotate | Decoration::Color::Yellow, 1, Decoration::Poly | Decoration::Color::Black, 1,
-		Decoration::Poly | Decoration::Color::Red, 1, Decoration::Poly | Decoration::Color::Purple, 1, Decoration::Poly | Decoration::Color::Blue, 1);
+		Decoration::Poly | Decoration::Color::Red, 1, Decoration::Poly | Decoration::Color::Purple, 1, Decoration::Poly | Decoration::Color::Blue, 1);*/
 
 	//5x5 Rotating Shapes
 	generator->resetConfig();
