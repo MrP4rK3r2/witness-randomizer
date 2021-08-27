@@ -823,13 +823,13 @@ void PuzzleList::GenerateMountainN()
 
 	//Multipanel
 	//TODO: Find out how to fix this breaking in strange ways.
-	/*specialCase->generateMultiPuzzle({ 0x09FCC, 0x09FCE, 0x09FCF, 0x09FD0, 0x09FD1, 0x09FD2 }, {
-		{ { Decoration::Dot, 1 } },
+	specialCase->generateMultiPuzzle({ 0x09FCC, 0x09FCE, 0x09FCF, 0x09FD0, 0x09FD1, 0x09FD2 }, {
+		{ { Decoration::Dot_Intersection, 1 } },
 		{ { Decoration::Stone | Decoration::Color::Black, 1 },{ Decoration::Stone | Decoration::Color::White, 1 } },
 		{ { Decoration::Poly, 2 } },
 		{ { Decoration::Star | Decoration::Color::Magenta, 2 },{ Decoration::Star | Decoration::Color::Green, 2 } },
 		{ { Decoration::Stone | Decoration::Color::White, 3 },{ Decoration::Stone | Decoration::Color::Black, 1 } },
-		{ { Decoration::Poly, 1 } } }, false);*/
+		{ { Decoration::Poly, 1 } } }, false);
 
 
 	//Metapuzzle
