@@ -963,12 +963,11 @@ void PuzzleList::GenerateCavesN()
 	generator->generate(0x021D7, Decoration::Star | Decoration::Color::Cyan, 4, Decoration::Star | Decoration::Color::Yellow, 4, Decoration::Gap, 7);
 
 	//Challenge Pillar
+	generator->blockPos = { {1,1},{3,1},{5,1},{7,1},{9,1},{11,1}, {1,5},{3,5},{5,5},{7,5},{9,5},{11,5}, {1,9},{3,9},{5,9},{7,9},{9,9},{11,9} };
 	generator->generate(0x09DD5, Decoration::Triangle | Decoration::Color::Orange, 18);
-	/*generator->initPanel(0x09DD5);
-	generator->clear();
-	generator->setSymbol(Decoration::Triangle, 1, 1);
-	generator->write(0x09DD5);*/
+	
 	//Challenge Entrance
+	generator->resetConfig();
 	generator->generate(0x0A16E, Decoration::Poly | Decoration::Color::Green, 4, Decoration::Star | Decoration::Color::Green, 3);
 	//Theater Exit
 	generator->generate(0x039B4, Decoration::Triangle | Decoration::Color::Orange, 7);
