@@ -265,7 +265,15 @@ void PuzzleList::GenerateSymmetryN()
 	generator->generate(0x000B0, Decoration::Gap, 1, Decoration::Dot, 4);
 	
 	//TODO: Make a custom gen function that makes this not skip all of sym occasinally
-	//generator->generate(0x1C349, Decoration::Dot, 2);
+	/*generator->blockPos = { {0,0},{1,0},{2,0},{3,0},{4,0},{5,0},{6,0},{7,0},{8,0}, {0,2},{1,2},{2,2},{3,2},{4,2},{5,2},{6,2},{7,2},{8,2}, 
+	{0,6},{1,6},{2,6},{3,6},{4,6},{5,6},{6,6},{7,6},{8,6}, {0,8},{1,8},{2,8},{3,8},{4,8},{5,8},{6,8},{7,8},{8,8}, {0,1},{2,1},{4,1},{6,1},{8,1},
+	{0,7},{2,7},{4,7},{6,7},{8,7} };*/
+	/*generator->blockPos = { {0,0},{0,1},{0,2},{0,3},{0,4},{0,5},{0,6},{0,7},{0,8}, {2,0},{2,1},{2,2},{2,3},{2,4},{2,5},{2,6},{2,7},{2,8},
+	{6,0},{6,1},{6,2},{6,3},{6,4},{6,5},{6,6},{6,7},{6,8}, {8,0},{8,1},{8,2},{8,3},{8,4},{8,5},{8,6},{8,7},{8,8}, {1,0},{1,2},{1,4},{1,6},{1,8},
+	{7,0},{7,2},{7,4},{7,6},{7,8} };*/
+	//generator->openPos = { {0,4},{1,4},{2,4},{3,4},{4,4},{5,4},{6,4},{7,4},{8,4}, {0,3},{2,3},{4,3},{6,3},{8,3}, {0,5},{2,5},{4,5},{6,5},{8,5} };
+	/*generator->setSymmetry(Panel::Symmetry::Rotational);
+	generator->generate(0x1C349, Decoration::Dot, 2);*/
 
 	//Laser Blue and Yellow
 	//These puzzles are kind of weird in that looks like a fullGap/regular break hybrid, and so I decided to keep the structure.
@@ -317,8 +325,11 @@ void PuzzleList::GenerateQuarryN()
 	generator->generate(0x01489, Decoration::Eraser | Decoration::Color::Green, 1, Decoration::Dot, 4);
 	generator->generate(0x0148A, Decoration::Eraser | Decoration::Color::Green, 1, Decoration::Dot, 8);
 	
-	//TODO: Make a custom generation function to move the start point.
-	//generator->generate(0x014D9, Decoration::Eraser | Decoration::Color::Green, 1, Decoration::Dot_Intersection, 16);
+	//This one didn't work, so I removed 3 dots
+	//generator->setSymbol(Decoration::Empty, 0, 0);
+	/*generator->setSymbol(Decoration::Start, Random::rand() % 2, Random::rand() % 2);*/
+	generator->generate(0x014D9, Decoration::Eraser | Decoration::Color::Green, 1, Decoration::Dot, 13);
+	//generator->generate(0x014D9, Decoration::Dot_Intersection, 16);
 
 	generator->generate(0x014E7, Decoration::Dot, 7);
 	generator->generate(0x014E8, Decoration::Eraser | Decoration::Color::Green, 1, Decoration::Dot, 7);
@@ -361,11 +372,6 @@ void PuzzleList::GenerateQuarryN()
 	//Activate the Boathouse Ramp Panels
 	generator->generate(0x034D4, Decoration::Star | Decoration::White, 10, Decoration::Star | Decoration::Black, 6);
 	generator->generate(0x021D5, Decoration::Poly, 1, Decoration::Poly | Decoration::Can_Rotate, 1, Decoration::Gap, 3);
-
-	//Boathouse Ramp Panels
-	//generator->setFlag(Generate::Config::SmallShapes);
-	//generator->generate(0x03852, Decoration::Poly | Decoration::Can_Rotate, 1);
-	//generator->generate(0x03858, Decoration::Poly, 6, Decoration::Eraser | Decoration::Color::Purple, 1);
 	
 	//Boathouse Lower Row
 	generator->resetConfig();
@@ -409,10 +415,6 @@ void PuzzleList::GenerateQuarryN()
 		Decoration::Eraser | Decoration::Color::Cyan, 1);
 	generator->generate(0x0A3D0, Decoration::Star | Decoration::Color::Black, 4, Decoration::Poly | Decoration::Color::Green, 3, 
 		Decoration::Eraser | Decoration::Color::Cyan, 1);
-
-	//Hook Control
-	/*generator->setFlagOnce(Generate::Config::SmallShapes);
-	generator->generate(0x275FA, Decoration::Poly, 6, Decoration::Eraser | Decoration::Color::Purple, 1);*/
 }
 
 void PuzzleList::GenerateTreehouseN()
