@@ -1617,7 +1617,7 @@ void PuzzleList::GenerateKeepH()
 	generator->generate(0x01CD3);
 	generator->generate(0x01D3F);
 	generator->generate(0x03317);
-	//generator->generate(0x0360E);
+	
 	//specialCase->clearTarget(0x0360E); //Must solve pressure plate side
 }
 
