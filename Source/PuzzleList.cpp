@@ -1524,8 +1524,11 @@ void PuzzleList::GenerateMountainH()
 	generator->generate(0x09E56);
 	generator->generate(0x03859);
 	generator->generate(0x09E5A);
-	//generator->generate(0x339BB);
-	//generator->generate(0x33961);
+	generator->setSymmetry(Panel::Symmetry::PillarRotational);
+	generator->generate(0x339BB);
+	generator->resetConfig();
+	generator->setSymmetry(Panel::Symmetry::PillarParallel);
+	generator->generate(0x33961);
 }
 
 void PuzzleList::GenerateCavesH()
@@ -1614,7 +1617,8 @@ void PuzzleList::GenerateKeepH()
 	generator->generate(0x01CD3);
 	generator->generate(0x01D3F);
 	generator->generate(0x03317);
-	specialCase->clearTarget(0x0360E); //Must solve pressure plate side
+	//generator->generate(0x0360E);
+	//specialCase->clearTarget(0x0360E); //Must solve pressure plate side
 }
 
 void PuzzleList::GenerateDesertH() {
