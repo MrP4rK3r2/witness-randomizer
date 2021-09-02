@@ -328,8 +328,9 @@ void PuzzleList::GenerateQuarryN()
 	//This one didn't work, so I removed 3 dots
 	//generator->setSymbol(Decoration::Empty, 0, 0);
 	/*generator->setSymbol(Decoration::Start, Random::rand() % 2, Random::rand() % 2);*/
+	//generator->setFlagOnce(Generate::Config::LongPath);
 	generator->generate(0x014D9, Decoration::Eraser | Decoration::Color::Green, 1, Decoration::Dot, 13);
-	//generator->generate(0x014D9, Decoration::Dot_Intersection, 16);
+	//generator->generate(0x014D9, Decoration::Eraser | Decoration::Color::Green, 1, Decoration::Dot, 14);
 
 	generator->generate(0x014E7, Decoration::Dot, 7);
 	generator->generate(0x014E8, Decoration::Eraser | Decoration::Color::Green, 1, Decoration::Dot, 7);
@@ -926,12 +927,12 @@ void PuzzleList::GenerateCavesN()
 	//Full Dots
 	// TODO: Custom gen function to not break things.
 	generator->resetConfig();
-	/*generator->generate(0x0A16B, Decoration::Dot_Intersection, 25, Decoration::Stone | Decoration::Color::Black, 1, Decoration::Stone | Decoration::Color::White, 1,
-		Decoration::Stone | Decoration::Color::Cyan, 1, Decoration::Stone | Decoration::Color::Magenta, 1);*/
-	/*generator->generate(0x0A2CE, Decoration::Dot_Intersection, 25, Decoration::Dot_Column, 1, Decoration::Dot_Row, 1);
-	generator->generate(0x0A2D7, Decoration::Dot_Intersection, 25, Decoration::Dot_Column, 1, Decoration::Dot_Row, 1);
-	generator->generate(0x0A2DD, Decoration::Dot_Intersection, 25, Decoration::Dot_Column, 1, Decoration::Dot_Row, 2);
-	generator->generate(0x0A2EA, Decoration::Dot_Intersection, 25, Decoration::Dot_Column, 1);*/
+	//generator->setFlagOnce(Generate::Config::DisableDotIntersection);
+	//generator->generate(0x0A16B, Decoration::Dot, 25);
+	//generator->generate(0x0A2CE, Decoration::Dot, 27);
+	//generator->generate(0x0A2D7, Decoration::Dot_Intersection, 25, Decoration::Dot_Column, 1, Decoration::Dot_Row, 1);
+	//generator->generate(0x0A2DD, Decoration::Dot_Intersection, 25, Decoration::Dot_Column, 1, Decoration::Dot_Row, 2);
+	//generator->generate(0x0A2EA, Decoration::Dot_Intersection, 25, Decoration::Dot_Column, 1);
 	generator->generate(0x17FB9, Decoration::Dot, 6);
 	
 
@@ -987,6 +988,11 @@ void PuzzleList::GenerateVaultsN()
 	generator->setSymmetry(Panel::Symmetry::Rotational);
 	generator->generate(0x002A6, Decoration::Stone | Decoration::Color::White, 1, Decoration::Stone | Decoration::Color::Black, 2,
 		Decoration::Dot | Decoration::Color::Blue, 2, Decoration::Dot | Decoration::Color::Yellow, 2);
+
+	//Jungle Vault
+	//TODO: Remove a dot
+	generator->resetConfig();
+	specialCase->generateJungleVault(0x15ADD);
 }
 
 void PuzzleList::GenerateTrianglePanelsN()
@@ -1041,7 +1047,7 @@ void PuzzleList::GenerateTutorialH()
 	generator->setLoadingData(L"Tutorial", 21);
 	generator->resetConfig();
 	Special::drawSeedAndDifficulty(0x00064, seedIsRNG ? -1 : seed, true);
-	Special::drawGoodLuckPanel(0x00182);
+	//Special::drawGoodLuckPanel(0x00182);
 	//Mazes
 	generator->generate(0x00293);
 	generator->generate(0x00295);
