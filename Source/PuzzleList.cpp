@@ -548,9 +548,6 @@ void PuzzleList::GenerateTownN()
 	generator->setLoadingData(L"Town", 20);
 	generator->resetConfig();
 
-	//Windmill Control Panel
-	//generator->generate(0x17D02, Decoration::Dot, 4);
-
 	//Full Dots + Poly
 	generator->generate(0x2899C, Decoration::Dot_Intersection, 25, Decoration::Poly | Decoration::Can_Rotate, 1);
 	generator->generate(0x28A33, Decoration::Dot_Intersection, 25, Decoration::Poly | Decoration::Can_Rotate, 1, Decoration::Poly, 1);
@@ -616,7 +613,8 @@ void PuzzleList::GenerateJungleN()
 	generator->setLoadingData(L"Jungle", 6);
 	generator->resetConfig();
 
-	//Jungle Wall //TODO: Make a custom gen function to work with gaps for first dot puzzle
+	//Jungle Wall //TODO: Figure out how to work with gaps for first dot puzzle
+	specialCase->generateSoundDotPuzzle(0x0026D, { 2, 2 }, { DOT_SMALL, DOT_LARGE }, true);
 	specialCase->generateSoundDotPuzzle(0x0026E, { 2, 2 }, { DOT_SMALL, DOT_LARGE }, true);
 	specialCase->generateSoundDotPuzzle(0x0026F, { 4, 4 }, { DOT_MEDIUM, DOT_MEDIUM, DOT_SMALL, DOT_MEDIUM, DOT_LARGE }, false);
 	specialCase->generateSoundDotPuzzle(0x00C3F, { 4, 4 }, { DOT_SMALL, DOT_MEDIUM, DOT_SMALL, DOT_LARGE }, true);
@@ -683,13 +681,6 @@ void PuzzleList::GenerateSwampN()
 	generator->generate(0x00009, Decoration::Poly | Decoration::Can_Rotate, 2, Decoration::Gap, 2);
 	generator->generate(0x0000A, Decoration::Poly | Decoration::Can_Rotate, 1, Decoration::Gap, 6);
 	
-	//Rotating Bridge
-	/*generator->resetConfig();
-	generator->setFlagOnce(Generate::Config::WriteColors);
-	generator->setFlagOnce(Generate::Config::SmallShapes);
-	generator->generate(0x181F5, Decoration::Poly | Decoration::Can_Rotate | Decoration::Color::Yellow, 1, Decoration::Poly | Decoration::Color::Black, 1,
-		Decoration::Poly | Decoration::Color::Red, 1, Decoration::Poly | Decoration::Color::Purple, 1, Decoration::Poly | Decoration::Color::Blue, 1);*/
-
 	//5x5 Rotating Shapes
 	generator->resetConfig();
 	generator->generate(0x003B2, Decoration::Poly | Decoration::Can_Rotate, 3, Decoration::Gap, 4);
@@ -703,7 +694,6 @@ void PuzzleList::GenerateSwampN()
 	generator->setFlagOnce(Generate::Config::DisconnectShapes);
 	generator->generate(0x00E3A, Decoration::Poly | Decoration::Can_Rotate, 3, Decoration::Poly, 1);
 	 
-	
 	//Optional Tetris
 	generator->resetConfig();
 	generator->generate(0x009A6, Decoration::Poly, 7);
@@ -825,7 +815,6 @@ void PuzzleList::GenerateMountainN()
 	generator->resetConfig();
 
 	//Multipanel
-	//TODO: Find out how to fix this breaking in strange ways.
 	specialCase->generateMultiPuzzle({ 0x09FCC, 0x09FCE, 0x09FCF, 0x09FD0, 0x09FD1, 0x09FD2 }, {
 		{ { Decoration::Dot_Intersection, 1 } },
 		{ { Decoration::Stone | Decoration::Color::Black, 1 },{ Decoration::Stone | Decoration::Color::White, 1 } },
