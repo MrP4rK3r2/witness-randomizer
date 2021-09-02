@@ -992,7 +992,7 @@ void PuzzleList::GenerateVaultsN()
 	//Jungle Vault
 	//TODO: Remove a dot
 	generator->resetConfig();
-	specialCase->generateJungleVault(0x15ADD);
+	specialCase->generateJungleVault(0x15ADD, false);
 }
 
 void PuzzleList::GenerateTrianglePanelsN()
@@ -1437,6 +1437,8 @@ void PuzzleList::GenerateVaultsH()
 	generator->generate(0x0CC7B);
 	//Symmetry Vault
 	generator->generate(0x002A6);
+	//Jungle Vault
+	specialCase->generateJungleVault(0x15ADD, true);
 }
 
 void PuzzleList::GenerateTrianglePanelsH()

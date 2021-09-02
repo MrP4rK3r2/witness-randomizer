@@ -513,27 +513,75 @@ void Special::generateRGBDotPuzzleH(int id) {
 	generator->resetConfig();
 }
 
-void Special::generateJungleVault(int id)
+//void Special::generateJungleVault(int id)
+//{
+//	//This panel won't render symbols off the grid, so all I can do is move the dots around
+//
+//	//a: 4 9 16 23, b: 12, c: 1, ab: 3 5 6 10 11 15 17 18 20 21 22, ac: 14, bc: 2 19, all: 7 8 13
+//	std::vector<std::vector<int>> sols = {
+//		{ 0, 5, 10, 15, 20, 21, 16, 11, 6, 7, 8, 3, 4, 9, 14, 13, 18, 17, 22, 23, 24, 25 },
+//		{ 0, 5, 10, 15, 20, 21, 22, 17, 12, 11, 6, 7, 2, 3, 8, 13, 18, 19, 24, 25 },
+//		{ 0, 1, 2, 7, 8, 13, 14, 19, 24, 25 } };
+//	std::vector<std::vector<int>> dotPoints1 = { { 4, 9, 16, 23 }, { 2, 19 }, { 2, 19 } };
+//	std::vector<std::vector<int>> dotPoints2 = { { 7, 8, 13 }, { 3, 5, 6, 10, 11, 15, 17, 18, 20, 21, 22 }, { 14, 1 } };
+//	generator->initPanel(id);
+//	generator->clear();
+//	int sol = Random::rand() % sols.size();
+//	auto[x1, y1] = generator->_panel->loc_to_xy(generator->pick_random(dotPoints1[sol]));
+//	auto[x2, y2] = generator->_panel->loc_to_xy(generator->pick_random(dotPoints2[sol]));
+//	generator->set(x1, y1, Decoration::Dot_Intersection);
+//	generator->set(x2, y2, Decoration::Dot_Intersection);
+//	WritePanelData(id, SEQUENCE_LEN, static_cast<int>(sols[sol].size()));
+//	WriteArray(id, SEQUENCE, sols[sol], true);
+//	generator->write(id);
+//}
+
+void Special::generateJungleVault(int id, bool empty)
 {
 	//This panel won't render symbols off the grid, so all I can do is move the dots around
 
-	//a: 4 9 16 23, b: 12, c: 1, ab: 3 5 6 10 11 15 17 18 20 21 22, ac: 14, bc: 2 19, all: 7 8 13
-	std::vector<std::vector<int>> sols = {
-		{ 0, 5, 10, 15, 20, 21, 16, 11, 6, 7, 8, 3, 4, 9, 14, 13, 18, 17, 22, 23, 24, 25 },
-		{ 0, 5, 10, 15, 20, 21, 22, 17, 12, 11, 6, 7, 2, 3, 8, 13, 18, 19, 24, 25 },
-		{ 0, 1, 2, 7, 8, 13, 14, 19, 24, 25 } };
-	std::vector<std::vector<int>> dotPoints1 = { { 4, 9, 16, 23 }, { 2, 19 }, { 2, 19 } };
-	std::vector<std::vector<int>> dotPoints2 = { { 7, 8, 13 }, { 3, 5, 6, 10, 11, 15, 17, 18, 20, 21, 22 }, { 14, 1 } };
-	generator->initPanel(id);
-	generator->clear();
-	int sol = Random::rand() % sols.size();
-	auto[x1, y1] = generator->_panel->loc_to_xy(generator->pick_random(dotPoints1[sol]));
-	auto[x2, y2] = generator->_panel->loc_to_xy(generator->pick_random(dotPoints2[sol]));
-	generator->set(x1, y1, Decoration::Dot_Intersection);
-	generator->set(x2, y2, Decoration::Dot_Intersection);
-	WritePanelData(id, SEQUENCE_LEN, static_cast<int>(sols[sol].size()));
-	WriteArray(id, SEQUENCE, sols[sol], true);
-	generator->write(id);
+	if (empty) {
+		//a: 4 9 16 23, b: 12, c: 1, ab: 3 5 6 10 11 15 17 18 20 21 22, ac: 14, bc: 2 19, all: 7 8 13
+		std::vector<std::vector<int>> sols = {
+			{ 0, 5, 10, 15, 20, 21, 16, 11, 6, 7, 8, 3, 4, 9, 14, 13, 18, 17, 22, 23, 24, 25 },
+			{ 0, 5, 10, 15, 20, 21, 22, 17, 12, 11, 6, 7, 2, 3, 8, 13, 18, 19, 24, 25 },
+			{ 0, 1, 2, 7, 8, 13, 14, 19, 24, 25 } };
+		std::vector<std::vector<int>> dotPoints1 = { { 4, 9, 16, 23 }, { 2, 19 }, { 2, 19 } };
+		std::vector<std::vector<int>> dotPoints2 = { { 7, 8, 13 }, { 3, 5, 6, 10, 11, 15, 17, 18, 20, 21, 22 }, { 14, 1 } };
+		generator->initPanel(id);
+		generator->clear();
+		int sol = Random::rand() % sols.size();
+		//auto [x1, y1] = generator->_panel->loc_to_xy(generator->pick_random(dotPoints1[sol]));
+		//auto [x2, y2] = generator->_panel->loc_to_xy(generator->pick_random(dotPoints2[sol]));
+		//generator->set(x1, y1, Decoration::Dot_Intersection);
+		//generator->set(x2, y2, Decoration::Dot_Intersection);
+		WritePanelData(id, SEQUENCE_LEN, static_cast<int>(sols[sol].size()));
+		WriteArray(id, SEQUENCE, sols[sol], true);
+		/*WritePanelData(id, SEQUENCE_LEN, static_cast<int>(sols[1].size()));
+		WriteArray(id, SEQUENCE, sols[1], true);
+		WritePanelData(id, SEQUENCE_LEN, static_cast<int>(sols[2].size()));
+		WriteArray(id, SEQUENCE, sols[2], true);*/
+		generator->write(id);
+	}
+	else {
+		//a: 4 9 16 23, b: 12, c: 1, ab: 3 5 6 10 11 15 17 18 20 21 22, ac: 14, bc: 2 19, all: 7 8 13
+		std::vector<std::vector<int>> sols = {
+			{ 0, 5, 10, 15, 20, 21, 16, 11, 6, 7, 8, 3, 4, 9, 14, 13, 18, 17, 22, 23, 24, 25 },
+			{ 0, 5, 10, 15, 20, 21, 22, 17, 12, 11, 6, 7, 2, 3, 8, 13, 18, 19, 24, 25 },
+			{ 0, 1, 2, 7, 8, 13, 14, 19, 24, 25 } };
+		std::vector<std::vector<int>> dotPoints1 = { { 4, 9, 16, 23 }, { 2, 19 }, { 2, 19 } };
+		std::vector<std::vector<int>> dotPoints2 = { { 7, 8, 13 }, { 3, 5, 6, 10, 11, 15, 17, 18, 20, 21, 22 }, { 14, 1 } };
+		generator->initPanel(id);
+		generator->clear();
+		int sol = Random::rand() % sols.size();
+		auto [x1, y1] = generator->_panel->loc_to_xy(generator->pick_random(dotPoints1[sol]));
+		auto [x2, y2] = generator->_panel->loc_to_xy(generator->pick_random(dotPoints2[sol]));
+		generator->set(x1, y1, Decoration::Dot_Intersection);
+		generator->set(x2, y2, Decoration::Dot_Intersection);
+		WritePanelData(id, SEQUENCE_LEN, static_cast<int>(sols[sol].size()));
+		WriteArray(id, SEQUENCE, sols[sol], true);
+		generator->write(id);
+	}
 }
 
 void Special::generateApplePuzzle(int id, bool changeExit, bool flip)

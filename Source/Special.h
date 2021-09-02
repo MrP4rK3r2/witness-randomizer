@@ -35,7 +35,7 @@ public:
 	void generateRGBStarPuzzleN(int id);
 	void generateRGBStonePuzzleH(int id);
 	void generateRGBDotPuzzleH(int id);
-	void generateJungleVault(int id);
+	void generateJungleVault(int id, bool empty);
 	void generateApplePuzzle(int id, bool changeExit, bool flip);
 	void generateKeepLaserPuzzle(int id, const std::set<Point>& path1, const std::set<Point>& path2, const std::set<Point>& path3, const std::set<Point>& path4, std::vector<std::pair<int, int>> symbols);
 	void generateMountaintop(int id, const std::vector<std::pair<int, int>>& symbolVec);
