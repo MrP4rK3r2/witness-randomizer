@@ -564,8 +564,10 @@ void PuzzleList::GenerateTownN()
 	generator->generate(0x17F89, Decoration::Gap, 2, Decoration::Stone | Decoration::Black, 11, Decoration::Stone | Decoration::White, 4);
 
 	generator->resetConfig();
+	//These didn't work, so I removed the panel structure. I also removed a stone for the first one.
 	generator->setFlag(Generate::Config::FixBackground);
-	//generator->generate(0x0A168, Decoration::Gap, 2, Decoration::Stone | Decoration::Black, 12, Decoration::Stone | Decoration::White, 4, Decoration::Eraser, 2);
+	generator->generate(0x0A168, Decoration::Gap, 2, Decoration::Stone | Decoration::Black, 11, Decoration::Stone | Decoration::White, 4, 
+		Decoration::Eraser | Decoration::White, 2);
 	generator->generate(0x33AB2, Decoration::Gap, 2, Decoration::Stone | Decoration::Black, 4, Decoration::Poly, 4);
 
 	//Orange Crate
