@@ -512,16 +512,26 @@ void PuzzleList::GenerateTreehouseN()
 void PuzzleList::GenerateKeepN()
 {
 	generator->setLoadingData(L"Keep", 5);
-
+	generator->resetConfig();
 	//Yellow
-	//Dots Break
-	/*generator->resetConfig();
+	//I couldn't do this one myself, So I dedcided to just leave it at sigma's.
 	generator->setSymbol(Decoration::Gap_Column, 8, 3);
 	generator->setSymbol(Decoration::Gap_Column, 4, 5);
 	generator->setSymbol(Decoration::Gap_Row, 3, 0);
 	generator->setSymbol(Decoration::Gap_Row, 3, 2);
 	generator->setSymbol(Decoration::Gap_Row, 5, 6);
-	generator->generate(0x033EA, Decoration::Dot, 2);*/
+	generator->setFlagOnce(Generate::Config::DisableWrite);
+	generator->setFlagOnce(Generate::Config::LongPath);
+	generator->generate(0x033EA);
+	std::set<Point> path1 = generator->_path;
+	std::vector<std::vector<Point>> sets = { { {7, 8}, {8, 7} }, { { 6, 5 }, {7, 4} }, { {7, 0}, {7, 2}, {6, 1}, {8, 1}, {5, 2}, {5, 4} },
+		{ {2, 7}, {4, 7}, {3, 8}, {3, 6}, {1, 6}, {1, 4} }, { {0, 1}, {1, 0}, {2, 1}, {1, 2} } };
+	for (std::vector<Point> set : sets) {
+		Point p = pick_random(set);
+		while (!path1.count(p)) p = pick_random(set);
+		generator->set(p, p.first % 2 == 0 ? Decoration::Dot_Column : Decoration::Dot_Row);
+	}
+	generator->write(0x033EA);
 
 	//Purple
 	generator->resetConfig();
