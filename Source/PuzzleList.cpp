@@ -928,11 +928,11 @@ void PuzzleList::GenerateCavesN()
 	// TODO: Custom gen function to not break things.
 	generator->resetConfig();
 	//generator->setFlagOnce(Generate::Config::DisableDotIntersection);
-	//generator->generate(0x0A16B, Decoration::Dot, 25);
-	//generator->generate(0x0A2CE, Decoration::Dot, 27);
-	//generator->generate(0x0A2D7, Decoration::Dot_Intersection, 25, Decoration::Dot_Column, 1, Decoration::Dot_Row, 1);
-	//generator->generate(0x0A2DD, Decoration::Dot_Intersection, 25, Decoration::Dot_Column, 1, Decoration::Dot_Row, 2);
-	//generator->generate(0x0A2EA, Decoration::Dot_Intersection, 25, Decoration::Dot_Column, 1);
+	generator->generate(0x0A16B, Decoration::Dot, 18);
+	generator->generate(0x0A2CE, Decoration::Dot, 18);
+	generator->generate(0x0A2D7, Decoration::Dot, 18);
+	generator->generate(0x0A2DD, Decoration::Dot, 18);
+	generator->generate(0x0A2EA, Decoration::Dot, 18);
 	generator->generate(0x17FB9, Decoration::Dot, 6);
 	
 
