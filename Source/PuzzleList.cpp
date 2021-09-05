@@ -161,9 +161,9 @@ void PuzzleList::GenerateTutorialN()
 	generator->generateMaze(0x0A3B5);
 
 	//Tutorial Floor
-	/*generator->setFlagOnce(Generate::Config::PreserveStructure);
-	generator->setSymbol(Decoration::Gap, 0, 10);
-	generator->generate(0x0C373, Decoration::Dot, 2);*/
+	//generator->setFlagOnce(Generate::Config::PreserveStructure);
+	//generator->setSymbol(Decoration::Gap, 0, 10);
+	//generator->generate(0x0C373, Decoration::Dot, 2);
 
 	//Secret back area
 	generator->generate(0x0A171, Decoration::Dot_Intersection, 25, Decoration::Gap, 1);
@@ -945,6 +945,7 @@ void PuzzleList::GenerateCavesN()
 	// TODO: Custom gen function to not break things.
 	generator->resetConfig();
 	//generator->setFlagOnce(Generate::Config::DisableDotIntersection);
+	//generator->setFlagOnce(Generate::Config::LongestPath);
 	generator->generate(0x0A16B, Decoration::Dot, 18);
 	generator->generate(0x0A2CE, Decoration::Dot, 18);
 	generator->generate(0x0A2D7, Decoration::Dot, 18);
