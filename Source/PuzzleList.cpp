@@ -447,12 +447,15 @@ void PuzzleList::GenerateTreehouseN()
 	generator->generate(0x17D88, Decoration::Star | Decoration::Color::Orange, 2, Decoration::Star | Decoration::Color::Magenta, 2, Decoration::Gap, 1);
 	generator->generate(0x17DB4, Decoration::Star | Decoration::Color::Orange, 2, Decoration::Star | Decoration::Color::Magenta, 2, Decoration::Gap, 1);
 	generator->generate(0x17D8C, Decoration::Star | Decoration::Color::Orange, 4, Decoration::Star | Decoration::Color::Magenta, 2);
+	//generator->setObstructions({ {1,2},{1,4},{2,1},{3,2},{3,4} });
 	generator->generate(0x17CE3, Decoration::Star | Decoration::Color::Orange, 4, Decoration::Star | Decoration::Color::Magenta, 4, Decoration::Gap, 2);
 	generator->generate(0x17DCD, Decoration::Star | Decoration::Color::Orange, 2, Decoration::Star | Decoration::Color::Magenta, 4);
 	generator->generate(0x17DB2, Decoration::Star | Decoration::Color::Orange, 4, Decoration::Star | Decoration::Color::Magenta, 6);
 	generator->generate(0x17DCC, Decoration::Star | Decoration::Color::Orange, 6, Decoration::Star | Decoration::Color::Magenta, 6);
 	generator->generate(0x17DCA, Decoration::Star | Decoration::Color::Orange, 8, Decoration::Star | Decoration::Color::Magenta, 4);
 	generator->generate(0x17D8E, Decoration::Star | Decoration::Color::Orange, 2, Decoration::Star | Decoration::Color::Magenta, 2, Decoration::Star | Decoration::Color::Green, 2, Decoration::Gap, 2);
+	//generator->setObstructions({ {3,2},{3,4},{4,1},{5,2},{5,4} });
+	generator->setFlagOnce(Generate::Config::PreserveStructure);
 	generator->generate(0x17DB7, Decoration::Star | Decoration::Color::Orange, 4, Decoration::Star | Decoration::Color::Magenta, 4, Decoration::Star | Decoration::Color::Green, 4, Decoration::Gap, 2);
 	generator->generate(0x17DB1, Decoration::Star | Decoration::Color::Orange, 6, Decoration::Star | Decoration::Color::Magenta, 4, Decoration::Star | Decoration::Color::Green, 2);
 	generator->generate(0x17DA2, Decoration::Star | Decoration::Color::Orange, 4, Decoration::Star | Decoration::Color::Magenta, 4, Decoration::Star | Decoration::Color::Green, 4);
@@ -474,6 +477,7 @@ void PuzzleList::GenerateTreehouseN()
 	generator->generate(0x17DD9, Decoration::Star | Decoration::Color::Magenta, 1, Decoration::Stone | Decoration::Color::White, 1, Decoration::Stone | Decoration::Color::Green, 1, Decoration::Stone | Decoration::Color::Magenta, 1);
 	generator->generate(0x17DB8, Decoration::Star | Decoration::Color::Magenta, 2, Decoration::Stone | Decoration::Color::White, 1, Decoration::Stone | Decoration::Color::Green, 1, Decoration::Stone | Decoration::Color::Magenta, 1);
 	generator->generate(0x17DDC, Decoration::Star | Decoration::Color::Magenta, 1, Decoration::Stone | Decoration::Color::Magenta, 1, Decoration::Stone | Decoration::Color::Green, 3);
+	generator->setObstructions({ { 1, 2 },{ 1, 4 },{ 9, 2 },{ 9, 4 },{ 2, 1 },{ 4, 1 },{ 6, 1 },{ 8, 1 } });
 	generator->generate(0x17DD1, Decoration::Star | Decoration::Color::Magenta, 2, Decoration::Stone | Decoration::Color::Magenta, 4, Decoration::Stone | Decoration::Color::Green, 4);
 	generator->generate(0x17DDE, Decoration::Star | Decoration::Color::Magenta, 2, Decoration::Stone | Decoration::Color::Magenta, 1, Decoration::Stone | Decoration::Color::Green, 2);
 	generator->generate(0x17DE3, Decoration::Star | Decoration::Color::Magenta, 2, Decoration::Star | Decoration::Color::Green, 2, Decoration::Stone | Decoration::Color::Magenta, 1, Decoration::Stone | Decoration::Color::Green, 1);
@@ -498,6 +502,7 @@ void PuzzleList::GenerateTreehouseN()
 	generator->setFlag(Generate::Config::WriteColors);
 	generator->setFlagOnce(Generate::Config::SmallShapes);
 	generator->generate(0x17E3C, Decoration::Star | Decoration::Color::Magenta, 2, Decoration::Poly | Decoration::Color::Orange, 2);
+	generator->setObstructions({ {1,2},{1,4},{2,1},{4,1},{6,1},{8,1},{9,2},{9,4} });
 	generator->setFlagOnce(Generate::Config::BigShapes);
 	generator->generate(0x17E52, Decoration::Star | Decoration::Color::Magenta, 6, Decoration::Poly | Decoration::Can_Rotate | Decoration::Color::Orange, 1);
 	generator->generate(0x17E5B, Decoration::Star | Decoration::Color::Magenta, 3, Decoration::Poly | Decoration::Color::Orange, 2, Decoration::Poly | Decoration::Color::Magenta, 1);
