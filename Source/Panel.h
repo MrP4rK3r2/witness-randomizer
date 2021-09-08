@@ -144,8 +144,8 @@ public:
 	void SetGridSymbol(int x, int y, Decoration::Shape symbol, Decoration::Color color);
 	void ClearGridSymbol(int x, int y);
 	void Resize(int width, int height);
-	static void SavePanels(int seed, bool hard);
-	static bool LoadPanels(int seed, bool hard);
+	static void SavePanels(int seed, int difficulty);
+	static bool LoadPanels(int seed, int difficulty);
 
 	enum Style {
 		SYMMETRICAL = 0x2, //Not on the town symmetry puzzles? IDK why.

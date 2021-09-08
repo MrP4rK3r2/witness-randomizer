@@ -36,6 +36,14 @@ void Randomizer::GenerateHard(HWND loadingHandle) {
 		L"- Good luck!", L"Welcome", MB_OK);*/
 }
 
+void Randomizer::GeneratePuzzlePack(HWND loadingHandle) {
+	std::shared_ptr<PuzzleList> puzzles = std::make_shared<PuzzleList>();
+	puzzles->setLoadingHandle(loadingHandle);
+	puzzles->setSeed(seed, seedIsRNG);
+	puzzles->GenerateAllP();
+	Panel::SavePanels(seed, false);
+}
+
 template <class T>
 int find(const std::vector<T> &data, T search, size_t startIndex = 0) {
 	for (size_t i = startIndex; i<data.size(); i++) {

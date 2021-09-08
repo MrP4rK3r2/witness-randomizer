@@ -186,9 +186,23 @@ void Panel::Resize(int width, int height)
 	_resized = true;
 }
 
-void Panel::SavePanels(int seed, bool hard)
+void Panel::SavePanels(int seed, int input_difficulty)
 {
-	std::string difficulty = hard ? "E" : "N";
+	std::string difficulty = "Error";
+	switch (input_difficulty)
+	{
+	case 0:
+		difficulty = "N";
+		break;
+	case 1:
+		difficulty = "E";
+		break;
+	case 2:
+		difficulty = "P";
+		break;
+	default:
+		break;
+	}
 	std::ofstream file("puzzledata" + difficulty + std::to_string(seed) + ".dat");
 	file << generatedPanels.size() << std::endl;
 	for (Panel &panel : generatedPanels) {
@@ -238,12 +252,27 @@ void Panel::SavePanels(int seed, bool hard)
 		file << std::endl;
 	}
 	Special::WritePanelData(0x00064, BACKGROUND_REGION_COLOR + 12, seed);
-	Special::WritePanelData(0x00182, BACKGROUND_REGION_COLOR + 12, hard ? 2 : 1);
+	Special::WritePanelData(0x00182, BACKGROUND_REGION_COLOR + 12, input_difficulty==1 ? 2 : 1);
 }
 
-bool Panel::LoadPanels(int seed, bool hard)
+bool Panel::LoadPanels(int seed, int input_difficulty)
 {
-	std::string difficulty = hard ? "E" : "N";
+	std::string difficulty = "Error";
+	switch (input_difficulty)
+	{
+	case 0:
+		difficulty = "N";
+		break;
+	case 1:
+		difficulty = "E";
+		break;
+	case 2:
+		difficulty = "P";
+		break;
+	default:
+		break;
+	}
+	//std::string difficulty = difficulty ? "E" : "N";
 	std::ifstream file("puzzledata" + difficulty + std::to_string(seed) + ".dat");
 	if (!file.is_open()) {
 		return false;
@@ -348,12 +377,12 @@ bool Panel::LoadPanels(int seed, bool hard)
 		}
 		Special::WriteArray(id, offset, data);
 	}
-	if (hard) {
+	if (input_difficulty == 1) {
 		(new KeepWatchdog())->start();
 		(new BridgeWatchdog(0x09E86, 0x09ED8))->start();
 		(new TreehouseWatchdog(0x17DAE))->start();
 	}
-	Special::drawSeedAndDifficulty(0x00064, seed, hard);
+	Special::drawSeedAndDifficulty(0x00064, seed, input_difficulty);
 	Special::drawGoodLuckPanel(0x00182);
 	return true;
 }

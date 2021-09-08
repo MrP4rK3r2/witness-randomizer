@@ -1478,7 +1478,7 @@ void Special::generateCenterPerspective(int id, const std::vector<std::pair<int,
 	generator->write(id);
 }
 
-void Special::drawSeedAndDifficulty(int id, int seed, bool hard)
+void Special::drawSeedAndDifficulty(int id, int seed, int difficulty)
 {
 	std::vector<float> normalPos = { /*N*/ 8, 28, 8, 12, 19, 28, 19, 12, /*O*/ 25, 12, 31, 12, 31, 28, 25, 28,
 		/*R*/ 38, 12, 45, 17, 38, 21, 38, 28, 45, 28, /*M*/ 51, 28, 51, 12, 56, 19, 61, 12, 61, 28,
@@ -1515,9 +1515,9 @@ void Special::drawSeedAndDifficulty(int id, int seed, bool hard)
 		/*3*/ { 1, 3, 3, 5, 5 }, /*4*/ { 1, 2, 3 }, /*5*/ { 1, 2, 3, 5, 5 }, /*6*/ { 1, 4, 3, 5, 5 }, /*7*/ { 1, 2, 3, 4 },
 		/*8*/ { 1, 4, 3, 5, 5 }, /*9*/{ 1, 2, 3, 5, 5 } };
 
-	std::vector<float> intersections = hard ? expertPos : normalPos;
-	std::vector<int> connectionsA = hard ? expertConnectA : normalConnectA;
-	std::vector<int> connectionsB = hard ? expertConnectB : normalConnectB;
+	std::vector<float> intersections = difficulty==1 ? expertPos : normalPos;
+	std::vector<int> connectionsA = difficulty==1 ? expertConnectA : normalConnectA;
+	std::vector<int> connectionsB = difficulty==1 ? expertConnectB : normalConnectB;
 
 	if (seed <= 0) {
 		int offset = static_cast<int>(intersections.size() / 2);

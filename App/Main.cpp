@@ -39,6 +39,7 @@
 
 #define IDC_DIFFICULTY_NORMAL 0x501
 #define IDC_DIFFICULTY_EXPERT 0x502
+#define IDC_DIFFICULTY_PUZZLE_PACK 0x503
 
 #define SHAPE_11 0x1000
 #define SHAPE_12 0x2000
@@ -71,7 +72,7 @@
 //Panel to edit
 int panel = 0x09E69;
 
-HWND hwndSeed, hwndRandomize, hwndCol, hwndRow, hwndElem, hwndColor, hwndLoadingText, hwndNormal, hwndExpert, hwndMessage;
+HWND hwndSeed, hwndRandomize, hwndCol, hwndRow, hwndElem, hwndColor, hwndLoadingText, hwndNormal, hwndExpert, hwndPuzzlePack, hwndMessage;
 std::shared_ptr<Panel> _panel;
 std::shared_ptr<Randomizer> randomizer = std::make_shared<Randomizer>();
 std::shared_ptr<Generate> generator = std::make_shared<Generate>();
@@ -86,7 +87,7 @@ Decoration::Shape symbol;
 Decoration::Color color;
 int currentShape;
 int currentDir;
-bool hard = false;
+int difficulty = 0;
 int lastSeed;
 bool lastHard;
 std::vector<long long> shapePos = { SHAPE_11, SHAPE_12, SHAPE_13, SHAPE_14, SHAPE_21, SHAPE_22, SHAPE_23, SHAPE_24,
@@ -131,9 +132,10 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 				MessageBox(hwnd, L"This save file was previously randomized on Expert. To change the difficulty, you must start a new save file.", NULL, MB_OK);
 				SendMessage(hwndExpert, BM_SETCHECK, BST_CHECKED, 1);
 				SendMessage(hwndNormal, BM_SETCHECK, BST_UNCHECKED, 1);
+				SendMessage(hwndPuzzlePack, BM_SETCHECK, BST_UNCHECKED, 1);
 				break;
 			}
-			hard = false;
+			difficulty = 0;
 			break;
 		case IDC_DIFFICULTY_EXPERT:
 			lastSeed = Special::ReadPanelData<int>(0x00064, BACKGROUND_REGION_COLOR + 12);
@@ -142,9 +144,23 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 				MessageBox(hwnd, L"This save file was previously randomized on Normal. To change the difficulty, you must start a new save file.", NULL, MB_OK);
 				SendMessage(hwndNormal, BM_SETCHECK, BST_CHECKED, 1);
 				SendMessage(hwndExpert, BM_SETCHECK, BST_UNCHECKED, 1);
+				SendMessage(hwndPuzzlePack, BM_SETCHECK, BST_UNCHECKED, 1);
 				break;
 			}
-			hard = true;
+			difficulty = 1;
+			break;
+
+		case IDC_DIFFICULTY_PUZZLE_PACK:
+			lastSeed = Special::ReadPanelData<int>(0x00064, BACKGROUND_REGION_COLOR + 12);
+			lastHard = (Special::ReadPanelData<int>(0x00182, BACKGROUND_REGION_COLOR + 12) > 1);
+			if (lastSeed != 0 && !lastHard && !DEBUG) {
+				MessageBox(hwnd, L"This save file was previously randomized on Puzzle Pack. To change the difficulty, you must start a new save file.", NULL, MB_OK);
+				SendMessage(hwndPuzzlePack, BM_SETCHECK, BST_CHECKED, 1);
+				SendMessage(hwndNormal, BM_SETCHECK, BST_UNCHECKED, 1);
+				SendMessage(hwndExpert, BM_SETCHECK, BST_UNCHECKED, 1);
+				break;
+			}
+			difficulty = 2;
 			break;
 
 		//Randomize button
@@ -185,18 +201,28 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 				seed = lastSeed;
 				randomizer->seedIsRNG = false;
 				lastHard = (Special::ReadPanelData<int>(0x00182, BACKGROUND_REGION_COLOR + 12) > 1);
-				if (!lastHard && hard) {
+				if (!lastHard && difficulty != 0) {
 					MessageBox(hwnd, L"This save file was previously randomized on Normal. To change the difficulty, you must start a new save file.", NULL, MB_OK);
 					SendMessage(hwndNormal, BM_SETCHECK, BST_CHECKED, 1);
 					SendMessage(hwndExpert, BM_SETCHECK, BST_UNCHECKED, 1);
-					hard = false;
+					SendMessage(hwndPuzzlePack, BM_SETCHECK, BST_UNCHECKED, 1);
+					difficulty = 0;
 					break;
 				}
-				if (lastHard && !hard) {
+				if (lastHard && difficulty != 1) {
 					MessageBox(hwnd, L"This save file was previously randomized on Expert. To change the difficulty, you must start a new save file.", NULL, MB_OK);
 					SendMessage(hwndExpert, BM_SETCHECK, BST_CHECKED, 1);
 					SendMessage(hwndNormal, BM_SETCHECK, BST_UNCHECKED, 1);
-					hard = true;
+					SendMessage(hwndPuzzlePack, BM_SETCHECK, BST_UNCHECKED, 1);
+					difficulty = 1;
+					break;
+				}
+				if (!lastHard && difficulty != 2) {
+					MessageBox(hwnd, L"This save file was previously randomized on Puzzle Pack. To change the difficulty, you must start a new save file.", NULL, MB_OK);
+					SendMessage(hwndPuzzlePack, BM_SETCHECK, BST_CHECKED, 1);
+					SendMessage(hwndExpert, BM_SETCHECK, BST_UNCHECKED, 1);
+					SendMessage(hwndNormal, BM_SETCHECK, BST_UNCHECKED, 1);
+					difficulty = 2;
 					break;
 				}
 			}
@@ -210,16 +236,17 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 			SetWindowText(hwndRandomize, L"Randomizing...");
 
 			//If a file already exists for the seed and difficulty, load it
-			if (Panel::LoadPanels(seed, hard)) {
+			if (Panel::LoadPanels(seed, difficulty)) {
 				Special::WritePanelData(0x00064, BACKGROUND_REGION_COLOR + 12, seed);
-				Special::WritePanelData(0x00182, BACKGROUND_REGION_COLOR + 12, hard ? 2 : 1);
+				Special::WritePanelData(0x00182, BACKGROUND_REGION_COLOR + 12, difficulty==1 ? 2 : 1);
 			} 
 			else { //Otherwise, run the randomizer
 				std::ofstream file("errorlog.txt", std::ofstream::app);
-				file << "GENERATING SEED " << seed << " " << (hard ? "EXPERT" : "NORMAL") << "..." << std::endl;
+				file << "GENERATING SEED " << seed << " " << (difficulty==1 ? "EXPERT" : "NORMAL") << "..." << std::endl;
 				randomizer->seed = seed;
-				if (hard) randomizer->GenerateHard(hwndLoadingText);
-				else randomizer->GenerateNormal(hwndLoadingText);
+				if (difficulty == 1) randomizer->GenerateHard(hwndLoadingText);
+				else if (difficulty == 0) randomizer->GenerateNormal(hwndLoadingText);
+				else randomizer->GeneratePuzzlePack(hwndLoadingText);
 				file << "SUCCESS!" << std::endl;
 			}
 
@@ -426,7 +453,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
 
 	//Get the seed and difficulty previously used for this save file (if applicable)
 	int lastSeed = Special::ReadPanelData<int>(0x00064, BACKGROUND_REGION_COLOR + 12);
-	hard = (Special::ReadPanelData<int>(0x00182, BACKGROUND_REGION_COLOR + 12) > 1);
+	if (Special::ReadPanelData<int>(0x00182, BACKGROUND_REGION_COLOR + 12) > 1) difficulty = 1;
 
 	//-------------------------Basic window controls---------------------------
 
@@ -434,7 +461,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
 		WS_TABSTOP | WS_VISIBLE | WS_CHILD | SS_LEFT,
 		430, 15, 150, 16, hwnd, NULL, hInstance, NULL);
 
-	CreateWindow(L"STATIC", L"Choose Difficuty:",
+	CreateWindow(L"STATIC", L"Choose Type:",
 		WS_TABSTOP | WS_VISIBLE | WS_CHILD | SS_LEFT,
 		10, 15, 120, 16, hwnd, NULL, hInstance, NULL);
 	hwndNormal = CreateWindow(L"BUTTON", L"Base Game Randomizer - Randomizes all of the puzzles to be as close as possible to their respective symbol counts in the base game",
@@ -443,29 +470,33 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
 	hwndExpert = CreateWindow(L"BUTTON", L"Emptiness - Empties out all of the puzzles as much as possible",
 		WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_AUTORADIOBUTTON | BS_MULTILINE,
 		10, 75, 570, 35, hwnd, (HMENU)IDC_DIFFICULTY_EXPERT, hInstance, NULL);
-	if (hard) SendMessage(hwndExpert, BM_SETCHECK, BST_CHECKED, 1);
-	else SendMessage(hwndNormal, BM_SETCHECK, BST_CHECKED, 1);
+	hwndExpert = CreateWindow(L"BUTTON", L"Puzzle Pack - NOT DONE YET",
+		WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_AUTORADIOBUTTON | BS_MULTILINE,
+		10, 115, 570, 35, hwnd, (HMENU)IDC_DIFFICULTY_PUZZLE_PACK, hInstance, NULL);
+	if (difficulty == 1) SendMessage(hwndExpert, BM_SETCHECK, BST_CHECKED, 1);
+	else if (difficulty == 0) SendMessage(hwndNormal, BM_SETCHECK, BST_CHECKED, 1);
+	else SendMessage(hwndPuzzlePack, BM_SETCHECK, BST_CHECKED, 1);
 
 	CreateWindow(L"STATIC", L"Enter a seed (optional):",
 		WS_TABSTOP | WS_VISIBLE | WS_CHILD | SS_LEFT,
-		10, 125, 160, 16, hwnd, NULL, hInstance, NULL);
+		10, 165, 160, 16, hwnd, NULL, hInstance, NULL);
 	hwndSeed = CreateWindow(MSFTEDIT_CLASS, lastSeed == 0 ? L"" : std::to_wstring(lastSeed).c_str(),
         WS_TABSTOP | WS_VISIBLE | WS_CHILD | WS_BORDER,
-        180, 120, 50, 26, hwnd, NULL, hInstance, NULL);
+        180, 160, 50, 26, hwnd, NULL, hInstance, NULL);
 	SendMessage(hwndSeed, EM_SETEVENTMASK, NULL, ENM_CHANGE); // Notify on text change
 
 	hwndRandomize = CreateWindow(L"BUTTON", L"Randomize",
 		WS_TABSTOP | WS_VISIBLE | WS_CHILD | BS_DEFPUSHBUTTON,
-		250, 120, 130, 26, hwnd, (HMENU)IDC_RANDOMIZE, hInstance, NULL);
+		250, 160, 130, 26, hwnd, (HMENU)IDC_RANDOMIZE, hInstance, NULL);
 
 	hwndLoadingText = CreateWindow(L"STATIC", L"",
 		WS_TABSTOP | WS_VISIBLE | WS_CHILD | SS_LEFT,
-		400, 125, 160, 16, hwnd, NULL, hInstance, NULL);
+		400, 165, 160, 16, hwnd, NULL, hInstance, NULL);
 	ShowWindow(hwndLoadingText, SW_HIDE);
 
 	hwndMessage = CreateWindow(L"STATIC", L"Seed and difficulty cannot be changed after randomization.",
 		WS_TABSTOP | WS_VISIBLE | WS_CHILD | SS_CENTER | BS_MULTILINE,
-		10, 160, 580, 80, hwnd, NULL, hInstance, NULL);
+		10, 200, 580, 80, hwnd, NULL, hInstance, NULL);
 
 	//---------------------Debug/editing controls (debug mode only)---------------------
 

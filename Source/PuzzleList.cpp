@@ -51,6 +51,26 @@ void PuzzleList::GenerateAllH()
 	SetWindowText(_handle, L"Done!");
 }
 
+void PuzzleList::GenerateAllP() {
+	generator->setLoadingData(400);
+	CopyTargetsP();
+	GenerateTutorialP();
+	GenerateSymmetryP();
+	GenerateQuarryP();
+	GenerateBunkerP();
+	GenerateSwampP();
+	GenerateTreehouseP();
+	GenerateTownP();
+	GenerateVaultsP();
+	GenerateTrianglePanelsP();
+	GenerateOrchardP();
+	GenerateKeepP();
+	GenerateMountainP();
+	GenerateCavesP();
+	GenerateDesertP();
+	SetWindowText(_handle, L"Done!");
+}
+
 void PuzzleList::CopyTargetsN()
 {
 	/*
@@ -135,6 +155,31 @@ void PuzzleList::CopyTargetsH()
 	Special::copyTarget(0x0005F, 0x19650);//Shadows Laser
 	Special::copyTarget(0x00060, 0x17CA4);//Monastary Laser
 	Special::copyTarget(0x00061, 0x03608);//Desert Laser
+}
+
+void PuzzleList::CopyTargetsP() {
+	Special::copyTarget(0x033D4, 0x04CA4); // Tutorial Vault -> Tutorial Optional Door 2
+	Special::copyTarget(0x17CFB, 0x0A171); // Tutorial Discard -> Tutorial Optinal Door 1
+	Special::copyTarget(0x17D01, 0x19650); // Town Crate Discard -> Shadows Laser
+	Special::copyTarget(0x00021, 0x28A0D); // Stones Tutorial -> Town Church Star Door
+	Special::copyTarget(0x28A0D, 0x28A69); // Town Church Stars -> Town Lattice
+	Special::copyTarget(0x17D27, 0x03713); // Keep Discard Panel -> Monastary Shortcut
+	Special::copyTarget(0x17C71, 0x17CA4); // Town Rooftop Discard -> Monastary Laser
+	Special::copyTarget(0x17F9B, 0x17CAB); // Jungle Discard -> Jungle Pop-up wall
+	Special::copyTarget(0x00061, 0x17C2E); // Dots Tutorial -> Bunker Entry Door
+	Special::copyTarget(0x17C2E, 0x09DE0); // Bunker Entry Door -> Bunker Laser
+
+	Special::setPower(0x28B39, true); // Town Red Hex Panel
+	Special::setPower(0x3369D, true); // Lower Elevator Control
+	Special::setPower(0x17CA4, true); // Monastary Laser
+	Special::setPower(0x17CAB, true); // Jungle Pop-up Wall
+
+	Special::clearTarget(0x28A69); // Town Lattice
+	Special::clearTarget(0x0360E); // Keep Front Laser
+
+	//To fix issues caused by previous versions of simga's. Don't know if it still applies now. Don't want to find out.
+	Special::setPower(0x009AB, true); //Swamp underwater
+	Special::setPower(0x28998, true); //Town Yellow Door
 }
 
 //Normal Mode
@@ -1645,4 +1690,124 @@ void PuzzleList::GenerateDesertH() {
 	/*generator->setFlagOnce(Generate::Config::PreserveStructure);
 	generator->setFlagOnce(Generate::Config::DecorationsOnly);
 	generator->generate(0x00698);*/
+}
+
+//-------------------------------------Puzzle Pack Mode
+
+void PuzzleList::GenerateTutorialP()
+{
+	generator->setLoadingData(L"Tutorial", 23);
+	generator->resetConfig();
+	Special::drawSeedAndDifficulty(0x00064, seedIsRNG ? -1 : seed, false);
+	//Special::drawGoodLuckPanel(0x00182);
+	//generator->generate(0x00182, Decoration::Gap, 1);
+
+	
+}
+
+void PuzzleList::GenerateSymmetryP()
+{
+	generator->setLoadingData(L"Symmetry", 30);
+	generator->resetConfig();
+	
+}
+
+void PuzzleList::GenerateOrchardP()
+{
+	generator->resetConfig();
+	generator->setLoadingData(L"Orchard", 5);
+}
+
+void PuzzleList::GenerateDesertP()
+{
+	generator->resetConfig();
+	Randomizer().RandomizeDesert();
+}
+
+void PuzzleList::GenerateQuarryP()
+{
+	generator->setLoadingData(L"Quarry", 39);
+	generator->resetConfig();
+
+	
+}
+
+void PuzzleList::GenerateTreehouseP()
+{
+	generator->setLoadingData(L"Treehouse", 57);
+	generator->resetConfig();
+
+	
+}
+
+void PuzzleList::GenerateKeepP()
+{
+	generator->setLoadingData(L"Keep", 5);
+	generator->resetConfig();
+	
+}
+
+void PuzzleList::GenerateTownP()
+{
+	generator->setLoadingData(L"Town", 20);
+	generator->resetConfig();
+
+}
+
+void PuzzleList::GenerateBunkerP()
+{
+	generator->setLoadingData(L"Bunker", 1);
+	generator->resetConfig();
+	
+}
+
+void PuzzleList::GenerateJungleP()
+{
+	generator->setLoadingData(L"Jungle", 6);
+	generator->resetConfig();
+
+
+}
+
+void PuzzleList::GenerateSwampP()
+{
+	generator->setLoadingData(L"Swamp", 49);
+	generator->resetConfig();
+
+	
+}
+
+void PuzzleList::GenerateMountainP()
+{
+	//std::wstring text = L"Mountain Perspective";
+	//SetWindowText(_handle, text.c_str());
+	
+
+	generator->setLoadingData(L"Mountain", 39);
+	generator->resetConfig();
+
+	
+}
+
+void PuzzleList::GenerateCavesP()
+{
+	generator->setLoadingData(L"Caves", 51);
+	generator->resetConfig();
+
+	
+}
+
+void PuzzleList::GenerateVaultsP()
+{
+	generator->setLoadingData(L"Vaults", 5);
+	generator->resetConfig();
+	
+}
+
+void PuzzleList::GenerateTrianglePanelsP()
+{
+	generator->setLoadingData(L"Triangles", 12);
+	generator->resetConfig();
+
+	
 }
