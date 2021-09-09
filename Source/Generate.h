@@ -60,6 +60,7 @@ public:
 	void setVal(int val, int x, int y) { _panel->_grid[x][y] = val; }
 	void setGridSize(int width, int height);
 	void setSymmetry(Panel::Symmetry symmetry);
+	int chooseRandomSymbol();
 	void write(int id);
 	void setLoadingHandle(HWND handle) { _handle = handle; }
 	void setLoadingData(int totalPuzzles) { _totalPuzzles = totalPuzzles; _genTotal = 0; }

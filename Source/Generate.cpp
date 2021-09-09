@@ -214,6 +214,17 @@ void Generate::setSymmetry(Panel::Symmetry symmetry)
 	}
 }
 
+//Chooses a random symbol. Used for puzzlePack
+int Generate::chooseRandomSymbol()
+{
+	int realSymbolList [] = { Decoration::Stone, Decoration::Star, Decoration::Eraser, Decoration::Poly, Decoration::Poly | Decoration::Negative, 
+		Decoration::Triangle, Decoration::Arrow, Decoration::Dot, Decoration::Gap, Decoration::Start, Decoration::Exit };
+
+	int result = realSymbolList[Random::rand() % std::size(realSymbolList)];
+
+	return result;
+}
+
 //Write out panel data to the puzzle with the given id
 void Generate::write(int id)
 {
