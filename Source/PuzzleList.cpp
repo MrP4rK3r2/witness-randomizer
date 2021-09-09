@@ -1703,15 +1703,33 @@ void PuzzleList::GenerateRandomPuzzle(int id)
 	//GenerateGapsAndDots(id);
 }
 
-void PuzzleList::GenerateGapsAndDots(int id)
+//Works for Gaps (but I wouldn't recommend it), Dots, Poly, Triangle, and Arrows
+//Min sparseness values:
+//Gaps, Dots, Triangles, and Arrows: 2, Poly: 4 for easy, 5 for hard, Arrow: 
+void PuzzleList::GenerateSingleMonoColorTypePuzzle(int id, int type, int sparseness, int size) {
+	generator->resetConfig();
+	int panelSize = size;
+	if (panelSize == 0) {
+		panelSize = (Random::rand() % 9) + 3;
+	}
+	generator->pathWidth = 1.0f - (0.05f * panelSize);
+	generator->setGridSize(panelSize, panelSize);
+	generator->generate(id, type, (panelSize * panelSize) / sparseness);
+}
+	
+
+void PuzzleList::GenerateGapsAndDots(int id, int size)
 {
 	generator->resetConfig();
-	int size = (Random::rand() % 9) + 3;
+	int panelSize = size;
+	if (panelSize == 0) {
+		panelSize = (Random::rand() % 9) + 3;
+	}
 	//int size = 11;
-	generator->pathWidth = 1.0f - (0.05f * size);
-	generator->setGridSize(size, size);
+	generator->pathWidth = 1.0f - (0.05f * panelSize);
+	generator->setGridSize(panelSize, panelSize);
 	//generator->generate(id, Decoration::Dot, Random::rand() % ((size*size)/2), Decoration::Gap, Random::rand() % ((size * size) / 2));
-	generator->generate(id, Decoration::Dot, (size*size)/2, Decoration::Gap, (size*size)/2);
+	generator->generate(id, Decoration::Dot, (panelSize * panelSize)/2, Decoration::Gap, (panelSize * panelSize)/2);
 }
 
 void PuzzleList::GenerateTutorialP()
@@ -1721,9 +1739,12 @@ void PuzzleList::GenerateTutorialP()
 	Special::drawSeedAndDifficulty(0x00064, seedIsRNG ? -1 : seed, false);
 	//Special::drawGoodLuckPanel(0x00182);
 	//generator->generate(0x00182, Decoration::Gap, 1);
-	GenerateGapsAndDots(0x00293);
-	GenerateGapsAndDots(0x00295);
-	GenerateGapsAndDots(0x002C2);
+	generator->setGridSize(4, 4);
+	GenerateGapsAndDots(0x00293, 4);
+	GenerateSingleMonoColorTypePuzzle(0x00295, Decoration::Dot, 2, 4);
+	GenerateSingleMonoColorTypePuzzle(0x002C2, Decoration::Arrow | Decoration::Color::Black, 2, 4);
+	GenerateSingleMonoColorTypePuzzle(0x0A3B2, Decoration::Poly | Decoration::Color::Black, 5, 4);
+	GenerateSingleMonoColorTypePuzzle(0x0A3B5, Decoration::Triangle | Decoration::Color::Black, 2, 4);
 }
 
 void PuzzleList::GenerateSymmetryP()
