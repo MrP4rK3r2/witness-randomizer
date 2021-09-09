@@ -413,7 +413,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
 	RECT rect;
     GetClientRect(GetDesktopWindow(), &rect);
 	HWND hwnd = CreateWindow(WINDOW_CLASS, PRODUCT_NAME, WS_OVERLAPPEDWINDOW,
-      rect.right - 650, 200, 600, DEBUG ? 700 : 220, nullptr, nullptr, hInstance, nullptr);
+      rect.right - 650, 200, 600, DEBUG ? 700 : 320, nullptr, nullptr, hInstance, nullptr);
 
 	//Initialize memory globals constant depending on game version
 	Memory memory("witness64_d3d11.exe");
