@@ -1694,6 +1694,26 @@ void PuzzleList::GenerateDesertH() {
 
 //-------------------------------------Puzzle Pack Mode
 
+void PuzzleList::GenerateRandomPuzzle(int id) 
+{
+	
+	//int symbolList [] = { generator->chooseRandomSymbol(false, false), generator->chooseRandomSymbol(false, false) };
+	/*generator->generate(id, symbolList[0] | Decoration::Color::Black, Random::rand() % 4, symbolList[0] | Decoration::Color::White, Random::rand() % 4,
+		symbolList[1] | Decoration::Color::Black, Random::rand() % 4, symbolList[1] | Decoration::Color::White, Random::rand() % 4);*/
+	//GenerateGapsAndDots(id);
+}
+
+void PuzzleList::GenerateGapsAndDots(int id)
+{
+	generator->resetConfig();
+	int size = (Random::rand() % 9) + 3;
+	//int size = 11;
+	generator->pathWidth = 1.0f - (0.05f * size);
+	generator->setGridSize(size, size);
+	//generator->generate(id, Decoration::Dot, Random::rand() % ((size*size)/2), Decoration::Gap, Random::rand() % ((size * size) / 2));
+	generator->generate(id, Decoration::Dot, (size*size)/2, Decoration::Gap, (size*size)/2);
+}
+
 void PuzzleList::GenerateTutorialP()
 {
 	generator->setLoadingData(L"Tutorial", 23);
@@ -1701,9 +1721,9 @@ void PuzzleList::GenerateTutorialP()
 	Special::drawSeedAndDifficulty(0x00064, seedIsRNG ? -1 : seed, false);
 	//Special::drawGoodLuckPanel(0x00182);
 	//generator->generate(0x00182, Decoration::Gap, 1);
-	generator->setGridSize(5,5);
-	generator->generate(0x00293, generator->chooseRandomSymbol(false), 1, generator->chooseRandomSymbol(false), 1, 
-		generator->chooseRandomSymbol(false), 1, generator->chooseRandomSymbol(false), 1);
+	GenerateGapsAndDots(0x00293);
+	GenerateGapsAndDots(0x00295);
+	GenerateGapsAndDots(0x002C2);
 }
 
 void PuzzleList::GenerateSymmetryP()

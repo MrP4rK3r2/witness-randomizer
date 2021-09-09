@@ -83,6 +83,8 @@ public:
 
 	//-------------------------Puzzle Pack difficulty--------------------------
 
+	void GenerateRandomPuzzle(int id);
+	void GenerateGapsAndDots(int id);
 	void GenerateTutorialP();
 	void GenerateSymmetryP();
 	void GenerateQuarryP();
