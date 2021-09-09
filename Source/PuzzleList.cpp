@@ -1702,7 +1702,8 @@ void PuzzleList::GenerateTutorialP()
 	//Special::drawGoodLuckPanel(0x00182);
 	//generator->generate(0x00182, Decoration::Gap, 1);
 	generator->setGridSize(5,5);
-	generator->generate(0x00293, generator->chooseRandomSymbol(), 1);
+	generator->generate(0x00293, generator->chooseRandomSymbol(false), 1, generator->chooseRandomSymbol(false), 1, 
+		generator->chooseRandomSymbol(false), 1, generator->chooseRandomSymbol(false), 1);
 }
 
 void PuzzleList::GenerateSymmetryP()

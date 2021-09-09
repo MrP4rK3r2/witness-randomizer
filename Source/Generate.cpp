@@ -215,14 +215,25 @@ void Generate::setSymmetry(Panel::Symmetry symmetry)
 }
 
 //Chooses a random symbol. Used for puzzlePack
-int Generate::chooseRandomSymbol()
+int Generate::chooseRandomSymbol(bool invisAllowed)
 {
-	int realSymbolList [] = { Decoration::Stone, Decoration::Star, Decoration::Eraser, Decoration::Poly, Decoration::Poly | Decoration::Negative, 
+	int symbolList [] = { Decoration::Stone, Decoration::Star, Decoration::Eraser, Decoration::Poly, Decoration::Poly | Decoration::Negative, 
 		Decoration::Triangle, Decoration::Arrow, Decoration::Dot, Decoration::Gap, Decoration::Start, Decoration::Exit };
 
-	int result = realSymbolList[Random::rand() % std::size(realSymbolList)];
+	int symbolListIndex = Random::rand() % std::size(symbolList);
+	
+	int symbol = symbolList[symbolListIndex];
 
-	return result;
+	if (symbolListIndex < 7) {
+		int colorList[] = { Decoration::Color::Black, Decoration::Color::Blue, Decoration::Color::Cyan, Decoration::Color::Green, Decoration::Color::Magenta,
+		Decoration::Color::Orange, Decoration::Color::Purple, Decoration::Color::Red, Decoration::Color::White, Decoration::Color::Yellow };
+		int color = colorList[Random::rand() % std::size(colorList)];
+		return symbol | color;
+	}
+	else 
+	{
+		return symbol;
+	}
 }
 
 //Write out panel data to the puzzle with the given id
