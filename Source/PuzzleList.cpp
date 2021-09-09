@@ -1706,15 +1706,32 @@ void PuzzleList::GenerateRandomPuzzle(int id)
 //Works for Gaps (but I wouldn't recommend it), Dots, Poly, Triangle, and Arrows
 //Min sparseness values:
 //Gaps, Dots, Triangles, and Arrows: 2, Poly: 4 for easy, 5 for hard, Arrow: 
-void PuzzleList::GenerateSingleMonoColorTypePuzzle(int id, int type, int sparseness, int size) {
+void PuzzleList::GenerateSingleMonoColorTypePuzzle(int id, int type, int sparseness, int size) 
+{
 	generator->resetConfig();
 	int panelSize = size;
-	if (panelSize == 0) {
+	if (panelSize == 0) 
+	{
 		panelSize = (Random::rand() % 9) + 3;
 	}
 	generator->pathWidth = 1.0f - (0.05f * panelSize);
 	generator->setGridSize(panelSize, panelSize);
 	generator->generate(id, type, (panelSize * panelSize) / sparseness);
+}
+
+//Max size: 8
+void PuzzleList::GenerateMonoStarPuzzle(int id, int size)
+{
+	generator->resetConfig();
+	int panelSize = size;
+	if (panelSize == 0)
+	{
+		panelSize = (Random::rand() % 6) + 3;
+	}
+	generator->pathWidth = 1.0f - (0.05f * panelSize);
+	generator->setGridSize(panelSize, panelSize);
+	int countList [] = { 4, 8, 12, 14, 16, 18 };
+	generator->generate(id, Decoration::Star | Decoration::Color::Black, countList[panelSize-3]);
 }
 	
 
@@ -1745,6 +1762,8 @@ void PuzzleList::GenerateTutorialP()
 	GenerateSingleMonoColorTypePuzzle(0x002C2, Decoration::Arrow | Decoration::Color::Black, 2, 4);
 	GenerateSingleMonoColorTypePuzzle(0x0A3B2, Decoration::Poly | Decoration::Color::Black, 5, 4);
 	GenerateSingleMonoColorTypePuzzle(0x0A3B5, Decoration::Triangle | Decoration::Color::Black, 2, 4);
+	//generator->setSymbol(Decoration::Start, 0, 12);
+	GenerateMonoStarPuzzle(0x0005D, 4);
 }
 
 void PuzzleList::GenerateSymmetryP()
