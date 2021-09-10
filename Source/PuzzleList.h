@@ -87,6 +87,7 @@ public:
 	void GenerateSingleMonoColorTypePuzzle(int id, int type, int sparseness, int size);
 	void GenerateGapsAndDots(int id, int size);
 	void GenerateMonoStarPuzzle(int id, int size);
+	void GenerateEverythingPanel(int id, int size, int arrowOrEraser, int multiplier);
 	void GenerateTutorialP();
 	void GenerateSymmetryP();
 	void GenerateQuarryP();
