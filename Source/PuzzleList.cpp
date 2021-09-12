@@ -492,8 +492,11 @@ void PuzzleList::GenerateTreehouseN()
 	generator->generate(0x17D88, Decoration::Star | Decoration::Color::Orange, 2, Decoration::Star | Decoration::Color::Magenta, 2, Decoration::Gap, 1);
 	generator->generate(0x17DB4, Decoration::Star | Decoration::Color::Orange, 2, Decoration::Star | Decoration::Color::Magenta, 2, Decoration::Gap, 1);
 	generator->generate(0x17D8C, Decoration::Star | Decoration::Color::Orange, 4, Decoration::Star | Decoration::Color::Magenta, 2);
-	//generator->setObstructions({ {1,2},{1,4},{2,1},{3,2},{3,4} });
+	generator->setGridSize(4,4);
+	generator->setObstructions({ { 1, 2 },{ 1, 4 },{ 7, 2 },{ 7, 4 },{ 2, 1 },{ 4, 1 },{ 6, 1 } });
 	generator->generate(0x17CE3, Decoration::Star | Decoration::Color::Orange, 4, Decoration::Star | Decoration::Color::Magenta, 4, Decoration::Gap, 2);
+	generator->resetConfig();
+	generator->setFlag(Generate::Config::TreehouseLayout);
 	generator->generate(0x17DCD, Decoration::Star | Decoration::Color::Orange, 2, Decoration::Star | Decoration::Color::Magenta, 4);
 	generator->generate(0x17DB2, Decoration::Star | Decoration::Color::Orange, 4, Decoration::Star | Decoration::Color::Magenta, 6);
 	generator->generate(0x17DCC, Decoration::Star | Decoration::Color::Orange, 6, Decoration::Star | Decoration::Color::Magenta, 6);
@@ -1764,6 +1767,7 @@ void PuzzleList::GenerateEverythingPanel(int id, int size, int arrowOrEraser, in
 		Decoration::Triangle | Decoration::Color::Black, 1 * multiplier);
 }
 
+//Currently just a showcase of the different types.
 void PuzzleList::GenerateTutorialP()
 {
 	generator->setLoadingData(L"Tutorial", 23);
@@ -1771,6 +1775,16 @@ void PuzzleList::GenerateTutorialP()
 	Special::drawSeedAndDifficulty(0x00064, seedIsRNG ? -1 : seed, false);
 	//Special::drawGoodLuckPanel(0x00182);
 	//generator->generate(0x00182, Decoration::Gap, 1);
+	GenerateSingleMonoColorTypePuzzle(0x00293, Decoration::Dot, 2, 0);
+	GenerateSingleMonoColorTypePuzzle(0x00295, Decoration::Triangle | Decoration::Color::Black, 2, 0);
+	GenerateSingleMonoColorTypePuzzle(0x002C2, Decoration::Arrow | Decoration::Color::Black, 2, 0);
+	GenerateSingleMonoColorTypePuzzle(0x0A3B2, Decoration::Poly | Decoration::Color::Black, 5, 0);
+	GenerateMonoStarPuzzle(0x0A3B5, 0);
+	GenerateGapsAndDots(0x0A171, 0);
+	GenerateEverythingPanel(0x0005D, 3, Decoration::Eraser, 1);
+	GenerateEverythingPanel(0x0005E, 4, Decoration::Eraser, 2);
+
+
 	//generator->setGridSize(4, 4);
 	//GenerateGapsAndDots(0x00293, 4);
 	//GenerateSingleMonoColorTypePuzzle(0x00295, Decoration::Dot, 2, 4);
