@@ -43,17 +43,21 @@ int find(const std::vector<T> &data, T search, size_t startIndex = 0) {
 }
 
 void Randomizer::AdjustSpeed() {
-	_memory->WritePanelData<float>(0x09F95, OPEN_RATE, { 0.04f });  // Desert Surface Final Control, 4x
-	_memory->WritePanelData<float>(0x03839, OPEN_RATE, { 0.7f }); // Mill Ramp, 3x
-	_memory->WritePanelData<float>(0x021BA, OPEN_RATE, { 1.5f }); // Mill Lift, 3x
-	_memory->WritePanelData<float>(0x17CC1, OPEN_RATE, { 0.8f }); // Mill Elevator, 4x
-	_memory->WritePanelData<float>(0x0061A, OPEN_RATE, { 0.1f }); // Swamp Sliding Bridge, 4x
-	_memory->WritePanelData<float>(0x09EEC, OPEN_RATE, { 0.1f }); // Mountain 2 Elevator, 4x
-	_memory->WritePanelData<float>(0x17E74, OPEN_RATE, { 0.03f }); // Swamp Flood gate (inner), 2x //Keeping these slower for now to help with EP's
-	_memory->WritePanelData<float>(0x1802C, OPEN_RATE, { 0.03f }); // Swamp Flood gate (outer), 2x
-	_memory->WritePanelData<float>(0x005A2, OPEN_RATE, { 0.04f }); // Swamp Rotating Bridge, 4x
-	_memory->WritePanelData<float>(0x17C6A, OPEN_RATE, { 0.25f }); // Ramp Angle, 5x
-	_memory->WritePanelData<float>(0x17F02, OPEN_RATE, { 0.15f }); // Ramp Position, 4x
+	_memory->WritePanelData<float>(0x09F95, OPEN_RATE, { 0.09f });  // Desert Surface Final Control, 4x
+	_memory->WritePanelData<float>(0x03839, OPEN_RATE, { 0.09f }); // Mill Ramp, 3x
+	_memory->WritePanelData<float>(0x021BA, OPEN_RATE, { 0.09f }); // Mill Lift, 3x
+	_memory->WritePanelData<float>(0x17CC1, OPEN_RATE, { 50.69f }); // Mill Elevator, 4x
+	_memory->WritePanelData<float>(0x0061A, OPEN_RATE, { 9999999.9f }); // Swamp Sliding Bridge, 4x
+	_memory->WritePanelData<float>(0x09EEC, OPEN_RATE, { 9999999.9f }); // Mountain 2 Elevator, 4x
+	_memory->WritePanelData<float>(0x17E74, OPEN_RATE, { 9999999.9f }); // Swamp Flood gate (inner), 2x //Keeping these slower for now to help with EP's
+	_memory->WritePanelData<float>(0x1802C, OPEN_RATE, { 9999999.9f }); // Swamp Flood gate (outer), 2x
+	_memory->WritePanelData<float>(0x005A2, OPEN_RATE, { 9999999.9f }); // Swamp Rotating Bridge, 4x
+	_memory->WritePanelData<float>(0x17C6A, OPEN_RATE, { 9999999.9f }); // Ramp Angle, 5x
+	_memory->WritePanelData<float>(0x17F02, OPEN_RATE, { 9999999.9f }); // Ramp Position, 4x
+	//_memory->WritePanelData<float>(0x0A15C, OPEN_RATE, { 9999999.9f }); // desert elevator, stupid
+	//_memory->WritePanelData<float>(0x36343, OPEN_RATE, { 50.9f }); // boat
+	//_memory->WritePanelData<float>(0x3645A, OPEN_RATE, { 30.9f }); // boat
+	//_memory->WritePanelData<float>(0x3645B, OPEN_RATE, { 30.9f }); // boat
 }
 
 void Randomizer::RandomizeDesert() {
