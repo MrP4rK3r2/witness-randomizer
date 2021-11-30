@@ -43,9 +43,9 @@ int find(const std::vector<T> &data, T search, size_t startIndex = 0) {
 }
 
 void Randomizer::AdjustSpeed() {
-	_memory->WritePanelData<float>(0x09F95, OPEN_RATE, { 0.09f });  // Desert Surface Final Control, 4x
-	_memory->WritePanelData<float>(0x03839, OPEN_RATE, { 0.09f }); // Mill Ramp, 3x
-	_memory->WritePanelData<float>(0x021BA, OPEN_RATE, { 0.09f }); // Mill Lift, 3x
+	_memory->WritePanelData<float>(0x09F95, OPEN_RATE, { 9999999.9f });  // Desert Surface Final Control, 4x
+	_memory->WritePanelData<float>(0x03839, OPEN_RATE, { 9.9f }); // Mill Ramp, 3x
+	_memory->WritePanelData<float>(0x021BA, OPEN_RATE, { 9.9f }); // Mill Lift, 3x
 	_memory->WritePanelData<float>(0x17CC1, OPEN_RATE, { 50.69f }); // Mill Elevator, 4x
 	_memory->WritePanelData<float>(0x0061A, OPEN_RATE, { 9999999.9f }); // Swamp Sliding Bridge, 4x
 	_memory->WritePanelData<float>(0x09EEC, OPEN_RATE, { 9999999.9f }); // Mountain 2 Elevator, 4x
