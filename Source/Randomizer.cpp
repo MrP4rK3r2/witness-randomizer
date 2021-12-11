@@ -43,6 +43,7 @@ int find(const std::vector<T> &data, T search, size_t startIndex = 0) {
 }
 
 void Randomizer::AdjustSpeed() {
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 	_memory->WritePanelData<float>(0x09F95, OPEN_RATE, { 0.04f });  // Desert Surface Final Control, 4x
 	_memory->WritePanelData<float>(0x03839, OPEN_RATE, { 0.7f }); // Mill Ramp, 3x
@@ -57,6 +58,8 @@ void Randomizer::AdjustSpeed() {
 	_memory->WritePanelData<float>(0x17F02, OPEN_RATE, { 0.15f }); // Ramp Position, 4x
 	_memory->WritePanelData<float>(0x17C50, OPEN_RATE, { 0.3f }); //Boathouse Barrier, 2x
 =======
+=======
+>>>>>>> Stashed changes
 	_memory->WritePanelData<float>(0x09F95, OPEN_RATE, { 9999999.9f });  // Desert Surface Final Control, 4x
 	_memory->WritePanelData<float>(0x03839, OPEN_RATE, { 9.9f }); // Mill Ramp, 3x
 	_memory->WritePanelData<float>(0x021BA, OPEN_RATE, { 9.9f }); // Mill Lift, 3x
@@ -72,7 +75,10 @@ void Randomizer::AdjustSpeed() {
 	//_memory->WritePanelData<float>(0x36343, OPEN_RATE, { 50.9f }); // boat
 	//_memory->WritePanelData<float>(0x3645A, OPEN_RATE, { 30.9f }); // boat
 	//_memory->WritePanelData<float>(0x3645B, OPEN_RATE, { 30.9f }); // boat
+<<<<<<< Updated upstream
 >>>>>>> f26508f17fa6ff98c35c3cf3656fc03ec406745f
+=======
+>>>>>>> Stashed changes
 }
 
 void Randomizer::RandomizeDesert() {

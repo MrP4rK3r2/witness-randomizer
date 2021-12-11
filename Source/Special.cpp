@@ -70,7 +70,15 @@ void Special::generateAntiPuzzle(int id)
 	while (true) {
 		generator->setFlagOnce(Generate::Config::DisableWrite);
 		generator->generate(id, Decoration::Poly | Decoration::Can_Rotate, 2);
+<<<<<<< Updated upstream
 		//generator->generate(id, Decoration::Eraser | Decoration::Color::Cyan, 1);
+=======
+<<<<<<< HEAD
+		generator->generate(id, Decoration::Star | Decoration::Color::Purple, 2);
+=======
+		//generator->generate(id, Decoration::Eraser | Decoration::Color::Cyan, 1);
+>>>>>>> f26508f17fa6ff98c35c3cf3656fc03ec406745f
+>>>>>>> Stashed changes
 		std::set<Point> open = generator->_gridpos;
 		std::vector<int> symbols;
 		for (int x = 1; x < generator->_panel->_width; x += 2) {
@@ -1074,6 +1082,7 @@ void Special::generateMountainFloor()
 		gen.setVal(symbol, pos.first, pos.second);
 		gen.write(ids[i]);
 	}
+	
 	generator->incrementProgress();
 	generator->resetVars();
 	generator->resetConfig();
@@ -1439,7 +1448,7 @@ void Special::generateCenterPerspective(int id, const std::vector<std::pair<int,
 }
 
 void Special::createText(int id, std::string text, std::vector<float>& intersections, std::vector<int>& connectionsA, std::vector<int>& connectionsB,
-		float left, float right, float top, float bottom) {
+	float left, float right, float top, float bottom) {
 	//012
 	//345
 	//678
@@ -1522,6 +1531,7 @@ void Special::drawGoodLuckPanel(int id)
 	std::vector<float> intersections;
 	std::vector<int> connectionsA;
 	std::vector<int> connectionsB;
+<<<<<<< Updated upstream
 	createText(id, "uwu", intersections, connectionsA, connectionsB, 0.2f, 0.8f, 0.07f, 0.23f);
 	createText(id, "bottom text", intersections, connectionsA, connectionsB, 0.05f, 0.95f, 0.77f, 0.93f);
 	drawText(id, intersections, connectionsA, connectionsB, { 0.445f, 0.7f, 0.445f, 0.5f, 0.268f, 0.4f, 0.326f, 0.3f, 0.5f, 0.4f, 0.673f, 0.3f, 0.732f, 0.4f, 0.555f, 0.5f, 0.555f, 0.7f, 0.475f, 0.7f });
@@ -1540,10 +1550,68 @@ void Special::drawTrianglePillar(int id)
 }
 
 void Special::drawZimodoPillar(int id)
+=======
+<<<<<<< HEAD
+	createText(id, "owo", intersections, connectionsA, connectionsB, 0.2f, 0.8f, 0.05f, 0.2f);
+	createText(id, "2 of them", intersections, connectionsA, connectionsB, 0.05f, 0.95f, 0.8f, 0.95f);
+	drawText(id, intersections, connectionsA, connectionsB, { 0.034f, 0.500f, 0.100f, 0.434f, 0.100f, 0.334f, 0.200f, 0.334f, 0.267f, 0.267f, 0.334f, 0.334f, 0.440f, 0.334f, 0.440f, 0.440f, 0.560f, 0.560f, 0.560f, 0.666f, 0.666f, 0.666f, 0.733f, 0.733f, 0.800f, 0.666f, 0.900f, 0.666f, 0.900f, 0.560f, 0.966f, 0.500f, 0.900f, 0.440f, 0.900f, 0.334f, 0.800f, 0.334f, 0.733f, 0.264f, 0.666f, 0.334f, 0.560f, 0.334f, 0.560f, 0.440f, 0.440f, 0.560f, 0.440f, 0.666f, 0.334f, 0.666f, 0.267f, 0.733f, 0.200f, 0.666f, 0.100f, 0.666f, 0.100f, 0.566f, 0.034f, 0.500f });
+}
+
+void Special::drawMeowPanel(int id)
+=======
+	createText(id, "uwu", intersections, connectionsA, connectionsB, 0.2f, 0.8f, 0.07f, 0.23f);
+	createText(id, "bottom text", intersections, connectionsA, connectionsB, 0.05f, 0.95f, 0.77f, 0.93f);
+	drawText(id, intersections, connectionsA, connectionsB, { 0.445f, 0.7f, 0.445f, 0.5f, 0.268f, 0.4f, 0.326f, 0.3f, 0.5f, 0.4f, 0.673f, 0.3f, 0.732f, 0.4f, 0.555f, 0.5f, 0.555f, 0.7f, 0.475f, 0.7f });
+}
+
+void Special::drawTrianglePillar(int id)
+>>>>>>> f26508f17fa6ff98c35c3cf3656fc03ec406745f
 {
 	std::vector<float> intersections;
 	std::vector<int> connectionsA;
 	std::vector<int> connectionsB;
+<<<<<<< HEAD
+	//createText(id, "shadow", intersections, connectionsA, connectionsB, 0.05f, 0.95f, 0.05f, 0.25f);
+	createText(id, "meow", intersections, connectionsA, connectionsB, 0.25f, 0.75f, 0.4f, 0.6f);
+	drawText(id, intersections, connectionsA, connectionsB, { 0.5f, 0.18f, 0.55f, 0.185f, 0.6f, 0.2f, 0.65f, 0.22f, 0.7f, 0.25f, 0.75f, 0.28f, 0.78f, 0.35f, 0.79f, 0.4f, 0.8f, 0.45f, 0.78f, 0.6f, 0.79f, 0.69f, 0.8f, 0.8f, 0.8f, 0.87f, 0.79f, 0.91f, 0.76f, 0.92f, 0.73f, 0.9f, 0.69f, 0.87f, 0.65f, 0.8f, 0.6f, 0.75f, 0.5f, 0.74f, 0.4f, 0.74f, 0.35f, 0.75f, 0.24f, 0.91f, 0.21f, 0.92f, 0.18f, 0.9f, 0.18f, 0.85f, 0.18f, 0.8f, 0.185f, 0.7f, 0.19f, 0.6f, 0.2f, 0.4f, 0.22f, 0.3f, 0.25f, 0.25f, 0.3f, 0.2f, 0.4f, 0.18f, 0.5f, 0.18 }); // satisfying cat
+	drawText(id, intersections, connectionsA, connectionsB, { 0.5f, 0.18f, 0.55f, 0.185f, 0.6f, 0.2f, 0.65f, 0.22f, 0.7f, 0.25f, 0.75f, 0.28f, 0.78f, 0.35f, 0.79f, 0.4f, 0.8f, 0.45f, 0.78f, 0.6f, 0.79f, 0.69f, 0.8f, 0.8f, 0.8f, 0.87f, 0.79f, 0.91f, 0.76f, 0.92f, 0.73f, 0.9f, 0.69f, 0.87f, 0.65f, 0.8f, 0.6f, 0.75f, 0.5f, 0.74f, 0.4f, 0.74f, 0.35f, 0.75f, 0.24f, 0.91f, 0.21f, 0.92f, 0.18f, 0.9f, 0.18f, 0.85f, 0.18f, 0.8f, 0.185f, 0.7f, 0.19f, 0.6f, 0.2f, 0.4f, 0.22f, 0.3f, 0.25f, 0.25f, 0.3f, 0.2f, 0.4f, 0.18f, 0.5f, 0.18 }); // satisfying cat
+}
+
+void Special::drawReverPanel(int id)
+=======
+	createText(id, "zimodo", intersections, connectionsA, connectionsB, 0.2f, 0.8f, 0.07f, 0.23f);
+	createText(id, "pillar", intersections, connectionsA, connectionsB, 0.05f, 0.95f, 0.77f, 0.93f);
+	drawText(id, intersections, connectionsA, connectionsB, { 0.28f, 0.36f, 0.465f, 0.7f, 0.534f, 0.7f, 0.72f, 0.363f, 0.688f, 0.3f, 0.313f, 0.3f, 0.467f, 0.58f, 0.552f, 0.42f, 0.62f, 0.42f, 0.465f, 0.7f, 0.62f, 0.42f, 0.447f, 0.42f, 0.5f, 0.517f, 0.415f, 0.362f, 0.72f, 0.363f, 0.688f, 0.3f, 0.313f, 0.3f, 0.3f, 0.324f });
+}
+
+void Special::drawZimodoPillar(int id)
+>>>>>>> f26508f17fa6ff98c35c3cf3656fc03ec406745f
+{
+	std::vector<float> intersections;
+	std::vector<int> connectionsA;
+	std::vector<int> connectionsB;
+<<<<<<< HEAD
+	createText(id, "reeee", intersections, connectionsA, connectionsB, 0.05f, 0.95f, 0.07f, 0.23f);
+	createText(id, "eever", intersections, connectionsA, connectionsB, 0.05f, 0.95f, 0.77f, 0.93f);
+	drawText(id, intersections, connectionsA, connectionsB, { 0.165f, 0.65f, 0.165f, 0.33f, 0.165f, 0.577f, 0.2f, 0.6f, 0.23f, 0.63f, 0.26f, 0.65f, 0.29f, 0.66f, 0.32f, 0.65f, 0.35f, 0.63f, 0.38f, 0.6f, 0.39f, 0.33f, 0.4f, 0.59f, 0.42f, 0.61f, 0.45f, 0.64f, 0.48f, 0.656f, 0.51f, 0.66f, 0.54f, 0.65f, 0.57f, 0.63f, 0.6f, 0.6f, 0.6f, 0.33f, 0.63f, 0.6f, 0.66f, 0.63f, 0.69f, 0.65f, 0.72f, 0.66f, 0.75f, 0.65f, 0.78f, 0.63f, 0.81f, 0.6f, 0.81f, 0.33 }); // reeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeever
+}
+
+void Special::drawZimodoPillar(int id)
+=======
+	createText(id, "zimodo", intersections, connectionsA, connectionsB, 0.05f, 0.95f, 0.07f, 0.23f);
+	createText(id, "pillar", intersections, connectionsA, connectionsB, 0.05f, 0.95f, 0.77f, 0.93f);
+	drawText(id, intersections, connectionsA, connectionsB, { 0.453f, 0.14f, 0.424f, 0.25f, 0.406f, 0.3f, 0.42f, 0.34f, 0.48f, 0.39f, 0.528f, 0.425f, 0.55f, 0.458f, 0.53f, 0.502f, 0.48f, 0.522f, 0.435f, 0.545f, 0.416f, 0.6f, 0.426f, 0.65f, 0.413f, 0.712f, 0.44f, 0.75f, 0.49f, 0.806f, 0.56f, 0.841f, 0.61f, 0.875f }
+	); 
+}
+
+void Special::drawReverPanel(int id)
+>>>>>>> f26508f17fa6ff98c35c3cf3656fc03ec406745f
+>>>>>>> Stashed changes
+{
+	std::vector<float> intersections;
+	std::vector<int> connectionsA;
+	std::vector<int> connectionsB;
+<<<<<<< Updated upstream
 	createText(id, "zimodo", intersections, connectionsA, connectionsB, 0.05f, 0.95f, 0.07f, 0.23f);
 	createText(id, "pillar", intersections, connectionsA, connectionsB, 0.05f, 0.95f, 0.77f, 0.93f);
 	drawText(id, intersections, connectionsA, connectionsB, { 0.453f, 0.14f, 0.424f, 0.25f, 0.406f, 0.3f, 0.42f, 0.34f, 0.48f, 0.39f, 0.528f, 0.425f, 0.55f, 0.458f, 0.53f, 0.502f, 0.48f, 0.522f, 0.435f, 0.545f, 0.416f, 0.6f, 0.426f, 0.65f, 0.413f, 0.712f, 0.44f, 0.75f, 0.49f, 0.806f, 0.56f, 0.841f, 0.61f, 0.875f }
@@ -1555,16 +1623,39 @@ void Special::drawReverPanel(int id)
 	std::vector<float> intersections;
 	std::vector<int> connectionsA;
 	std::vector<int> connectionsB;
+=======
+<<<<<<< HEAD
+	createText(id, "zimodo", intersections, connectionsA, connectionsB, 0.05f, 0.95f, 0.07f, 0.23f);
+	createText(id, "pillar", intersections, connectionsA, connectionsB, 0.05f, 0.95f, 0.77f, 0.93f);
+	drawText(id, intersections, connectionsA, connectionsB, { 0.453f, 0.14f, 0.424f, 0.25f, 0.406f, 0.3f, 0.42f, 0.34f, 0.48f, 0.39f, 0.528f, 0.425f, 0.55f, 0.458f, 0.53f, 0.502f, 0.48f, 0.522f, 0.435f, 0.545f, 0.416f, 0.6f, 0.426f, 0.65f, 0.413f, 0.712f, 0.44f, 0.75f, 0.49f, 0.806f, 0.56f, 0.841f, 0.61f, 0.875f }
+	);
+}
+
+void Special::drawTrianglePillar(int id)
+=======
+>>>>>>> Stashed changes
 	createText(id, "reeee", intersections, connectionsA, connectionsB, 0.05f, 0.95f, 0.07f, 0.23f);
 	createText(id, "eever", intersections, connectionsA, connectionsB, 0.05f, 0.95f, 0.77f, 0.93f);
 	drawText(id, intersections, connectionsA, connectionsB, { 0.165f, 0.65f, 0.165f, 0.33f, 0.165f, 0.577f, 0.2f, 0.6f, 0.23f, 0.63f, 0.26f, 0.65f, 0.29f, 0.66f, 0.32f, 0.65f, 0.35f, 0.63f, 0.38f, 0.6f, 0.39f, 0.33f, 0.4f, 0.59f, 0.42f, 0.61f, 0.45f, 0.64f, 0.48f, 0.656f, 0.51f, 0.66f, 0.54f, 0.65f, 0.57f, 0.63f, 0.6f, 0.6f, 0.6f, 0.33f, 0.63f, 0.6f, 0.66f, 0.63f, 0.69f, 0.65f, 0.72f, 0.66f, 0.75f, 0.65f, 0.78f, 0.63f, 0.81f, 0.6f, 0.81f, 0.33}); // reeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeever
 }
 
 void Special::drawMeowPanel(int id)
+<<<<<<< Updated upstream
+=======
+>>>>>>> f26508f17fa6ff98c35c3cf3656fc03ec406745f
+>>>>>>> Stashed changes
 {
 	std::vector<float> intersections;
 	std::vector<int> connectionsA;
 	std::vector<int> connectionsB;
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+	createText(id, "zimodo", intersections, connectionsA, connectionsB, 0.2f, 0.8f, 0.07f, 0.23f);
+	createText(id, "pillar", intersections, connectionsA, connectionsB, 0.05f, 0.95f, 0.77f, 0.93f);
+	drawText(id, intersections, connectionsA, connectionsB, { 0.28f, 0.36f, 0.465f, 0.7f, 0.534f, 0.7f, 0.72f, 0.363f, 0.688f, 0.3f, 0.313f, 0.3f, 0.467f, 0.58f, 0.552f, 0.42f, 0.62f, 0.42f, 0.465f, 0.7f, 0.62f, 0.42f, 0.447f, 0.42f, 0.5f, 0.517f, 0.415f, 0.362f, 0.72f, 0.363f, 0.688f, 0.3f, 0.313f, 0.3f, 0.3f, 0.324f });
+=======
+>>>>>>> Stashed changes
 	//createText(id, "shadow", intersections, connectionsA, connectionsB, 0.05f, 0.95f, 0.05f, 0.25f);
 	createText(id, "meow", intersections, connectionsA, connectionsB, 0.25f, 0.75f, 0.4f, 0.6f);
 	drawText(id, intersections, connectionsA, connectionsB, { 0.5f, 0.18f, 0.55f, 0.185f, 0.6f, 0.2f, 0.65f, 0.22f, 0.7f, 0.25f, 0.75f, 0.28f, 0.78f, 0.35f, 0.79f, 0.4f, 0.8f, 0.45f, 0.78f, 0.6f, 0.79f, 0.69f, 0.8f, 0.8f, 0.8f, 0.87f, 0.79f, 0.91f, 0.76f, 0.92f, 0.73f, 0.9f, 0.69f, 0.87f, 0.65f, 0.8f, 0.6f, 0.75f, 0.5f, 0.74f, 0.4f, 0.74f, 0.35f, 0.75f, 0.24f, 0.91f, 0.21f, 0.92f, 0.18f, 0.9f, 0.18f, 0.85f, 0.18f, 0.8f, 0.185f, 0.7f, 0.19f, 0.6f, 0.2f, 0.4f, 0.22f, 0.3f, 0.25f, 0.25f, 0.3f, 0.2f, 0.4f, 0.18f, 0.5f, 0.18 }); // satisfying cat
@@ -1596,9 +1687,16 @@ int Special::findGlobals() {
 		Sleep(10);
 	}
 	return 0;
+<<<<<<< Updated upstream
 }
 
 >>>>>>> f26508f17fa6ff98c35c3cf3656fc03ec406745f
+=======
+>>>>>>> f26508f17fa6ff98c35c3cf3656fc03ec406745f
+}
+
+
+>>>>>>> Stashed changes
 //For testing/debugging purposes only
 void Special::test() {
 

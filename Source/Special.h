@@ -63,10 +63,24 @@ public:
 	static void drawText(int id, std::vector<float>& intersections, std::vector<int>& connectionsA, std::vector<int>& connectionsB, const std::vector<float>& finalLine);
 	static void drawSeedAndDifficulty(int id, int seed, bool hard, bool setSeed, bool options);
 	static void drawGoodLuckPanel(int id);
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+	static void drawTrianglePillar(int id);
+	static void drawZimodoPillar(int id);
+	static void drawReverPanel(int id);
+	static void drawMeowPanel(int id);
+
+=======
+>>>>>>> Stashed changes
 	static void drawReverPanel(int id);
 	static void drawMeowPanel(int id);
 	static void drawZimodoPillar(int id);
 	static void drawTrianglePillar(int id);
+<<<<<<< Updated upstream
+=======
+>>>>>>> f26508f17fa6ff98c35c3cf3656fc03ec406745f
+>>>>>>> Stashed changes
 
 	void test(); //For testing/debugging purposes only
 
